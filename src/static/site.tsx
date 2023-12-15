@@ -1,4 +1,4 @@
-import { Locales } from '@turistikrota/ui/cjs/types'
+import { Locales } from '@turistikrota/ui/types'
 
 export enum Sites {
   Account = 'account',
