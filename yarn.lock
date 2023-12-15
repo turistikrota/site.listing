@@ -214,6 +214,11 @@
   resolved "https://registry.yarnpkg.com/@trysound/sax/-/sax-0.2.0.tgz#cccaab758af56761eb7bf37af6f03f326dd798ad"
   integrity sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==
 
+"@turistikrota/location-tr@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@turistikrota/location-tr/-/location-tr-0.0.6.tgz#77896787633f9cd953cd108b023d75b19b944a73"
+  integrity sha512-y5JhNZsAez9YDPIJkCP8EGiiLPiUeMTH07DFdQAj3mRt8dqyXb087YoXubPwyy2PRgnngnelRc1yh/zlJjIY8w==
+
 "@turistikrota/prettier-config@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@turistikrota/prettier-config/-/prettier-config-0.2.0.tgz#3e96b66660eac3352be4aa7a9f40ee06e75e13aa"
