@@ -8,6 +8,7 @@ import { getQueryFromSearchParams, toQueryString } from '../utils/listing.utils'
 type ListingFilterContextType = {
   query: PaginationRequest<ListingFilter>
   setQuery: (query: PaginationRequest<ListingFilter>) => void
+  clean: () => void
   isQueryChanged: boolean
   isOnlyPageChanged: boolean
   isFiltered: boolean
@@ -60,15 +61,21 @@ export const ListingFilterProvider: FC<PropsWithChildren> = ({ children }) => {
     setQuery(newQuery)
   }, [])
 
+  const clean = () => {
+    setQuery({ filter: {} })
+  }
+
   const contextValue = useMemo(() => {
     return {
       query,
       setQuery: onQueryChange,
       isQueryChanged,
       isOnlyPageChanged,
+      clean,
       isFiltered: Object.keys(query.filter).filter((q) => !['sort', 'order'].includes(q)).length > 0,
     }
   }, [query, setQuery, isQueryChanged, isOnlyPageChanged])
+
 
   return <ListingFilterContext.Provider value={contextValue}>{children}</ListingFilterContext.Provider>
 }

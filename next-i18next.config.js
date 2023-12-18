@@ -1,5 +1,5 @@
 /** @type {import('next-i18next').UserConfig} */
-export default {
+const i18n = {
       defaultLocale: 'en',
       locales: ['en', 'tr'],
       domains: [
@@ -22,3 +22,4 @@ export default {
 
   }
   
+  module.exports = {i18n}

@@ -46,7 +46,10 @@ export type ListingFilter = {
   end_date?: string
   sort?: ListingSort
   order?: ListingOrder
+  v?: ContentType 
 }
+
+export type ContentType = 'list' | 'map'
 
 export type ListingKeyBindings = {
   q?: string
