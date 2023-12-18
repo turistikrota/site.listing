@@ -1,6 +1,7 @@
 import type { ListResponse } from "@turistikrota/ui"
 import { useIsDesktop, useWindowWidth } from '@turistikrota/ui/hooks/dom'
 import { FC } from "react"
+import ListingDesktopFilterSection from "~/partials/filter/desktop/ListingDesktopFilterSection"
 import { ListingListItem } from "~/types/listing"
 
 type Props = {
@@ -16,7 +17,10 @@ const ListFilterAside : FC<Props> = ({
 
   if (!isWidthExist) return <></>
 
-  return <></>
+  return <>
+  
+  {isDesktop && <ListingDesktopFilterSection data={data} loading={loading} />}
+  </>
 }
 
 export default ListFilterAside
