@@ -1,5 +1,3 @@
-'use client'
-
 import { deepEqual, findDiff } from '@turistikrota/ui/utils'
 import { useSearchParams } from 'next/navigation'
 import { FC, PropsWithChildren, createContext, useContext, useEffect, useMemo, useState } from 'react'
