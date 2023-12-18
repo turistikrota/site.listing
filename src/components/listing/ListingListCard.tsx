@@ -6,9 +6,7 @@ import { EmptyListingMeta, ListingListItem, ListingMeta } from '~/types/listing'
 import { getI18nTranslations } from '~/utils/i18n'
 import { mapAndSortImages } from '~/utils/listing.utils'
 
-type Props = ListingListItem & {
-  customGrid?: string
-}
+type Props = ListingListItem
 
 const ListingListCard: FC<Props> = ({
   uuid,
@@ -20,14 +18,13 @@ const ListingListCard: FC<Props> = ({
   location,
   prices,
   validation,
-  customGrid = 'col-span-12 md:col-span-4',
 }) => {
   const { i18n } = useTranslation()
   const translations = getI18nTranslations<ListingMeta>(meta, i18n.language, EmptyListingMeta)
   return (
     <Card
       noPadding
-      className={`flex flex-col shadow-md transition-shadow duration-200 hover:shadow-lg dark:shadow-none dark:hover:shadow-none ${customGrid}`}
+      className={`flex flex-col shadow-md transition-shadow duration-200 hover:shadow-lg dark:shadow-none dark:hover:shadow-none col-span-12 md:col-span-3`}
     >
       <div className='flex h-full flex-col'>
         <Carousel
