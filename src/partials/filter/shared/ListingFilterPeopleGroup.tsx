@@ -57,7 +57,7 @@ const ListingFilterPeopleItem : FC<ItemProps> = ({info, name, label, queryKey, d
 const ListingFilterPeopleGroup = () => {
     const { t } = useTranslation('filter')
     return <div className="space-y-4">
-        {PeopleKeys.map(key => <ListingFilterPeopleItem key={key} info={t(`components.${key}.description`)} label={t(`components.${key}.label`)} name={key} queryKey={key} />)}
+        {PeopleKeys.map(key => <ListingFilterPeopleItem key={key} info={t(`components.${key}.description`)} label={t(`components.${key}.label`)} name={key} queryKey={key} defaultValue={key === 'adult' ? 1 : 0} />)}
     </div>
 }
 
