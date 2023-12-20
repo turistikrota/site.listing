@@ -26,7 +26,7 @@ const ListingDesktopFilterSection : FC<Props> = ({data}) => {
           {isFiltered && <ListingDesktopHead.Clear text={t('clear-filter')} onClear={() => clean()} />}
         </div>
   
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-4 pt-4'>
           <ListingFilterSection />
         </div>
       </StickySection>

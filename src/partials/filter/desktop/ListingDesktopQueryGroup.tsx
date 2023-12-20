@@ -17,7 +17,7 @@ const ListingDesktopQueryGroup : FC = () => {
       }
     
       return (
-        <ListingDesktopFilterContainer className='pt-4'>
+        <ListingDesktopFilterContainer>
           <ListingDesktopHead>
             <ListingDesktopHead.Title className='flex'>
               {t('components.query.text')}

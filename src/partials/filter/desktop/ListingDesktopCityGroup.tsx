@@ -34,7 +34,7 @@ const ListingDesktopCityGroup : FC = () => {
       push(deepMerge(query, { filter: { coordinates: undefined } }))
     }
 
-    return <ListingDesktopFilterContainer className='pt-4'>
+    return <ListingDesktopFilterContainer>
               <ListingDesktopHead>
         <ListingDesktopHead.Title>
           {t('components.city-select.text')}

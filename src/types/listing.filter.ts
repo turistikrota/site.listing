@@ -49,6 +49,8 @@ export type ListingFilter = {
   v?: ContentType 
 }
 
+export type ListingFilterKeys = keyof ListingFilter
+
 export type ContentType = 'list' | 'map'
 
 export type ListingKeyBindings = {
