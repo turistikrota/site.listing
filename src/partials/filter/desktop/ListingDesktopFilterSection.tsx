@@ -8,11 +8,10 @@ import ListingDesktopHead from "./ListingDesktopHead"
 import ListingFilterSection from "./ListingFilterSection"
 
 type Props = {
-    loading: boolean
     data: ListResponse<ListingListItem> | null
 }
 
-const ListingDesktopFilterSection : FC<Props> = ({data, loading}) => {
+const ListingDesktopFilterSection : FC<Props> = ({data}) => {
     const { t } = useTranslation('filter')
     const { isFiltered, clean } = useListingFilter()
   
