@@ -5,7 +5,7 @@ import { useListingFilter } from "~/contexts/listing.filter";
 import { useListingPusher } from "~/hooks/listing-pusher";
 import { deepMerge } from "~/utils/deepMerge";
 import ListingFilterQueryGroup from "../shared/ListingFilterQueryGroup";
-import PlaceDesktopFilterContainer from "./ListingDesktopFilterContainer";
+import ListingDesktopFilterContainer from "./ListingDesktopFilterContainer";
 import ListingDesktopHead from "./ListingDesktopHead";
 
 const ListingDesktopQueryGroup : FC = () => {
@@ -17,7 +17,7 @@ const ListingDesktopQueryGroup : FC = () => {
       }
     
       return (
-        <PlaceDesktopFilterContainer className='pt-4'>
+        <ListingDesktopFilterContainer className='pt-4'>
           <ListingDesktopHead>
             <ListingDesktopHead.Title className='flex'>
               {t('components.query.text')}
@@ -26,7 +26,7 @@ const ListingDesktopQueryGroup : FC = () => {
             {!!query.filter.query && <ListingDesktopHead.Clear onClear={clearQuery} />}
           </ListingDesktopHead>
           <ListingFilterQueryGroup />
-        </PlaceDesktopFilterContainer>
+        </ListingDesktopFilterContainer>
       )
 }
 

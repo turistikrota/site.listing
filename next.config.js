@@ -4,7 +4,7 @@ const {i18n} = require('./next-i18next.config.js')
 const nextConfig = {
   output: 'standalone',
   reactStrictMode: true,
-  transpilePackages: ['@turistikrota/ui'],
+  transpilePackages: ['@turistikrota/ui', '@turistikrota/location-tr'],
   images: {
     domains: ['s3.turistikrota.com', 'avatar.turistikrota.com'],
   },

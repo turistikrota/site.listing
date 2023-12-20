@@ -1,7 +1,12 @@
 import { FC } from "react";
+import ListingDesktopCityGroup from "./ListingDesktopCityGroup";
+import ListingDesktopQueryGroup from "./ListingDesktopQueryGroup";
 
 const ListingFilterSection : FC = () => {
-    return <></>
+    return <>
+        <ListingDesktopQueryGroup />
+        <ListingDesktopCityGroup />
+    </>
 }
 
 export default ListingFilterSection

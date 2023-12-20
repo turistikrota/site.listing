@@ -219,10 +219,10 @@
   resolved "https://registry.yarnpkg.com/@turistikrota/fonts/-/fonts-1.0.1.tgz#df21e8f6bbfb8640f8e052e22673418abe8cb808"
   integrity sha512-ehWnf3sowG8w9GF8DObM5D9bse9QZVjaOJkjLiWPeMAG+7Gco7CQtLFpex4aFGNOjBSw7F8VdMl1P3ql7KA0IQ==
 
-"@turistikrota/location-tr@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@turistikrota/location-tr/-/location-tr-0.0.6.tgz#77896787633f9cd953cd108b023d75b19b944a73"
-  integrity sha512-y5JhNZsAez9YDPIJkCP8EGiiLPiUeMTH07DFdQAj3mRt8dqyXb087YoXubPwyy2PRgnngnelRc1yh/zlJjIY8w==
+"@turistikrota/location-tr@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@turistikrota/location-tr/-/location-tr-0.0.8.tgz#60cee3067f6ccafc424a7e7f235074c7ad306c51"
+  integrity sha512-DlhoNWvXz+TxLyAVYburZ2F/Fuu82oA984nV7suS3MTG/AE0FMmokpgAABFCgYztSAVOWrF+f4gV0yj0IpUa3w==
 
 "@turistikrota/prettier-config@^1.0.0":
   version "1.0.0"
