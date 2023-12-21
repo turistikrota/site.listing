@@ -1,8 +1,8 @@
 import { MobileInfoBox } from "@turistikrota/ui/accessibility/info";
 import Input from "@turistikrota/ui/form/input";
 import ErrorText from "@turistikrota/ui/text/error";
+import { useTranslation } from "next-i18next";
 import { ChangeEvent, FC, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useListingFilter } from "~/contexts/listing.filter";
 import { useListingPusher } from "~/hooks/listing-pusher";
 

@@ -1,8 +1,42 @@
 {
+    "ux": {
+      "button": {
+        "show": "Göster",
+        "hide": "Gizle",
+        "close": "Kapat",
+        "save": "Kaydet",
+        "cancel": "İptal",
+        "zoom-in": "Yakınlaştır",
+        "zoom-out": "Uzaklaştır",
+        "rotate-left": "Sola Döndür",
+        "rotate-right": "Sağa Döndür",
+        "flip-horizontal": "Yatay Çevir",
+        "flip-vertical": "Dikey Çevir",
+        "clear": "Temizle",
+        "clear-filter": "Filtreyi Temizle"
+      },
+      "select": {
+        "default": "Seçiniz"
+      },
+      "label": {
+        "result": "Sonuç"
+      },
+      "input": {
+        "invalid": {
+          "min-max": "Maksimum değer, minimum değerden küçük olamaz"
+        },
+        "search": "Ara",
+        "min": "Min",
+        "max": "Maks"
+      }
+    },
     "seo": {
+        "list": {
+
         "title": "İlanlar",
         "description": "Turistikrota ile gerçek turizm deneyimini yaşayın. Tarihe, kategoriye, konuma ve daha fazlasına göre ilanları filtreleyin, size uygun ilanı bulun ve rezervasyon yapın.",
         "keywords": "ilanlar, turistikrota ilanlar, turistikrota, turistikrota.com"
+        }
     },
     "switch": {
         "filter": "Filtre",

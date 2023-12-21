@@ -57,7 +57,7 @@ const ListingFilterPriceItem : FC<ItemProps> = ({info, name, label, queryKey, de
 const ListingFilterPriceGroup = () => {
     const { t } = useTranslation('filter')
     return <div className="space-y-4">
-        {PriceKeys.map(key => <ListingFilterPriceItem key={key} info={t(`components.${key}.description`)} label={t(`components.${key}.label`)} name={key} queryKey={key} />)}
+        {PriceKeys.map(key => <ListingFilterPriceItem key={key} info={t(`components.price.${key}.description`)} label={t(`components.price.${key}.label`)} name={key} queryKey={key} />)}
     </div>
 }
 

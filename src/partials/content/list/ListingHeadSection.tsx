@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next'
 import { useListingFilter } from '~/contexts/listing.filter'
 import { useListSeo } from '~/hooks/seo'
-import PlaceDesktopSortGroup from '~/partials/filter/desktop/ListingDesktopSortGroup'
+import ListingDesktopSortGroup from '~/partials/filter/desktop/ListingDesktopSortGroup'
 
 const minimizeDescription = (description: string): string => {
   if (description.length < 100) return description
@@ -24,7 +24,7 @@ const ListingHeadSection: React.FC = () => {
         <h1 className='text-3xl font-bold text-gray-800 dark:text-gray-300'>{title}</h1>
         <p className='text-sm text-gray-600 dark:text-gray-400'>{minimizeDescription(description)}</p>
       </div>
-      <PlaceDesktopSortGroup />
+      <ListingDesktopSortGroup />
     </section>
   )
 }

@@ -1,7 +1,7 @@
 import { MobileInfoBox } from "@turistikrota/ui/accessibility/info"
 import Input from "@turistikrota/ui/form/input"
-import { FC, useEffect, useState } from "react"
 import { useTranslation } from "next-i18next"
+import { FC, useEffect, useState } from "react"
 import { useListingFilter } from "~/contexts/listing.filter"
 import { useListingPusher } from "~/hooks/listing-pusher"
 
@@ -57,7 +57,7 @@ const ListingFilterPeopleItem : FC<ItemProps> = ({info, name, label, queryKey, d
 const ListingFilterPeopleGroup = () => {
     const { t } = useTranslation('filter')
     return <div className="space-y-4">
-        {PeopleKeys.map(key => <ListingFilterPeopleItem key={key} info={t(`components.${key}.description`)} label={t(`components.${key}.label`)} name={key} queryKey={key} defaultValue={key === 'adult' ? 1 : 0} />)}
+        {PeopleKeys.map(key => <ListingFilterPeopleItem key={key} info={t(`components.people.${key}.description`)} label={t(`components.people.${key}.label`)} name={key} queryKey={key} defaultValue={key === 'adult' ? 1 : 0} />)}
     </div>
 }
 

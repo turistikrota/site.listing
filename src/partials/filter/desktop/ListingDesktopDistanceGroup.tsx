@@ -1,6 +1,6 @@
 import { DesktopInfoBox } from "@turistikrota/ui/accessibility/info";
+import { useTranslation } from "next-i18next";
 import { FC } from "react";
-import { useTranslation } from "react-i18next";
 import { useListingFilter } from "~/contexts/listing.filter";
 import { useListingPusher } from "~/hooks/listing-pusher";
 import { deepMerge } from "~/utils/deepMerge";

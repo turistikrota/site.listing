@@ -38,7 +38,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) : Promi
   const res = await filterListings(query.filter, query.page, query.limit)
   return {
     props: {
-      ...(await serverSideTranslations(ctx.locale || 'en', ['common', 'footer', 'header'])),
+      ...(await serverSideTranslations(ctx.locale || 'en', ['common', 'filter', 'sort', 'listing'])),
       response: res,
       error: !!err && isApiError(err) ? err.response.data : null,
       accessTokenIsExists: !!ctx.req.cookies[Config.cookies.accessToken],

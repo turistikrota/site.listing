@@ -1,6 +1,6 @@
 import { City, findCityByCoordinates, findNearestCity } from "@turistikrota/location-tr";
+import { useTranslation } from "next-i18next";
 import { FC, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useListingFilter } from "~/contexts/listing.filter";
 import { useListingPusher } from "~/hooks/listing-pusher";
 import { deepMerge } from "~/utils/deepMerge";

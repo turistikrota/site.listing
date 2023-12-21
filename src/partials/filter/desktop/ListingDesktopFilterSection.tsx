@@ -1,7 +1,7 @@
 import { ListResponse } from "@turistikrota/ui"
 import StickySection from "@turistikrota/ui/section/sticky"
+import { useTranslation } from "next-i18next"
 import { FC } from "react"
-import { useTranslation } from "react-i18next"
 import { useListingFilter } from "~/contexts/listing.filter"
 import { ListingListItem } from "~/types/listing"
 import ListingDesktopHead from "./ListingDesktopHead"

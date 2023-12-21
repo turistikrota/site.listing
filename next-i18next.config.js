@@ -1,6 +1,6 @@
 /** @type {import('next-i18next').UserConfig} */
 const i18n = {
-      defaultLocale: 'en',
+      defaultLocale: 'tr',
       locales: ['en', 'tr'],
       domains: [
         {

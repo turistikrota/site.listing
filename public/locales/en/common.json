@@ -1,8 +1,41 @@
 {
+    "ux": {
+      "button": {
+        "show": "Show",
+        "hide": "Hide",
+        "close": "Close",
+        "save": "Save",
+        "cancel": "Cancel",
+        "zoom-in": "Zoom In",
+        "zoom-out": "Zoom Out",
+        "rotate-left": "Rotate Left",
+        "rotate-right": "Rotate Right",
+        "flip-horizontal": "Flip Horizontal",
+        "flip-vertical": "Flip Vertical",
+        "clear": "Clear",
+        "clear-filter": "Clear Filter"
+      },
+      "select": {
+        "default": "Select"
+      },
+      "label": {
+        "result": "Result"
+      },
+      "input": {
+        "invalid": {
+          "min-max": "The maximum value cannot be less than to the minimum value"
+        },
+        "search": "Search",
+        "min": "Min",
+        "max": "Max"
+      }
+    },
     "seo": {
-        "title": "Listings",
+        "list": {
+            "title": "Listings",
         "description": "Experience real tourism with Turistikrota. Filter ads by date, category, location, and more, find the right ad for you, and make a reservation.",
         "keywords": "listings, turistikrota listings, turistikrota, turistikrota.com"
+        }
     },
     "switch": {
         "filter": "Filter",

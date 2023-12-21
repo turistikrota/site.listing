@@ -59,7 +59,7 @@ const ListingFilterBooleanItem : FC<ItemProps> = ({info, name, label, queryKey, 
 const ListingFilterValidationGroup = () => {
     const { t } = useTranslation('filter')
     return <div className="space-y-4">
-        {ValidationKeys.map(key => <ListingFilterBooleanItem key={key} info={t(`components.${key}.description`)} label={t(`components.${key}.label`)} name={key} queryKey={key} />)}
+        {ValidationKeys.map(key => <ListingFilterBooleanItem key={key} info={t(`components.validation.${key}.description`)} label={t(`components.validation.${key}.label`)} name={key} queryKey={key} />)}
     </div>
 }
 
