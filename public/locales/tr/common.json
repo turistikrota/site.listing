@@ -1,1 +1,42 @@
-{}
+{
+    "seo": {
+        "title": "İlanlar",
+        "description": "Turistikrota ile gerçek turizm deneyimini yaşayın. Tarihe, kategoriye, konuma ve daha fazlasına göre ilanları filtreleyin, size uygun ilanı bulun ve rezervasyon yapın.",
+        "keywords": "ilanlar, turistikrota ilanlar, turistikrota, turistikrota.com"
+    },
+    "switch": {
+        "filter": "Filtre",
+        "sort": "Sırala"
+    },
+    "content-switch": {
+        "map": "Haritayı Göster",
+        "list": "Listeyi Göster"
+    },
+    "brace": {
+        "and": "ve"
+    },
+    "header": {
+        "submodule": "ilan",
+        "left": {
+            "promotion": "Gerçek turizm deneyimini Turistikrota ile yaşa!"
+        },
+        "links": {
+            "aboutUs": "Hakkımızda",
+            "login": "Giriş Yap",
+            "selectAccount": "Profili Seç",
+            "home": "Turistikrota'ya Dön"
+        },
+        "button": {
+            "login": "Giriş Yap",
+            "select": "Profili Seç",
+            "profile": "Profil",
+            "loading": "Yükleniyor..."
+        }
+    },
+    "notFound": {
+        "title": "Sonuç Bulunamadı",
+        "description": "Filtrelerinizle eşleşen herhangi bir sonuç bulamadık.",
+        "button": "Filtreleri Sıfırla"
+    },
+    "url": "https://ilan.turistikrota.com"
+}

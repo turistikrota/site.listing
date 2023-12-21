@@ -1,1 +1,42 @@
-{}
+{
+    "seo": {
+        "title": "Listings",
+        "description": "Experience real tourism with Turistikrota. Filter ads by date, category, location, and more, find the right ad for you, and make a reservation.",
+        "keywords": "listings, turistikrota listings, turistikrota, turistikrota.com"
+    },
+    "switch": {
+        "filter": "Filter",
+        "sort": "Sort"
+    },
+    "content-switch": {
+        "map": "Show Map",
+        "list": "Show List"
+    },
+    "brace": {
+        "and": "and"
+    },
+    "header": {
+        "submodule": "listing",
+        "left": {
+            "promotion": "Experience real tourism with Turistikrota!"
+        },
+        "links": {
+            "aboutUs": "About Us",
+            "login": "Log In",
+            "selectAccount": "Select Profile",
+            "home": "Return to Turistikrota"
+        },
+        "button": {
+            "login": "Log In",
+            "select": "Select Profile",
+            "profile": "Profile",
+            "loading": "Loading..."
+        }
+    },
+    "notFound": {
+        "title": "No Results Found",
+        "description": "We couldn't find any results matching your filters.",
+        "button": "Reset Filters"
+    },
+    "url": "https://listing.turistikrota.com"
+}
