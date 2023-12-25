@@ -32,6 +32,11 @@
             "title": "Şehir Seçin",
             "text": "Şehir"
         },
+        "category": {
+            "title": "Kategori Seçin",
+            "text": "Kategori",
+            "all": "Tüm Kategoriler"
+        },
         "distance": {
           "title": "Mesafe",
           "text": "Mesafe",

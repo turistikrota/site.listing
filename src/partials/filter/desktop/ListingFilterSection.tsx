@@ -1,4 +1,5 @@
 import { FC } from "react";
+import ListingDesktopCategoryGroup from "./ListingDesktopCategoryGroup";
 import ListingDesktopCityGroup from "./ListingDesktopCityGroup";
 import ListingDesktopDateGroup from "./ListingDesktopDateGroup";
 import ListingDesktopDistanceGroup from "./ListingDesktopDistanceGroup";
@@ -9,6 +10,7 @@ import ListingDesktopValidationGroup from "./ListingDesktopValidationGroup";
 
 const ListingFilterSection : FC = () => {
     return <>
+    <ListingDesktopCategoryGroup />
     <ListingDesktopDateGroup />
     <ListingDesktopPeopleGroup />
         <ListingDesktopQueryGroup />

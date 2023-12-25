@@ -1,5 +1,3 @@
-import CubeEffect from '@turistikrota/ui/design/cube'
-import GlassEffect from '@turistikrota/ui/design/glass'
 import { useTranslation } from 'next-i18next'
 import { Head, Html, Main, NextScript } from 'next/document'
 import Script from 'next/script'
@@ -51,8 +49,6 @@ const Document : FC = () => {
     <Html lang={i18n.language}>
       <Head />
       <body>
-        <GlassEffect.Fixed />
-        <CubeEffect.All />
         <Main />
         <NextScript />
         {i18n.language === 'tr' ? <TurkishAnalytics /> : <EnglishAnalytics />}

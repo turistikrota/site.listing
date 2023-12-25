@@ -3,7 +3,7 @@ type Props = {
   }
   
   const ListingDesktopFilterContainer: React.FC<React.PropsWithChildren<Props>> = ({ children, className }) => {
-    return <div className={`px-4 pb-4 border-b ${className ? className : ''}`}>{children}</div>
+    return <div className={`px-2 pb-2 border-b ${className ? className : ''}`}>{children}</div>
   }
   
   export default ListingDesktopFilterContainer

@@ -63,7 +63,7 @@ export const getQueryFromKeyBindings = (bindings: ListingKeyBindings) => {
       }
     },
     features: (value: string) => {
-      const tuples = value.split(',')
+      const tuples = value.split('-')
       if (tuples.length > 0) {
         const features: ListingFilter['features'] = []
         query.filter.features = tuples.reduce((acc, tuple) => {
@@ -76,7 +76,7 @@ export const getQueryFromKeyBindings = (bindings: ListingKeyBindings) => {
       }
     },
     categories: (value: string) => {
-      const categories = value.split(',')
+      const categories = value.split('-')
       if (categories.length > 0) {
         query.filter.categories = categories
       }
@@ -200,11 +200,11 @@ export const toQueryString = (query: PaginationRequest<ListingFilter>): string =
     q.set('lng', lng.toString())
   }
   if (query.filter.categories) {
-    q.set('categories', query.filter.categories.join(','))
+    q.set('categories', query.filter.categories.join('-'))
   }
   if (query.filter.features) {
     const features = query.filter.features.map((feature) => `${feature.categoryInputUUID}:${feature.value}`)
-    q.set('features', features.join(','))
+    q.set('features', features.join('-'))
   }
   if (query.filter.distance) {
     q.set('dist', query.filter.distance.toString())

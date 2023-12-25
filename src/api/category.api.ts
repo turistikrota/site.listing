@@ -74,6 +74,14 @@ export type CategoryMeta = {
   title: string
 }
 
+export const EmptyCategoryMeta: CategoryMeta = {
+  name: '',
+  slug: '',
+  description: '',
+  title: '',
+
+}
+
 export type CategoryListItem = {
   uuid: string
   mainUUIDs: string[]

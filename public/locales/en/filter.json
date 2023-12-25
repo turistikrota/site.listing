@@ -32,6 +32,11 @@
             "title": "Select City",
             "text": "City"
         },
+        "category": {
+            "title": "Select Category",
+            "text": "Category",
+            "all": "All Categories"
+        },
         "distance": {
           "title": "Distance",
           "text": "Distance",

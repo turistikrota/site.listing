@@ -16,8 +16,8 @@ const ListingDesktopFilterSection : FC<Props> = ({data}) => {
     const { isFiltered, clean } = useListingFilter()
   
     return (
-      <StickySection innerClassName='rounded-md border bg-second'>
-        <div className='border-b p-4 flex justify-between items-center'>
+      <StickySection innerClassName='rounded-md border'>
+        <div className='border-b p-2 flex justify-between items-center'>
           <span className='text-gray-400'>
             {t('results', {
               count: data?.filteredTotal || 0,
@@ -26,7 +26,7 @@ const ListingDesktopFilterSection : FC<Props> = ({data}) => {
           {isFiltered && <ListingDesktopHead.Clear text={t('clear-filter')} onClear={() => clean()} />}
         </div>
   
-        <div className='flex flex-col gap-4 pt-4'>
+        <div className='flex flex-col gap-2 pt-2'>
           <ListingFilterSection />
         </div>
       </StickySection>
