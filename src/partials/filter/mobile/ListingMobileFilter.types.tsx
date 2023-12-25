@@ -1,0 +1,1 @@
+export type FilterComponents = 'city-select' | 'distance' | 'query'
