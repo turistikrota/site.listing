@@ -71,7 +71,10 @@
             "max": {
                 "label": "Maksimum Fiyat",
                 "description": "Maksimum fiyatı seçin."
-            }
+            },
+            "range": "{{min}} - {{max}} ₺",
+            "min-price": "{{min}} ₺ ve üzeri",
+            "max-price": "{{max}} ₺ ve altı"
         },
         "query": {
           "title": "Kelime ile Ara",

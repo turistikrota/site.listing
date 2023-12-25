@@ -1,1 +1,1 @@
-export type FilterComponents = 'city-select' | 'distance' | 'query'
+export type FilterComponents = 'city-select' | 'distance' | 'query' | 'category' | 'date' | 'people' | 'price' | 'validation'

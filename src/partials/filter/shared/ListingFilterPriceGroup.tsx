@@ -38,8 +38,8 @@ const ListingFilterPriceItem : FC<ItemProps> = ({info, name, label, queryKey, de
         ...query,
         filter: {
           ...query.filter,
-          validation: {
-            ...query.filter.validation,
+          price: {
+            ...query.filter.price,
             [queryKey]: Number.isNaN(val) ? undefined : val,
           },
         },

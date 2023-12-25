@@ -39,6 +39,21 @@ const createCategoryMapper = (lang: string) => {
     })
 }
 
+const findCategory = (categories: SelectionItem[], selecteds: string[]) : SelectionItem[] => {
+    const list : SelectionItem[] = []
+    const category = categories.find((c) => selecteds.includes(c.id))
+    if (category) {
+        list.push(category)
+        if (category.children) {
+            const child = findCategory(category.children, selecteds)
+            if (child) {
+                list.push(...child)
+            }
+        }
+    }
+    return list
+}
+
 export const CategorySelectionProvider: React.FC<React.PropsWithChildren<ProviderProps>> = ({ children, initialSelectedCategories = [], clear }) => {
     const [loading, setLoading] = useState(false)
     const { i18n } = useTranslation()
@@ -49,16 +64,8 @@ export const CategorySelectionProvider: React.FC<React.PropsWithChildren<Provide
     const [allCategories, setAllCategories] = useState<SelectionItem[]>([])
 
     const selecteds = useMemo<SelectionItem[]>(() => {
-        const list : SelectionItem[] = []
-        for (let i = 0; i < allCategories.length; i++) {
-            const categories = allCategories[i]
-            const selected = categories.children?.find((c) => selectedCategories.includes(c.id))
-            if (selected) {
-                list.push(selected)
-            }
-        }
-        return list
-    }, [allCategories])
+        return findCategory(allCategories, selectedCategories)
+    }, [allCategories, selectedCategories])
 
     useEffect(() => {
         fetchMainCategories().then(res => {

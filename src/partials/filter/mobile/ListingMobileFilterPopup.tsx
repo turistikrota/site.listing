@@ -36,6 +36,21 @@ const Components: Record<FilterComponents, React.ComponentType<any>> = {
   query: dynamic(() => import('../shared/ListingFilterQueryGroup'), {
     loading: Spin,
   }),
+  category: dynamic(() => import('../shared/ListingFilterCategoryGroup'), {
+    loading: Spin,
+  }),
+  date: dynamic(() => import('../shared/ListingFilterDateGroup'), {
+    loading: Spin,
+  }),
+  people: dynamic(() => import('../shared/ListingFilterPeopleGroup'), {
+    loading: Spin,
+  }),
+    price: dynamic(() => import('../shared/ListingFilterPriceGroup'), {
+        loading: Spin,
+    }),
+    validation: dynamic(() => import('../shared/ListingFilterValidationGroup'), {
+        loading: Spin,
+    }),
 }
 
 const ListingMobileFilterPopup: React.FC<Props> = ({ onClose, open, data, loading }) => {
