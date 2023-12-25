@@ -5,21 +5,20 @@ import { filterListings } from "~/api/listing.api"
 import { Config } from "~/config"
 import { ListingFilterProvider } from "~/contexts/listing.filter"
 import MapLayout from "~/layouts/MapLayout"
+import { LayoutProps } from "~/layouts/layout.types"
 import ContentSwitcher from "~/partials/content/ContentSwitcher"
 import { isApiError } from "~/types/error"
 import { ListingListItem } from "~/types/listing"
 import { getQueryFromSearchParams } from "~/utils/listing.utils"
 
-type Props = {
+type Props = LayoutProps & {
   response?: ListResponse<ListingListItem>
   error?: any
-  accessTokenIsExists: boolean
-  accountCookie: string
 }
 
-export default function Home({response, error, accessTokenIsExists, accountCookie} : Props) {
+export default function Home({response, error, ...layoutProps} : Props) {
   return (
-    <MapLayout  accessTokenIsExists={accessTokenIsExists} accountCookie={accountCookie}>
+    <MapLayout  {...layoutProps}>
       <ListingFilterProvider>
         <ContentSwitcher response={response} error={error} />
       </ListingFilterProvider>

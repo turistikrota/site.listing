@@ -1,14 +1,11 @@
 import { TooltipProvider } from '@turistikrota/ui/tooltip/provider'
+import { FC } from 'react'
 import { AccountProvider } from '~/hooks/account'
 import { useSizeWithoutHeader } from '~/hooks/dom'
 import OnlyMobileHeader from '~/partials/header/OnlyMobileHeader'
+import { LayoutProps } from './layout.types'
 
-type Props = {
-  accessTokenIsExists: boolean
-  accountCookie: string
-}
-
-export default function MapLayout({ children, accessTokenIsExists, accountCookie }: React.PropsWithChildren<Props>) {
+const MapLayout : FC<React.PropsWithChildren<LayoutProps>> = ({ children, accessTokenIsExists, accountCookie })  => {
   const size = useSizeWithoutHeader()
   return (
     <AccountProvider accessTokenIsExists={accessTokenIsExists} accountCookie={accountCookie}>
@@ -24,3 +21,5 @@ export default function MapLayout({ children, accessTokenIsExists, accountCookie
     </AccountProvider>
   )
 }
+
+export default MapLayout

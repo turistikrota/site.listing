@@ -1,17 +1,15 @@
 import { TooltipProvider } from '@turistikrota/ui/tooltip/provider'
+import { FC } from 'react'
 import { AccountProvider } from '~/hooks/account'
 import OnlyMobileHeader from '~/partials/header/OnlyMobileHeader'
+import { LayoutProps } from './layout.types'
 
-type Props = {
-  accessTokenIsExists: boolean
-  accountCookie: string
-}
 
-export default function DefaultLayout({
+const DefaultLayout : FC<React.PropsWithChildren<LayoutProps>> = ({
   children,
   accessTokenIsExists,
   accountCookie,
-}: React.PropsWithChildren<Props>) {
+}) => {
   return (
     <AccountProvider accessTokenIsExists={accessTokenIsExists} accountCookie={accountCookie}>
       <OnlyMobileHeader accessTokenIsExists={accessTokenIsExists} />
@@ -21,3 +19,5 @@ export default function DefaultLayout({
     </AccountProvider>
   )
 }
+
+export default DefaultLayout
