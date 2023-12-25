@@ -66,6 +66,11 @@
             "loading": "Loading..."
         }
     },
+      "notFoundPage": {
+         "title": "Page Not Found",
+         "subtitle": "We couldn't find the page you're looking for. Please check the address you entered.",
+         "button": "Return to Homepage"
+      },
     "notFound": {
         "title": "No Results Found",
         "description": "We couldn't find any results matching your filters.",

@@ -67,6 +67,11 @@
             "loading": "Yükleniyor..."
         }
     },
+    "notFoundPage": {
+      "title": "Sayfa Bulunamadı",
+      "subtitle": "Aradığınız sayfayı bulamadık. Lütfen girdiğiniz adresi kontrol edin.",
+      "button": "Anasayfaya Dön"
+    },
     "notFound": {
         "title": "Sonuç Bulunamadı",
         "description": "Filtrelerinizle eşleşen herhangi bir sonuç bulamadık.",

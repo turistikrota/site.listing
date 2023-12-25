@@ -45,7 +45,7 @@ const EnglishAnalytics: FC = () => {
   )
 }
 
-export default function Document() {
+const Document : FC = () => {
   const { i18n } = useTranslation()
   return (
     <Html lang={i18n.language}>
@@ -60,3 +60,5 @@ export default function Document() {
     </Html>
   )
 }
+
+export default Document
