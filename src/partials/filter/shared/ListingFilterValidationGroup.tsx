@@ -27,21 +27,22 @@ const ListingFilterBooleanItem : FC<ItemProps> = ({info, name, label, queryKey, 
     useEffect(() => {
         if (!!query.filter.validation && query.filter.validation[queryKey] && query.filter.validation[queryKey] !== value) {
           const val = (query.filter.validation ? query.filter.validation[queryKey] : false) || false
-          setValue(val)
+          setValue(typeof val === 'boolean' ? val : val === 'on')
         } else if (query.filter.validation && !query.filter.validation[queryKey] && value !== undefined) {
           setValue(false)
         }
       }, [query])
     
-      const handleChange = (val: boolean) => {
-        setValue(val)
+      const handleChange = (val: boolean | string) => {
+        const boolValue = typeof val === 'boolean' ? val : val === 'on'
+        setValue(boolValue)
         push({
           ...query,
           filter: {
             ...query.filter,
             validation: {
               ...query.filter.validation,
-              [queryKey]: val ? 'on': undefined,
+              [queryKey]: boolValue ? 'on': undefined,
             },
           },
         })
@@ -58,7 +59,7 @@ const ListingFilterBooleanItem : FC<ItemProps> = ({info, name, label, queryKey, 
 
 const ListingFilterValidationGroup = () => {
     const { t } = useTranslation('filter')
-    return <div className="space-y-4">
+    return <div className="space-y-2">
         {ValidationKeys.map(key => <ListingFilterBooleanItem key={key} info={t(`components.validation.${key}.description`)} label={t(`components.validation.${key}.label`)} name={key} queryKey={key} />)}
     </div>
 }
