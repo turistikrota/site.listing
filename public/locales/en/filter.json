@@ -1,1 +1,127 @@
-{}
+{
+    "title": "Filter",
+    "clear-all": "Clear All Filters",
+    "clear-filter": "Clear Filter",
+    "apply": "Apply",
+    "see-results": "View Results ({{count}})",
+    "results": "{{count}} listings found",
+    "switch": {
+      "filter": "Filter",
+      "sort": "Sort"
+    },
+    "components": {
+        "date": {
+            "title": "Date Range",
+            "text": "Date Range",
+            "description": "Select the start and end dates of your reservation.",
+            "range": "between {{start}} and {{end}}"
+        },
+        "start-date": {
+            "label": "Start Date",
+            "description": "Select the start date of your reservation.",
+            "invalid": "Please select a valid start date.",
+            "past": "Start date cannot be before today.",
+            "dynamic": "{{start}} and after"
+        },
+        "end-date": {
+            "label": "End Date",
+            "description": "Select the end date of your reservation.",
+            "invalid": "Please select a valid end date.",
+            "past": "End date cannot be before today.",
+            "before-start": "End date cannot be before the start date.",
+            "dynamic": "{{end}} and before"
+        },
+        "city-select": {
+            "title": "Select City",
+            "text": "City"
+        },
+        "category": {
+            "title": "Select Category",
+            "text": "Category",
+            "all": "All Categories"
+        },
+        "distance": {
+          "title": "Distance",
+          "text": "Distance",
+          "description": "Enter how many kilometers away from the city center you want the places to be.",
+          "label": "Distance (km)"
+        },
+        "people": {
+            "title": "People",
+            "text": "People",
+            "description": "Select the number of people, kids, and babies for your reservation.",
+            "adult": {
+                "label": "Adult",
+                "description": "Select the number of adults."
+            },
+            "kid": {
+                "label": "Child",
+                "description": "Select the number of children."
+            },
+            "baby": {
+                "label": "Baby",
+                "description": "Select the number of babies."
+            },
+            "dynamic": {
+                "adult": "{{count}} adult",
+                "kid": "{{count}} kid",
+                "baby": "{{count}} baby"
+            }
+        },
+        "price": {
+            "title": "Price",
+            "text": "Price",
+            "description": "Select the price range for your reservation.",
+            "min": {
+                "label": "Minimum Price",
+                "description": "Select the minimum price."
+            },
+            "max": {
+                "label": "Maximum Price",
+                "description": "Select the maximum price."
+            },
+            "range": "between {{min}} ₺ and {{max}} ₺",
+            "min-price": "{{min}} ₺ and above",
+            "max-price": "{{max}} ₺ and below"
+        },
+        "query": {
+          "title": "Search by Keyword",
+          "text": "Search by Keyword",
+          "description": "Search by venue name, description, or tags.",
+          "label": "Keyword"
+        },
+        "validation": {
+            "title": "Rules",
+            "text": "Rules",
+            "description": "Filter according to listing rules.",
+            "family": {
+                "label": "Family Only",
+                "description": "Show places only suitable for families."
+            },
+            "pet": {
+                "label": "Pet-Friendly",
+                "description": "Show places that accept pets."
+            },
+            "smoke": {
+                "label": "Smoking Allowed",
+                "description": "Show places where smoking is allowed."
+            },
+            "alcohol": {
+                "label": "Alcohol Allowed",
+                "description": "Show places where alcohol is allowed."
+            },
+            "party": {
+                "label": "Party Allowed",
+                "description": "Show places where parties can be held."
+            },
+            "unmarried": {
+                "label": "Unmarried Couples",
+                "description": "Show places where unmarried couples can stay."
+            },
+            "guest": {
+                "label": "Guest Allowed",
+                "description": "Show places where guests are allowed."
+            }
+        }
+    }
+}

@@ -1,7 +1,6 @@
 /** @type {import('next-i18next').UserConfig} */
-module.exports = {
-    i18n: {
-      defaultLocale: 'en',
+const i18n = {
+      defaultLocale: 'tr',
       locales: ['en', 'tr'],
       domains: [
         {
@@ -20,6 +19,7 @@ module.exports = {
       localeDetection: false,
       reloadOnPrerender: process.env.NODE_ENV === 'development',
       debug: process.env.NODE_ENV === 'development',
-    },
+
   }
   
+  module.exports = {i18n}

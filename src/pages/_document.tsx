@@ -1,13 +1,60 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import { useTranslation } from 'next-i18next'
+import { Head, Html, Main, NextScript } from 'next/document'
+import Script from 'next/script'
+import type { FC } from 'react'
 
-export default function Document() {
+const TurkishAnalytics: FC = () => {
   return (
-    <Html lang="en">
+    <>
+      <Script
+        async={true}
+        src='https://www.googletagmanager.com/gtag/js?id=G-2NMFRCYRF2'
+        strategy='afterInteractive'
+      ></Script>
+      <Script id='google-tag' strategy='afterInteractive'>
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-2NMFRCYRF2');
+      `}
+      </Script>
+    </>
+  )
+}
+
+const EnglishAnalytics: FC = () => {
+  return (
+    <>
+      <Script
+        async={true}
+        src='https://www.googletagmanager.com/gtag/js?id=G-Q7YKQ763VG'
+        strategy='afterInteractive'
+      ></Script>
+      <Script id='google-tag' strategy='afterInteractive'>
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Q7YKQ763VG');
+        `}
+      </Script>
+    </>
+  )
+}
+
+const Document : FC = () => {
+  const { i18n } = useTranslation()
+  return (
+    <Html lang={i18n.language}>
       <Head />
       <body>
         <Main />
         <NextScript />
+        {i18n.language === 'tr' ? <TurkishAnalytics /> : <EnglishAnalytics />}
       </body>
     </Html>
   )
 }
+
+export default Document

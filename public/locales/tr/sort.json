@@ -1,0 +1,21 @@
+{
+    "mobile": {
+      "title": "Sırala",
+      "sort-by": {
+        "title": "Sıralama Alanı",
+        "price": "Fiyat",
+        "most_recent": "Eklenme Tarihi",
+        "nearest": "Yakınlık",
+        "clear-text": "Temizle",
+        "clear-aria-label": "Sıralama Ölçütünü Temizle"
+      },
+      "order-by": {
+        "title": "Sıralama Yöntemi",
+        "desc": "Azalan",
+        "asc": "Artan",
+        "clear-text": "Temizle",
+        "clear-aria-label": "Sıralama Yöntemini Temizle"
+      }
+    }
+  }
+  
