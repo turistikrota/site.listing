@@ -109,7 +109,7 @@ const ListingMobileFilterPopup: React.FC<Props> = ({ onClose, open, data, loadin
           <>
             <ListingMobileFilterFilterMenu onOpen={onOpenFilter}></ListingMobileFilterFilterMenu>
             <Condition value={isFiltered}>
-              <Button className='mt-12' variant='primary' onClick={onCloseFilter} disabled={loading}>
+              <Button className='mt-12' variant='primary' onClick={onClose} disabled={loading}>
                 {t('see-results', {
                   count: data?.filteredTotal ?? 0,
                 })}

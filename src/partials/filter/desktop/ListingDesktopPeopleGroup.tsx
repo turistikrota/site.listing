@@ -14,7 +14,7 @@ const ListingDesktopPeopleGroup : FC = () => {
     const { push } = useListingPusher()
 
   const clearPeople = () => {
-    push(deepMerge(query, { filter: { validation: {
+    push(deepMerge(query, { filter: { people: {
         adult: undefined,
         kid: undefined,
         baby: undefined
@@ -28,7 +28,7 @@ const ListingDesktopPeopleGroup : FC = () => {
           {t('components.people.text')}
           <DesktopInfoBox>{t('components.people.description')}</DesktopInfoBox>
         </ListingDesktopHead.Title>
-        {!!query.filter.validation && (query.filter.validation.adult || query.filter.validation.baby || query.filter.validation.kid) && <ListingDesktopHead.Clear onClear={clearPeople} />}
+        {!!query.filter.people && (query.filter.people.adult || query.filter.people.baby || query.filter.people.kid) && <ListingDesktopHead.Clear onClear={clearPeople} />}
       </ListingDesktopHead>
       <ListingFilterPeopleGroup  />
     </ListingDesktopFilterContainer>

@@ -13,20 +13,23 @@
         "date": {
             "title": "Date Range",
             "text": "Date Range",
-            "description": "Select the start and end dates of your reservation."
+            "description": "Select the start and end dates of your reservation.",
+            "range": "between {{start}} and {{end}}"
         },
         "start-date": {
             "label": "Start Date",
             "description": "Select the start date of your reservation.",
             "invalid": "Please select a valid start date.",
-            "past": "Start date cannot be before today."
+            "past": "Start date cannot be before today.",
+            "dynamic": "{{start}} and after"
         },
         "end-date": {
             "label": "End Date",
             "description": "Select the end date of your reservation.",
             "invalid": "Please select a valid end date.",
             "past": "End date cannot be before today.",
-            "before-start": "End date cannot be before the start date."
+            "before-start": "End date cannot be before the start date.",
+            "dynamic": "{{end}} and before"
         },
         "city-select": {
             "title": "Select City",
@@ -58,6 +61,11 @@
             "baby": {
                 "label": "Baby",
                 "description": "Select the number of babies."
+            },
+            "dynamic": {
+                "adult": "{{count}} adult",
+                "kid": "{{count}} kid",
+                "baby": "{{count}} baby"
             }
         },
         "price": {
@@ -71,7 +79,10 @@
             "max": {
                 "label": "Maximum Price",
                 "description": "Select the maximum price."
-            }
+            },
+            "range": "between {{min}} ₺ and {{max}} ₺",
+            "min-price": "{{min}} ₺ and above",
+            "max-price": "{{max}} ₺ and below"
         },
         "query": {
           "title": "Search by Keyword",

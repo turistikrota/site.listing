@@ -13,20 +13,23 @@
         "date": {
             "title": "Tarih Aralığı",
             "text": "Tarih Aralığı",
-            "description": "Rezerasyonunuzun başlangıç ve bitiş tarihlerini seçin."
+            "description": "Rezerasyonunuzun başlangıç ve bitiş tarihlerini seçin.",
+            "range": "{{start}} ve {{end}} arası"
         },
         "start-date": {
             "label": "Başlangıç Tarihi",
             "description": "Rezervasyonunuzun başlangıç tarihini seçin.",
             "invalid": "Lütfen geçerli bir başlangıç tarihi seçin.",
-            "past": "Başlangıç tarihi bugünden önce olamaz."
+            "past": "Başlangıç tarihi bugünden önce olamaz.",
+            "dynamic": "{{start}} ve sonrası"
         },
         "end-date": {
             "label": "Bitiş Tarihi",
             "description": "Rezervasyonunuzun bitiş tarihini seçin.",
             "invalid": "Lütfen geçerli bir bitiş tarihi seçin.",
             "past": "Bitiş tarihi bugünden önce olamaz.",
-            "before-start": "Bitiş tarihi başlangıç tarihinden önce olamaz."
+            "before-start": "Bitiş tarihi başlangıç tarihinden önce olamaz.",
+            "dynamic": "{{end}} ve öncesi"
         },
         "city-select": {
             "title": "Şehir Seçin",
@@ -58,6 +61,11 @@
             "baby": {
                 "label": "Bebek",
                 "description": "Bebek sayısını seçin."
+            },
+            "dynamic": {
+                "adult": "{{count}} yetişkin",
+                "kid": "{{count}} çocuk",
+                "baby": "{{count}} bebek"
             }
         },
         "price": {
@@ -72,7 +80,7 @@
                 "label": "Maksimum Fiyat",
                 "description": "Maksimum fiyatı seçin."
             },
-            "range": "{{min}} - {{max}} ₺",
+            "range": "{{min}} ₺ ve {{max}} ₺ arası",
             "min-price": "{{min}} ₺ ve üzeri",
             "max-price": "{{max}} ₺ ve altı"
         },

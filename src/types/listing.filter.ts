@@ -17,9 +17,6 @@ type ListingFilterPrice = {
 }
 
 type ListingFilterValidation = {
-  adult?: number
-  kid?: number
-  baby?: number
   family?: boolean
   pet?: boolean
   smoke?: boolean
@@ -34,6 +31,17 @@ type ListingFilterFeature = {
   value: string
 }
 
+type ListingFilterDateRange = {
+  start?: string
+  end?: string
+}
+
+type ListingFilterPeople = {
+  adult?: number
+  kid?: number
+  baby?: number
+}
+
 export type ListingFilter = {
   query?: string
   price?: ListingFilterPrice
@@ -42,8 +50,8 @@ export type ListingFilter = {
   categories?: string[]
   features?: ListingFilterFeature[]
   distance?: number
-  start_date?: string
-  end_date?: string
+  people?: ListingFilterPeople
+  date?: ListingFilterDateRange
   sort?: ListingSort
   order?: ListingOrder
   v?: ContentType 

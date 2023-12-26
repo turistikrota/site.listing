@@ -15,8 +15,10 @@ const ListingDesktopDateGroup : FC = () => {
 
   const clearDate = () => {
     push(deepMerge(query, { filter: {
-        start_date: undefined,
-        end_date: undefined
+        date: {
+          start: undefined,
+          end: undefined,
+        }
     } }))
   }
 
@@ -27,7 +29,7 @@ const ListingDesktopDateGroup : FC = () => {
           {t('components.date.text')}
           <DesktopInfoBox>{t('components.date.description')}</DesktopInfoBox>
         </ListingDesktopHead.Title>
-        {(query.filter.start_date || query.filter.end_date) && <ListingDesktopHead.Clear onClear={clearDate} />}
+        {(query.filter.date && (query.filter.date.start || query.filter.date.end)) && <ListingDesktopHead.Clear onClear={clearDate} />}
       </ListingDesktopHead>
       <ListingFilterDateGroup  />
     </ListingDesktopFilterContainer>

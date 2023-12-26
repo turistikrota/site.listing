@@ -89,12 +89,20 @@ export const getQueryFromKeyBindings = (bindings: ListingKeyBindings) => {
     },
     sdate: (value: string) => {
       if (!isNaN(Date.parse(value))) {
-        query.filter.start_date = new Date(value).toISOString().split('T')[0]
+        const sdate = new Date(value).toISOString().split('T')[0]
+        query.filter.date = {
+          ...query.filter.date,
+          start: sdate
+        }
       }
     },
     edate: (value: string) => {
       if (!isNaN(Date.parse(value))) {
-        query.filter.end_date = new Date(value).toISOString().split('T')[0]
+        const edate = new Date(value).toISOString().split('T')[0]
+        query.filter.date = {
+          ...query.filter.date,
+          end: edate
+        }
       }
     },
 
@@ -130,19 +138,19 @@ export const getQueryFromKeyBindings = (bindings: ListingKeyBindings) => {
     adult: (value: string) => {
       const val = parseInt(value)
       if (!isNaN(val)) {
-        query.filter.validation = { ...query.filter.validation, adult: val }
+        query.filter.people = { ...query.filter.people, adult: val }
       }
     },
     kid: (value: string) => {
       const val = parseInt(value)
       if (!isNaN(val)) {
-        query.filter.validation = { ...query.filter.validation, kid: val }
+        query.filter.people = { ...query.filter.people, kid: val }
       }
     },
     baby: (value: string) => {
       const val = parseInt(value)
       if (!isNaN(val)) {
-        query.filter.validation = { ...query.filter.validation, baby: val }
+        query.filter.people = { ...query.filter.people, baby: val }
       }
     },
     family: (value: string) => {
@@ -209,11 +217,13 @@ export const toQueryString = (query: PaginationRequest<ListingFilter>): string =
   if (query.filter.distance) {
     q.set('dist', query.filter.distance.toString())
   }
-  if (query.filter.start_date) {
-    q.set('sdate', query.filter.start_date)
-  }
-  if (query.filter.end_date) {
-    q.set('edate', query.filter.end_date)
+  if (query.filter.date) {
+    if(query.filter.date.start) {
+    q.set('sdate', query.filter.date.start)
+    }
+    if(query.filter.date.end) {
+      q.set('edate', query.filter.date.end)
+      }
   }
   if (query.filter.sort) {
     q.set('sort', query.filter.sort)
@@ -229,16 +239,18 @@ export const toQueryString = (query: PaginationRequest<ListingFilter>): string =
       q.set('maxp', query.filter.price.max.toString())
     }
   }
+  if (query.filter.people) {
+    if (query.filter.people.adult) {
+      q.set('adult', query.filter.people.adult.toString())
+    }
+    if (query.filter.people.kid) {
+      q.set('kid', query.filter.people.kid.toString())
+    }
+    if (query.filter.people.baby) {
+      q.set('baby', query.filter.people.baby.toString())
+    }
+  }
   if (query.filter.validation) {
-    if (query.filter.validation.adult) {
-      q.set('adult', query.filter.validation.adult.toString())
-    }
-    if (query.filter.validation.kid) {
-      q.set('kid', query.filter.validation.kid.toString())
-    }
-    if (query.filter.validation.baby) {
-      q.set('baby', query.filter.validation.baby.toString())
-    }
     if (typeof query.filter.validation.family !== 'undefined') {
       q.set('family', toBool(query.filter.validation.family))
     }

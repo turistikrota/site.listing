@@ -5,6 +5,7 @@ import RichSelection, { SelectionItem } from "~/components/selection/RichSelecti
 import { useListingFilter } from "~/contexts/listing.filter";
 import { useCategorySelection } from "~/hooks/category";
 import { useListingPusher } from "~/hooks/listing-pusher";
+import { uniqueArray } from "~/utils/object";
 
 const ListingFilterCategoryGroup : FC = () => {
     const { i18n } = useTranslation('filter')
@@ -18,7 +19,7 @@ const ListingFilterCategoryGroup : FC = () => {
             ...query,
             filter: {
               ...query.filter,
-              categories: query.filter.categories?.filter((c) => c !== category.id),
+              categories: uniqueArray(query.filter.categories?.filter((c) => c !== category.id)),
             },
           })
         }else {
@@ -26,7 +27,7 @@ const ListingFilterCategoryGroup : FC = () => {
                 ...query,
                 filter: {
                 ...query.filter,
-                categories: [...(query.filter.categories || []), category.id],
+                categories: uniqueArray([...(query.filter.categories || []), category.id]),
                 },
             })
         }

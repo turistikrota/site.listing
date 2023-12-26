@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next'
 import { SelectionItem } from '~/components/selection/RichSelection'
 import { useListingFilter } from '~/contexts/listing.filter'
 import { useCategorySelection } from '~/hooks/category'
+import { useDayJS } from '~/hooks/dayjs'
 import { ListingFilter } from '~/types/listing.filter'
 import { FilterComponents } from './ListingMobileFilter.types'
 import ListingMobileFilterGroup from './ListingMobileFilterGroup'
@@ -37,11 +38,11 @@ const items: Item[] = [
   },
   {
     component: 'date',
-    queryKey: 'start_date',
+    queryKey: 'date',
   },
   {
-    component: 'date',
-    queryKey: 'end_date',
+    component: 'people',
+    queryKey: 'people',
   },
   {
     component: 'price',
@@ -57,6 +58,7 @@ type ParserOptions = {
   locale: Locales
   t: ReturnType<typeof useTranslation>['t']
   selectedCategories:SelectionItem[]
+  dayjs: ReturnType<typeof useDayJS>
 }
 
 const componentValueParsers: Record<FilterComponents, (value: any, options: ParserOptions) => any> = {
@@ -76,17 +78,13 @@ const componentValueParsers: Record<FilterComponents, (value: any, options: Pars
     return value
   },
   category: (value, options) => {
-    console.log('value::', value, 'options::', options)
     if (!value || !Array.isArray(value)) return ''
     return options.selectedCategories.reduce((acc, category) => {
       if (value.includes(category.id)) {
-        if (acc.length > 0) {
-          acc += ', '
-        }
-        acc += category.name
+        acc.push(category.name)
       }
       return acc
-    }, '')
+    }, [] as string[]).join(', ')
   },
   price: (value, options) => {
     if(!value) return ''
@@ -96,36 +94,43 @@ const componentValueParsers: Record<FilterComponents, (value: any, options: Pars
   },
   date: (value, options) => {
     if (!value) return ''
-    return value
+    if(value.start && value.end) return options.t('components.date.range', {
+      start: options.dayjs(value.start).format('DD MMMM YYYY'),
+      end: options.dayjs(value.end).format('DD MMMM YYYY')
+    })
+    if (value.start) return options.t('components.start-date.dynamic', {start: options.dayjs(value.start).format('DD MMMM YYYY')})
+    if (value.end) return options.t('components.end-date.dynamic', {start: options.dayjs(value.end).format('DD MMMM YYYY')})
+    return ''
   },
   people: (value, options) => {
-    if (!value || !value.adult || !value.baby || !value.kid) return ''
-    let text = ''
+    if (!value || (!value.adult && !value.baby && !value.kid)) return ''
+    let text : string[] = []
     if (value.adult > 0) {
-      text += options.t('components.people.adult', { count: value.adult })
+      text.push(options.t('components.people.dynamic.adult', { count: value.adult }))
     }
     if (value.kid > 0) {
-      if (text.length > 0) {
-        text += ', '
-      }
-      text += options.t('components.people.kid', { count: value.kid })
+      text.push(options.t('components.people.dynamic.kid', { count: value.kid }))
     }
     if (value.baby > 0) {
-      if (text.length > 0) {
-        text += ', '
-      }
-      text += options.t('components.people.baby', { count: value.baby })
+      text.push(options.t('components.people.dynamic.baby', { count: value.baby }))
     }
-    return text
+    return text.join(', ')
   },
   validation: (value, options) => {
-    return JSON.stringify(value)
+    if(!value) return ''
+    let text : string[] = []
+    Object.entries(value).forEach(([key, value]) => {
+      if(value !== 'on' && !Boolean(value)) return
+      text.push(options.t(`components.validation.${key}.label`))
+    })
+    return text.join(', ')
   }
 }
 
 const ListingMobileFilterFilterMenu: React.FC<Props> = ({ onOpen }) => {
     const {selectedCategories} = useCategorySelection()
   const { t, i18n } = useTranslation(['filter', 'common'])
+  const dayjs = useDayJS(i18n.language)
   const { query } = useListingFilter()
 
   return (
@@ -138,8 +143,10 @@ const ListingMobileFilterFilterMenu: React.FC<Props> = ({ onOpen }) => {
           values={componentValueParsers[item.component](query.filter[item.queryKey], {
             locale: i18n.language as Locales,
             t,
-            selectedCategories
+            selectedCategories,
+            dayjs,
           })}
+          horizontal
         ></ListingMobileFilterGroup>
       ))}
     </>

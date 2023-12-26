@@ -15,10 +15,11 @@ const ListFilterAside : FC<ContentProps> = (props) => {
     const { query} = useListingFilter()
     const [initialCategories, setInitialCategories] = useState<string[] | undefined>(undefined)
 
-    useEffect(() => {
-        if(!query.filter.categories) return
-        setInitialCategories(query.filter.categories)
-    }, [])
+  useEffect(() => {
+    if (initialCategories !== undefined) return
+    if (!query.filter.categories) return
+    setInitialCategories(query.filter.categories)
+  }, [query.filter.categories])
 
     const clearCategories = () => {
       push(deepMerge(query, { filter: { categories: undefined } }))
@@ -26,7 +27,7 @@ const ListFilterAside : FC<ContentProps> = (props) => {
 
   if (!isWidthExist) return <></>
 
-  return <CategorySelectionProvider initialSelectedCategories={initialCategories} clear={clearCategories}>
+  return <CategorySelectionProvider categories={query.filter.categories} initialSelectedCategories={initialCategories} clear={clearCategories}>
   {isDesktop && <ListingDesktopFilterSection {...props} />}
       {!isDesktop && <ListingMobileFilterSection {...props} />}
   </CategorySelectionProvider>

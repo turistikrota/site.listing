@@ -15,11 +15,12 @@ const ListingFilterDateGroup : FC = () => {
     const { push } = useListingPusher()
 
     useEffect(() => {
-        if(query.filter.start_date && query.filter.start_date !== startDate && validateStartDate(new Date(query.filter.start_date))) {
-            setStartDate(query.filter.start_date)
+        if(!query.filter.date) return
+        if(query.filter.date.start && query.filter.date.start !== startDate && validateStartDate(new Date(query.filter.date.start))) {
+            setStartDate(query.filter.date.start)
         }
-        if(query.filter.end_date && query.filter.end_date !== endDate && validateEndDate(new Date(query.filter.end_date))) {
-            setEndDate(query.filter.end_date)
+        if(query.filter.date.end && query.filter.date.end !== endDate && validateEndDate(new Date(query.filter.date.end))) {
+            setEndDate(query.filter.date.end)
         }
     }, [query])
 
@@ -48,7 +49,7 @@ const ListingFilterDateGroup : FC = () => {
             if(errorSet) setError(t('components.end-date.past'))
             return false
         }
-        const start = new Date(query.filter.start_date || now)
+        const start = new Date(query.filter.date?.start || now)
         start.setHours(0, 0, 0, 0)
         if(date.getTime() < start.getTime()) {
             if(errorSet) setError(t('components.end-date.before-start'))
@@ -60,13 +61,15 @@ const ListingFilterDateGroup : FC = () => {
     const handleStartChange = (e: ChangeEvent<HTMLInputElement>) => {
         const start = e.target.valueAsDate
         if (!validateStartDate(start, true)) return
-        const endDate = new Date(query.filter.end_date || new Date(start!).setDate(start!.getDate() + 1))
+        const endDate = new Date(query.filter.date?.end || new Date(start!).setDate(start!.getDate() + 1))
         push({
             ...query,
             filter: {
                 ...query.filter,
-                start_date: start!.toISOString().split('T')[0],
-                end_date: endDate.toISOString().split('T')[0]
+                date: {
+                    start:start!.toISOString().split('T')[0],
+                    end:endDate.toISOString().split('T')[0]
+                }
             }
         })
         setStartDate(start!.toISOString().split('T')[0])
@@ -77,13 +80,15 @@ const ListingFilterDateGroup : FC = () => {
     const handleEndChange = (e: ChangeEvent<HTMLInputElement>) => {
         const end = e.target.valueAsDate
         if (!validateEndDate(end, true)) return
-        const start = new Date(query.filter.start_date || new Date(end!).setDate(end!.getDate() - 1))
+        const start = new Date(query.filter.date?.start || new Date(end!).setDate(end!.getDate() - 1))
         push({
             ...query,
             filter: {
                 ...query.filter,
-                start_date: start.toISOString().split('T')[0],
-                end_date: end!.toISOString().split('T')[0]
+                date: {
+                start: start.toISOString().split('T')[0],
+                end: end!.toISOString().split('T')[0]
+            }
             }
         })
         setEndDate(end!.toISOString().split('T')[0])

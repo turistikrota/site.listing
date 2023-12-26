@@ -23,10 +23,10 @@ const ListingFilterPeopleItem : FC<ItemProps> = ({info, name, label, queryKey, d
     const { push } = useListingPusher()
 
     useEffect(() => {
-      if (!!query.filter.validation && query.filter.validation[queryKey] && query.filter.validation[queryKey] !== value) {
-        const val = (query.filter.validation ? query.filter.validation[queryKey] : 0) || 0
+      if (!!query.filter.people && query.filter.people[queryKey] && query.filter.people[queryKey] !== value) {
+        const val = (query.filter.people ? query.filter.people[queryKey] : 0) || 0
         setValue(Number.isNaN(+val) ? 0 : +val)
-      } else if (query.filter.validation && !query.filter.validation[queryKey] && value !== 0) {
+      } else if (query.filter.people && !query.filter.people[queryKey] && value !== 0) {
         setValue(0)
       }
     }, [query])
@@ -38,8 +38,8 @@ const ListingFilterPeopleItem : FC<ItemProps> = ({info, name, label, queryKey, d
         ...query,
         filter: {
           ...query.filter,
-          validation: {
-            ...query.filter.validation,
+          people: {
+            ...query.filter.people,
             [queryKey]: val,
           },
         },
