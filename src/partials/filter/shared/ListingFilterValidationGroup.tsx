@@ -59,7 +59,7 @@ const ListingFilterBooleanItem : FC<ItemProps> = ({info, name, label, queryKey, 
 
 const ListingFilterValidationGroup = () => {
     const { t } = useTranslation('filter')
-    return <div className="space-y-2 max-h-60 md:max-h-full overflow-y-auto">
+    return <div className="space-y-2 max-h-60 md:max-h-full overflow-y-auto md:overflow-y-hidden">
         {ValidationKeys.map(key => <ListingFilterBooleanItem key={key} info={t(`components.validation.${key}.description`)} label={t(`components.validation.${key}.label`)} name={key} queryKey={key} />)}
     </div>
 }
