@@ -31,7 +31,7 @@ type ListingFilterFeature = {
   value: string
 }
 
-type ListingFilterDateRange = {
+export type ListingFilterDateRange = {
   start?: string
   end?: string
 }
@@ -68,7 +68,10 @@ export type ListingFilterBody = {
   sort?: ListingSort
   order?: ListingOrder
   v?: ContentType 
-} & ListingFilterDateRange
+} & {
+  start_date?: string
+  end_date?: string
+}
  
 export type ListingFilterKeys = keyof ListingFilter
 
@@ -132,6 +135,7 @@ export function toFilterBody(query: ListingFilter) : ListingFilterBody {
     sort: query.sort,
     order: query.order,
     v: query.v,
-    ...query.date,
+    start_date: query.date?.start,
+    end_date: query.date?.end,
   }
 }

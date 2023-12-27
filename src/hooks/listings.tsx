@@ -6,7 +6,7 @@ import { PaginationRequest } from '~/types/pagination'
 import { useQuery } from './query'
 
 type UseListingsResult = {
-  places: ListResponse<ListingListItem>
+  listings: ListResponse<ListingListItem>
   isLoading: boolean
   error: unknown | null
   refetch: (params: any) => void
@@ -18,7 +18,7 @@ export const useListings = (
   initial?: ListResponse<ListingListItem>,
 ): UseListingsResult => {
   const {
-    data: places,
+    data: listings,
     isLoading,
     error,
     refetch,
@@ -33,7 +33,7 @@ export const useListings = (
     },
   )
   return {
-    places: places || {
+    listings: listings || {
       filteredTotal: 0,
       isNext: false,
       isPrev: false,

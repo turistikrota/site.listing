@@ -7,6 +7,7 @@ import { getI18nTranslations } from '~/utils/i18n'
 import { mapAndSortImages } from '~/utils/listing.utils'
 import ListingCardBusinessSection from './sections/ListingCardBusinessSection'
 import ListingCardLocationSection from './sections/ListingCardLocationSection'
+import ListingCardPriceSection from './sections/ListingCardPriceSection'
 
 type Props = ListingListItem
 
@@ -43,8 +44,9 @@ const ListingListCard: FC<Props> = ({
           </div>
         </div>
         <div className='grid grid-cols-12 gap-2 px-2'>
-        <ListingCardBusinessSection nickName={business.nickName} />
+          <ListingCardPriceSection prices={prices} />
         <ListingCardLocationSection city={location.city} street={location.street} />
+        <ListingCardBusinessSection nickName={business.nickName} />
         </div>
         <div className='flex flex-col gap-2'>
           <div className='flex items-center justify-between'>

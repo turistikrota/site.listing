@@ -53,14 +53,14 @@ export default function ContentSwitcher({ response, error }: Props) {
   const { t } = useTranslation('common')
   const { query, isQueryChanged, clean, isOnlyPageChanged, isFiltered, setQuery } = useListingFilter()
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
-  const { places, isLoading, refetch, nextPage, error: apiError } = useListings(query, response)
+  const { listings, isLoading, refetch, nextPage, error: apiError } = useListings(query, response)
   const {push, immediatePush } = useListingPusher()
   const active = useMemo(() => {
     return query.filter.v ? query.filter.v : 'list'
   }, [query.filter])
   const debouncedFilter = debounce(() => {
     if (isLoading || !!apiError) return
-    if (isOnlyPageChanged) return nextPage(query.filter, places.page + 1)
+    if (isOnlyPageChanged) return nextPage(query.filter, listings.page + 1)
     refetch(query.filter)
   }, 500)
 
@@ -101,7 +101,7 @@ export default function ContentSwitcher({ response, error }: Props) {
             </Alert>
           </div>
         )}
-        <DynamicList data={places} loading={isLoading} isNext={places.isNext} />
+        <DynamicList data={listings} loading={isLoading} isNext={listings.isNext} />
         <FixedButton
           text={t('content-switch.map')}
           icon='map-alt'
@@ -123,7 +123,7 @@ export default function ContentSwitcher({ response, error }: Props) {
         </div>
       )}
       <DynamicMap
-        data={places}
+        data={listings}
         loading={isLoading}
         onChange={onCoordinateChange}
         filterCoordinates={query.filter.coordinates}

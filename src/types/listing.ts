@@ -23,7 +23,7 @@ type ListingFeature = {
   price: number
 }
 
-type ListingPrice = {
+export type ListingPrice = {
   startDate: string
   endDate: string
   price: number
