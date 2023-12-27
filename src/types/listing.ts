@@ -70,3 +70,17 @@ export const EmptyListingMeta: ListingMeta = {
   description: '',
   slug: '',
 }
+
+export type ListingDetail = {
+  uuid: string
+  business: ListingBusiness
+  images: ListingImage[]
+  meta: I18nTranslation<ListingMeta>
+  categoryUUIDs: string[]
+  features: ListingFeature[]
+  prices: ListingPrice[]
+  location: ListingLocation
+  validation: ListingValidation
+  createdAt: string
+  updatedAt: string
+}

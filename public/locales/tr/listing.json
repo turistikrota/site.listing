@@ -2,6 +2,9 @@
     "words": {
         "from-business": "İşletmesinden"
     },
+    "business": {
+        "see-profile": "İşletme Profilini Göster"
+    },
     "price": {
         "min": "En Düşük",
         "max": "En Yüksek",
