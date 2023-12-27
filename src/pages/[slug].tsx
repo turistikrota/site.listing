@@ -78,12 +78,13 @@ const ListingDetailView : FC<Props> = ({response, ...layoutProps}) => {
     return <DefaultLayout {...layoutProps}>
         <ImagePreviewProvider altPrefix={translations.title} list={images}>
             <section className="max-w-7xl p-2 xl:px-0 mx-auto lg:h-full lg:flex grow grid grid-cols-12">
-                <div className="col-span-12 w-full flex flex-col gap-2">
+                <div className="col-span-12 w-full flex flex-col gap-4">
                     <ListingImagePreviewCard images={images} title={translations.title} />
                     {!isDesktop && <ListingDetailReservationButton />}
                     <ListingDetailBasicInfoSection title={translations.title} description={translations.description} />
                     <ListingDetailBusinessSection nickName={response.business.nickName} />
-                    <ListingDetailCategorySection />
+                    <hr />
+                    <ListingDetailCategorySection categoryUUIDs={response.categoryUUIDs} features={response.features} />
                     <ListingDetailValidationSection />
                     <ListingDetailCalendarSection />
                     <ListingDetailMapSection />

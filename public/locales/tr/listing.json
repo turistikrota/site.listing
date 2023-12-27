@@ -13,5 +13,22 @@
         "not-found": "Fiyat bulunamadı",
         "total": "Toplam Fiyat ({{count}} gece)",
         "filterForStrict": "Net fiyatlar için tarihe göre filtrele"
+    },
+    "sections": {
+      "category": "Kategoriler",
+      "rules": "Kurallar",
+      "calendar": "Takvim",
+      "map": "Harita"
+    },
+  "category-features": {
+    "options": {
+      "exists": "Var",
+      "not-exists": "Yok"
+    },
+    "heating": {
+      "air-conditioning": "Klima ile",
+      "stove": "Soba ile",
+      "gas": "Doğalgaz ile"
     }
+  }
 }

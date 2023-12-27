@@ -16,7 +16,7 @@ export type ListingMeta = {
   slug: string
 }
 
-type ListingFeature = {
+export type ListingFeature = {
   categoryInputUUID: string
   value: string
   isPayed: boolean
