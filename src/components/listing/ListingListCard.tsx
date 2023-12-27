@@ -1,7 +1,8 @@
 import Card from '@turistikrota/ui/cards/default'
 import Carousel from '@turistikrota/ui/carousel'
 import { useTranslation } from 'next-i18next'
-import { FC } from 'react'
+import Link from 'next/link'
+import { FC, MouseEventHandler } from 'react'
 import { EmptyListingMeta, ListingListItem, ListingMeta } from '~/types/listing'
 import { getI18nTranslations } from '~/utils/i18n'
 import { mapAndSortImages } from '~/utils/listing.utils'
@@ -15,20 +16,23 @@ const ListingListCard: FC<Props> = ({
   uuid,
   meta,
   business,
-  categoryUUIDs,
-  features,
   images,
   location,
   prices,
-  validation,
 }) => {
   const { i18n } = useTranslation()
   const translations = getI18nTranslations<ListingMeta>(meta, i18n.language, EmptyListingMeta)
+
+  const checkOutsideClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
+    // @ts-ignore
+    if (['i', 'button'].includes(e.target?.tagName.toLowerCase())) return e.preventDefault()
+  }
   return (
     <Card
       noPadding
       className={`flex flex-col hover:border-primary transition-colors duration-200 col-span-12 md:col-span-4`}
     >
+      <Link href={translations.slug} target='_blank' onClick={checkOutsideClick} className='h-full'>
       <div className='flex h-full flex-col'>
         <Carousel
           imageAltPrefix=''
@@ -49,6 +53,7 @@ const ListingListCard: FC<Props> = ({
           <ListingCardPriceSection prices={prices} />
         </div>
       </div>
+      </Link>
     </Card>
   )
 }
