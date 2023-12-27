@@ -7,10 +7,10 @@ type Props = {
 }
 
 const ListingCardLocationSection: FC<Props> = ({city, street, className}) => {
-    return <div className={`col-span-6 flex items-center gap-1 ${className}`}>
-        <div className="text-sm font-bold">{city}</div>
-        <div className="text-xs">/</div>
-        <div className="text-xs">{street}</div>
+    return <div className={`col-span-6 flex items-center gap-1 overflow-hidden ${className}`}>
+        <div className="text-base font-bold text-ellipsis overflow-hidden">{city}</div>
+        <div className="text-sm">/</div>
+        <div className="text-sm text-ellipsis overflow-hidden">{street}</div>
     </div>
 }
 

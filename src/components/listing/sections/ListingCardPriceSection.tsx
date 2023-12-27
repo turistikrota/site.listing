@@ -113,7 +113,7 @@ const ListingCardPriceBothDates : FC<FilteredProps> = ({prices, end, start, dayj
     return <div className="flex flex-col gap-1 w-full">
                 <div className="flex justify-between items-center">
             <div className="text-sm dark:text-gray-400 text-gray-600">{t('price.total', {count: total.days})}</div>
-            <div className="text-lg font-semibold dark:text-gray-100 text-gray-900">{localizedFormatter.format(total.price)}</div>
+            <div className="text-xl font-bold dark:text-gray-100 text-gray-900">{localizedFormatter.format(total.price)}</div>
         </div>
     </div>
 }

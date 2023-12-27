@@ -44,16 +44,9 @@ const ListingListCard: FC<Props> = ({
           </div>
         </div>
         <div className='grid grid-cols-12 gap-2 px-2'>
+          <ListingCardBusinessSection nickName={business.nickName} />
+        <ListingCardLocationSection city={location.city} street={location.street} className='justify-end' />
           <ListingCardPriceSection prices={prices} />
-        <ListingCardLocationSection city={location.city} street={location.street} />
-        <ListingCardBusinessSection nickName={business.nickName} />
-        </div>
-        <div className='flex flex-col gap-2'>
-          <div className='flex items-center justify-between'>
-            <div>
-            </div>
-            <div className='flex items-center justify-end'>right</div>
-          </div>
         </div>
       </div>
     </Card>
