@@ -1,7 +1,7 @@
 import { ListResponse } from '@turistikrota/ui/types'
 import { Services, apiUrl } from '~/config/services'
 import { ListingListItem } from '~/types/listing'
-import { ListingFilter } from '~/types/listing.filter'
+import { ListingFilter, toFilterBody } from '~/types/listing.filter'
 import { PaginationRequest } from '~/types/pagination'
 import { useQuery } from './query'
 
@@ -28,7 +28,7 @@ export const useListings = (
     {
       cache: false,
       method: 'POST',
-      params: query.filter,
+      params:  toFilterBody(query.filter),
       withSSR: initial,
     },
   )

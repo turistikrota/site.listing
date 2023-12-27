@@ -27,7 +27,7 @@ type ItemProps = {
 
 const ListItemSection : FC<ItemProps> = ({ data, loading, onClear, isFiltered }) => {
     const isWidthExist = useWindowWidth()
-    return   <section className={`grow grid grid-cols-12 gap-4 md:h-full ${!isWidthExist ? 'ml-0 md:ml-80' : ''}`}>
+    return   <section className={`grow grid grid-cols-12 gap-2 md:h-full ${!isWidthExist ? 'ml-0 md:ml-80' : ''}`}>
     {data && data.list.map((item, idx) => <ListingListCard key={idx} {...item} />)}
     {data && data.list.length === 0 && (
       <div className='col-span-12'>
@@ -53,9 +53,9 @@ const ListingListContent : FC<Props> = ({data, loading, isNext}) => {
       }
 
   useInfiniteScroll(handleScroll, loading, 10)
-    return <section className='max-w-7xl p-4 xl:py-0 mx-auto lg:h-full'>
+    return <section className='max-w-7xl p-2 xl:py-0 mx-auto lg:h-full'>
     <ListingHeadSection />
-    <section className='flex flex-col lg:flex-row gap-4'>
+    <section className='flex flex-col lg:flex-row gap-2'>
       <ListFilterAside data={data} loading={loading} />
       <ListItemSection data={data} loading={loading} onClear={clean} isFiltered={isFiltered} />
     </section>
