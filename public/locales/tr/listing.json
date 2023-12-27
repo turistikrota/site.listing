@@ -1,1 +1,14 @@
-{}
+{
+    "words": {
+        "from-business": "İşletmesinden"
+    },
+    "price": {
+        "min": "En Düşük",
+        "max": "En Yüksek",
+        "not-available": "Fiyat mevcut değil",
+        "not-available-filtered": "Bu tarih için fiyat mevcut değil",
+        "not-found": "Fiyat bulunamadı",
+        "total": "Toplam Fiyat ({{count}} gece)",
+        "filterForStrict": "Net fiyatlar için tarihe göre filtrele"
+    }
+}

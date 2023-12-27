@@ -9,7 +9,7 @@ import { useListingFilter } from '~/contexts/listing.filter'
 import { useListingPusher } from '~/hooks/listing-pusher'
 import { Distance } from '~/types/listing.filter'
 
-const DefaultDistance = 100
+const DefaultDistance = 7
 
 type Props = {
   className?: string

@@ -23,7 +23,7 @@ type ListingFeature = {
   price: number
 }
 
-type ListingPrice = {
+export type ListingPrice = {
   startDate: string
   endDate: string
   price: number
@@ -61,11 +61,8 @@ export type ListingListItem = {
   business: ListingBusiness
   images: ListingImage[]
   meta: I18nTranslation<ListingMeta>
-  categoryUUIDs: string[]
-  features: ListingFeature[]
   prices: ListingPrice[]
   location: ListingLocation
-  validation: ListingValidation
 }
 
 export const EmptyListingMeta: ListingMeta = {

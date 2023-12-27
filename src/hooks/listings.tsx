@@ -1,12 +1,12 @@
 import { ListResponse } from '@turistikrota/ui/types'
 import { Services, apiUrl } from '~/config/services'
 import { ListingListItem } from '~/types/listing'
-import { ListingFilter } from '~/types/listing.filter'
+import { ListingFilter, toFilterBody } from '~/types/listing.filter'
 import { PaginationRequest } from '~/types/pagination'
 import { useQuery } from './query'
 
 type UseListingsResult = {
-  places: ListResponse<ListingListItem>
+  listings: ListResponse<ListingListItem>
   isLoading: boolean
   error: unknown | null
   refetch: (params: any) => void
@@ -18,7 +18,7 @@ export const useListings = (
   initial?: ListResponse<ListingListItem>,
 ): UseListingsResult => {
   const {
-    data: places,
+    data: listings,
     isLoading,
     error,
     refetch,
@@ -28,12 +28,12 @@ export const useListings = (
     {
       cache: false,
       method: 'POST',
-      params: query.filter,
+      params:  toFilterBody(query.filter),
       withSSR: initial,
     },
   )
   return {
-    places: places || {
+    listings: listings || {
       filteredTotal: 0,
       isNext: false,
       isPrev: false,
