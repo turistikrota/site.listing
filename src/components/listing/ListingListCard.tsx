@@ -6,6 +6,7 @@ import { EmptyListingMeta, ListingListItem, ListingMeta } from '~/types/listing'
 import { getI18nTranslations } from '~/utils/i18n'
 import { mapAndSortImages } from '~/utils/listing.utils'
 import ListingCardBusinessSection from './sections/ListingCardBusinessSection'
+import ListingCardLocationSection from './sections/ListingCardLocationSection'
 
 type Props = ListingListItem
 
@@ -25,7 +26,7 @@ const ListingListCard: FC<Props> = ({
   return (
     <Card
       noPadding
-      className={`flex flex-col hover:border-primary transition-colors duration-200 col-span-12 md:col-span-3`}
+      className={`flex flex-col hover:border-primary transition-colors duration-200 col-span-12 md:col-span-4`}
     >
       <div className='flex h-full flex-col'>
         <Carousel
@@ -43,6 +44,7 @@ const ListingListCard: FC<Props> = ({
         </div>
         <div className='grid grid-cols-12 gap-2 px-2'>
         <ListingCardBusinessSection nickName={business.nickName} />
+        <ListingCardLocationSection city={location.city} street={location.street} />
         </div>
         <div className='flex flex-col gap-2'>
           <div className='flex items-center justify-between'>
