@@ -28,3 +28,6 @@
     border-radius: 0.5rem !important;
   }
   
+  .leaflet-container .bg-default a {
+    color: initial !important;
+  }
