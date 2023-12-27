@@ -85,7 +85,7 @@ const ListingDetailView : FC<Props> = ({response, ...layoutProps}) => {
                     <ListingDetailBusinessSection nickName={response.business.nickName} />
                     <hr />
                     <ListingDetailCategorySection categoryUUIDs={response.categoryUUIDs} features={response.features} />
-                    <ListingDetailValidationSection />
+                    <ListingDetailValidationSection validation={response.validation} />
                     <ListingDetailCalendarSection />
                     <ListingDetailMapSection />
                 </div>

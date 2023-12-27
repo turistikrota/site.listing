@@ -12,15 +12,16 @@ type Props = {
   label: string
   value: string
   valueClassName?: string
+  reversed?: boolean
 }
 
-const Item: React.FC<Props> = ({ label, value, valueClassName }) => {
+const Item: React.FC<Props> = ({ label, value, valueClassName, reversed }) => {
   return (
     <>
-      <div className='col-span-1'>
+      <div className={reversed ? 'col-span-2' : 'col-span-1'}>
         <div className='text-sm text-gray-600 dark:text-gray-400'>{label}</div>
       </div>
-      <div className='col-span-2 flex justify-end'>
+      <div className={`flex justify-end ${reversed ? 'col-span-1' : 'col-span-2'}`}>
         <div className={`text-sm font-bold ${valueClassName ? valueClassName : 'text-gray-600 dark:text-gray-400'}`}>
           {value}
         </div>

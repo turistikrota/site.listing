@@ -1,9 +1,67 @@
-import { FC } from "react"
+import DefaultCard from "@turistikrota/ui/cards/default"
+import { TFunction, useTranslation } from "next-i18next"
+import { FC, useMemo } from "react"
+import KeyValue from "~/components/KeyValue"
+import { ListingValidation, ValidationKey } from "~/types/listing"
 
-type Props = {}
+type Props = {
+    validation: ListingValidation
+}
 
-const ListingDetailValidationSection : FC<Props> = () => {
-    return <section>view validations</section>
+type Item = {
+  label: string
+  value: string
+}
+
+type Mixer = (t: TFunction, value: number | boolean) => string
+
+const RuleMixers: Record<ValidationKey, Mixer> = {
+  minAdult: (t, value) => t('rules.adult', { value }),
+  maxAdult: (t, value) => t('rules.adult', { value }),
+  minKid: (t, value) => t('rules.kid', { value }),
+  maxKid: (t, value) => t('rules.kid', { value }),
+  minBaby: (t, value) => t('rules.baby', { value }),
+  maxBaby: (t, value) => t('rules.baby', { value }),
+  minDate: (t, value) => t('rules.date', { value }),
+  maxDate: (t, value) => t('rules.date', { value }),
+  onlyFamily: (t, value) => (value ? t('rules.yes') : t('rules.no')),
+  noPet: (t, value) => (value ? t('rules.yes') : t('rules.no')),
+  noSmoke: (t, value) => (value ? t('rules.yes') : t('rules.no')),
+  noAlcohol: (t, value) => (value ? t('rules.yes') : t('rules.no')),
+  noParty: (t, value) => (value ? t('rules.yes') : t('rules.no')),
+  noUnmarried: (t, value) => (value ? t('rules.yes') : t('rules.no')),
+  noGuest: (t, value) => (value ? t('rules.yes') : t('rules.no')),
+}
+
+const ListingDetailValidationSection : FC<Props> = ({validation}) => {
+    const { t } = useTranslation('listing')
+
+    const items: Item[] = useMemo(
+      () =>
+        Object.entries(validation).map(([key, value]) => ({
+          label:
+            typeof value === 'boolean' || key.startsWith('no')
+              ? t(`form.validation.${key}.title`)
+              : t(`form.validation.${key}`),
+          value: RuleMixers[key as ValidationKey](t, value),
+        })),
+      [t, validation],
+    )
+  
+    return (
+      <section>
+        <h2 className='mb-2 text-xl font-semibold'>{t('sections.rules')}</h2>
+        <div className='grid grid-cols-12 gap-2'>
+          {items.map((item, idx) => (
+            <DefaultCard key={idx} className='col-span-12 md:col-span-6'>
+              <KeyValue>
+                <KeyValue.Item label={item.label} value={item.value} reversed />
+              </KeyValue>
+            </DefaultCard>
+          ))}
+        </div>
+      </section>
+    )
 }
 
 export default ListingDetailValidationSection

@@ -38,7 +38,7 @@ type ListingLocation = {
   coordinates: Coordinates
 }
 
-type ListingValidation = {
+export type ListingValidation = {
   minAdult: number
   maxAdult: number
   minKid: number
@@ -55,6 +55,8 @@ type ListingValidation = {
   noUnmarried: boolean
   noGuest: boolean
 }
+export type ValidationKey = keyof ListingValidation
+export type ValidationValue<Key extends ValidationKey> = ListingValidation[Key]
 
 export type ListingListItem = {
   uuid: string
