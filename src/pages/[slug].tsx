@@ -29,6 +29,8 @@ import { makeHtmlTitle, renderHtmlTitle } from '~/utils/seo'
 
 type Props = LayoutProps & {
   response: ListingDetail | null
+  startDate: string | null
+  endDate: string | null
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
@@ -54,15 +56,17 @@ export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
   }
   return {
     props: {
-      ...(await serverSideTranslations(ctx.locale || 'tr', ['common', 'listing', 'place'])),
+      ...(await serverSideTranslations(ctx.locale || 'tr', ['common', 'listing', 'place', 'filter'])),
       response: res.data ? res.data : null,
       accessTokenIsExists: !!ctx.req.cookies[Config.cookies.accessToken],
       accountCookie: ctx.req.cookies[Config.cookies.accountName] ?? '',
+      startDate: typeof ctx.query?.start === 'string' ? ctx.query.start : null,
+      endDate: typeof ctx.query?.end === 'string' ? ctx.query.end : null,
     },
   }
 }
 
-const ListingDetailView: FC<Props> = ({ response, ...layoutProps }) => {
+const ListingDetailView: FC<Props> = ({ response, startDate, endDate, ...layoutProps }) => {
   const { t, i18n } = useTranslation('listing')
   const images = useMemo(() => (response ? mapAndSortImages(response.images) : []), [response])
   const isDesktop = useIsDesktop()
@@ -109,7 +113,7 @@ const ListingDetailView: FC<Props> = ({ response, ...layoutProps }) => {
           </div>
           {isDesktop && (
             <StickySection customWidth='w-128 xl:x-144' innerClassName='px-2'>
-              <ListingDetailReservationSection />
+              <ListingDetailReservationSection uuid={response.uuid} prices={response.prices} startDate={startDate || undefined} endDate={endDate || undefined} />
             </StickySection>
           )}
         </section>

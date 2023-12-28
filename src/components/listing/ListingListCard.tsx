@@ -3,6 +3,7 @@ import Carousel from '@turistikrota/ui/carousel'
 import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
 import { FC, MouseEventHandler } from 'react'
+import { useListingFilter } from '~/contexts/listing.filter'
 import { EmptyListingMeta, ListingListItem, ListingMeta } from '~/types/listing'
 import { getI18nTranslations } from '~/utils/i18n'
 import { mapAndSortImages } from '~/utils/listing.utils'
@@ -14,6 +15,7 @@ type Props = ListingListItem
 
 const ListingListCard: FC<Props> = ({ uuid, meta, business, images, location, prices }) => {
   const { i18n } = useTranslation()
+  const { query } = useListingFilter()
   const translations = getI18nTranslations<ListingMeta>(meta, i18n.language, EmptyListingMeta)
 
   const checkOutsideClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
@@ -43,7 +45,7 @@ const ListingListCard: FC<Props> = ({ uuid, meta, business, images, location, pr
           <div className='grid grid-cols-12 gap-2 px-2'>
             <ListingCardBusinessSection nickName={business.nickName} />
             <ListingCardLocationSection city={location.city} street={location.street} className='justify-end' />
-            <ListingCardPriceSection prices={prices} />
+            <ListingCardPriceSection prices={prices} startDate={query.filter.date?.start} endDate={query.filter.date?.end} />
           </div>
         </div>
       </Link>

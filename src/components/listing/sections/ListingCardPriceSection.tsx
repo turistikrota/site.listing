@@ -1,6 +1,5 @@
 import { TFunction, useTranslation } from 'next-i18next'
-import { FC } from 'react'
-import { useListingFilter } from '~/contexts/listing.filter'
+import { FC, PropsWithChildren } from 'react'
 import { useDayJS } from '~/hooks/dayjs'
 import { useLocalizedFormatter } from '~/hooks/pricing'
 import { ListingPrice } from '~/types/listing'
@@ -8,8 +7,14 @@ import { ListingFilterDateRange } from '~/types/listing.filter'
 
 type DayJS = ReturnType<typeof useDayJS>
 
+type Section = FC<PropsWithChildren<Props>> & {
+  Row: FC<PriceRowProps>
+}
+
 type Props = {
   prices: ListingPrice[]
+  startDate?: string
+  endDate?: string
 }
 
 type PriceRange = {
@@ -89,6 +94,21 @@ type RangeRendererProps = {
   notAvailable?: boolean
 }
 
+type PriceRowProps = {
+  label: string
+  text: string
+  bold?: boolean
+}
+
+const DataRow : FC<PriceRowProps> = ({ label, text, bold }) => {
+  return  <div className='flex items-center justify-between'>
+  <div className='text-sm text-gray-600 dark:text-gray-400'>{label}</div>
+  <div className={`text-gray-900 dark:text-gray-100 ${bold ? 'text-xl font-bold' : 'text-lg font-semibold'}`}>
+    {text}
+  </div>
+</div>
+}
+
 const RangeRenderer: FC<RangeRendererProps> = ({ min, max, notAvailable }) => {
   const { t, i18n } = useTranslation('listing')
   const localizedFormatter = useLocalizedFormatter()
@@ -100,22 +120,14 @@ const RangeRenderer: FC<RangeRendererProps> = ({ min, max, notAvailable }) => {
     )
   return (
     <div className='flex w-full flex-col gap-1'>
-      <div className='flex items-center justify-between'>
-        <div className='text-sm text-gray-600 dark:text-gray-400'>{t('price.min')}</div>
-        <div className='text-lg font-semibold text-gray-900 dark:text-gray-100'>{localizedFormatter.format(min)}</div>
-      </div>
-      {max && (
-        <div className='flex items-center justify-between'>
-          <div className='text-sm text-gray-600 dark:text-gray-400'>{t('price.max')}</div>
-          <div className='text-lg font-semibold text-gray-900 dark:text-gray-100'>{localizedFormatter.format(max)}</div>
-        </div>
-      )}
+      <DataRow label={t('price.min')} text={localizedFormatter.format(min)} />
+      {max && <DataRow label={t('price.max')} text={localizedFormatter.format(max)} />}
       <div className='text-center text-sm text-gray-600 dark:text-gray-400'>{t('price.filterForStrict')}</div>
     </div>
   )
 }
 
-const ListingCardPriceBothDates: FC<FilteredProps> = ({ prices, end, start, dayjs, t }) => {
+const ListingCardPriceBothDates: FC<PropsWithChildren<FilteredProps>> = ({ prices, end, start, dayjs, t, children }) => {
   const total = calcTotalPrice(start!, end!, prices, dayjs)
   const localizedFormatter = useLocalizedFormatter()
   if (!total || total.price === 0)
@@ -126,12 +138,8 @@ const ListingCardPriceBothDates: FC<FilteredProps> = ({ prices, end, start, dayj
     )
   return (
     <div className='flex w-full flex-col gap-1'>
-      <div className='flex items-center justify-between'>
-        <div className='text-sm text-gray-600 dark:text-gray-400'>{t('price.total', { count: total.days })}</div>
-        <div className='text-xl font-bold text-gray-900 dark:text-gray-100'>
-          {localizedFormatter.format(total.price)}
-        </div>
-      </div>
+      <DataRow bold label={t('price.total', { count: total.days })} text={localizedFormatter.format(total.price)} />
+      {children}
     </div>
   )
 }
@@ -146,8 +154,8 @@ const ListingCardPriceOnlyEnd: FC<FilteredProps> = ({ prices, end, dayjs, t }) =
   return <RangeRenderer min={min} max={max} notAvailable={notAvailable} />
 }
 
-const ListingCardPriceFiltered: FC<FilteredProps> = ({ prices, end, start, dayjs, t }) => {
-  if (end && start) return <ListingCardPriceBothDates prices={prices} end={end} start={start} dayjs={dayjs} t={t} />
+const ListingCardPriceFiltered: FC<PropsWithChildren<FilteredProps>> = ({ prices, end, start, dayjs, t, children }) => {
+  if (end && start) return <ListingCardPriceBothDates prices={prices} end={end} start={start} dayjs={dayjs} t={t}>{children}</ListingCardPriceBothDates>
   if (end) return <ListingCardPriceOnlyEnd prices={prices} end={end} start={start} dayjs={dayjs} t={t} />
   if (start) return <ListingCardPriceOnlyStart prices={prices} end={end} start={start} dayjs={dayjs} t={t} />
   return (
@@ -162,25 +170,28 @@ const ListingCardPriceRange: FC<Props> = ({ prices }) => {
   return <RangeRenderer min={min!} max={max!} notAvailable={notAvailable!} />
 }
 
-const ListingCardPriceSection: FC<Props> = ({ prices }) => {
+const ListingCardPriceSection: Section = ({ prices, startDate, endDate, children }) => {
   const { t, i18n } = useTranslation('listing')
-  const { query } = useListingFilter()
   const dayjs = useDayJS(i18n.language)
   return (
     <div className='col-span-12 flex items-center justify-start gap-2'>
-      {query.filter.date ? (
+      {(!!startDate || !!endDate) ? (
         <ListingCardPriceFiltered
           t={t}
           dayjs={dayjs}
           prices={prices}
-          start={query.filter.date.start}
-          end={query.filter.date.end}
-        />
+          start={startDate}
+          end={endDate}
+        >
+          {children}
+        </ListingCardPriceFiltered>
       ) : (
         <ListingCardPriceRange prices={prices} />
       )}
     </div>
   )
 }
+
+ListingCardPriceSection.Row = DataRow
 
 export default ListingCardPriceSection
