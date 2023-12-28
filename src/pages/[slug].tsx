@@ -7,6 +7,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Link from "next/link";
 import { FC, useMemo } from "react";
+import "sspin/dist/index.css";
 import ListingImagePreviewCard from "~/components/listing/ListingImagePreviewCard";
 import { Config } from "~/config";
 import { Services, apiUrl } from "~/config/services";
@@ -50,7 +51,7 @@ export const getServerSideProps : GetServerSideProps<Props> = async(ctx) => {
     }
     return {
         props: {
-            ...(await serverSideTranslations(ctx.locale || 'en', ['common', 'filter', 'sort', 'listing'])),
+            ...(await serverSideTranslations(ctx.locale || 'tr', ['common', 'listing', 'place'])),
             response: res.data ? res.data : null,
             accessTokenIsExists: !!ctx.req.cookies[Config.cookies.accessToken],
             accountCookie: ctx.req.cookies[Config.cookies.accountName] ?? '',
@@ -87,12 +88,14 @@ const ListingDetailView : FC<Props> = ({response, ...layoutProps}) => {
                     <ListingDetailCategorySection categoryUUIDs={response.categoryUUIDs} features={response.features} />
                     <ListingDetailValidationSection validation={response.validation} />
                     <ListingDetailCalendarSection />
-                    <ListingDetailMapSection />
+                    <ListingDetailMapSection coordinates={response.location.coordinates} isStrict={response.location.isStrict} />
                 </div>
                 {isDesktop && <StickySection customWidth="w-128 xl:x-144" innerClassName="px-2">
                         <ListingDetailReservationSection />
                     </StickySection>}
             </section>
+            
+            
         </ImagePreviewProvider>
     </DefaultLayout>
 }

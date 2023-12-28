@@ -18,7 +18,14 @@
       "category": "Kategoriler",
       "rules": "Kurallar",
       "calendar": "Takvim",
-      "map": "Harita"
+      "map": {
+        "title": "Harita ve Yakın Çevre",
+        "subtitle": "Bu bölümde ilandaki konumu ve yakın çevresindeki turistik yerleri görebilirsiniz.",
+        "error": {
+          "title": "Bir Hata Oluştu",
+          "description": "Harita yüklenirken bir hata oluştu. Lütfen daha sonra tekra deneyiniz."
+        }
+      }
     },
   "category-features": {
     "options": {
