@@ -35,7 +35,8 @@
       "error": {
         "title": "Bir Hata Oluştu",
         "description": "Harita yüklenirken bir hata oluştu. Lütfen daha sonra tekra deneyiniz."
-      }
+      },
+      "strict": "İlan Konumu"
     }
   },
   "category-features": {
