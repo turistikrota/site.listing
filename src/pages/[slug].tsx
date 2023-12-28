@@ -87,7 +87,7 @@ const ListingDetailView : FC<Props> = ({response, ...layoutProps}) => {
                     <hr />
                     <ListingDetailCategorySection categoryUUIDs={response.categoryUUIDs} features={response.features} />
                     <ListingDetailValidationSection validation={response.validation} />
-                    <ListingDetailCalendarSection />
+                    <ListingDetailCalendarSection prices={response.prices} />
                     <ListingDetailMapSection coordinates={response.location.coordinates} isStrict={response.location.isStrict} />
                 </div>
                 {isDesktop && <StickySection customWidth="w-128 xl:x-144" innerClassName="px-2">

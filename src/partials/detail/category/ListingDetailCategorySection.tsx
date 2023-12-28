@@ -31,9 +31,16 @@ const ListingDetailCategorySection : FC<Props> = ({ categoryUUIDs, features }) =
 
   return (
     <>
-      <section>
-        <h2 className='text-xl font-semibold'>{t('sections.category')}</h2>
-        <div className="grid grid-cols-12 gap-2 py-2">
+      <section className="flex flex-col gap-2">
+      <FormSection.Head className="border-transparent p-0">
+            <FormSection.Head.Title className='text-lg font-semibold'>
+                {t('sections.category.title')}
+              </FormSection.Head.Title>
+              <FormSection.Head.Subtitle>
+              {t('sections.category.subtitle')}
+              </FormSection.Head.Subtitle>
+            </FormSection.Head>
+        <div className="grid grid-cols-12 gap-2">
             {categories && categories.map((c, idx) => <ListingCategoryCard key={idx} {...c} />)}
         </div>
       </section>

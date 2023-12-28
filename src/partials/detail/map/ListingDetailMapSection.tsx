@@ -2,6 +2,7 @@
 
 import { Coordinates } from "@turistikrota/location-tr"
 import Alert from "@turistikrota/ui/alert"
+import FormSection from "@turistikrota/ui/form/section"
 import ContentLoader from "@turistikrota/ui/loader"
 import { useTranslation } from "next-i18next"
 import dynamic from "next/dynamic"
@@ -39,10 +40,14 @@ const ListingDetailMapSection : FC<Props> = ({
 
 
     return <section className="flex flex-col gap-2">
-        <div>
-        <h2 className='text-xl font-semibold'>{t('sections.map.title')}</h2>
-        <p>{t('sections.map.subtitle')}</p>
-        </div>
+            <FormSection.Head className="border-transparent p-0">
+            <FormSection.Head.Title className='text-lg font-semibold'>
+                {t('sections.map.title')}
+              </FormSection.Head.Title>
+              <FormSection.Head.Subtitle>
+              {t('sections.map.subtitle')}
+              </FormSection.Head.Subtitle>
+            </FormSection.Head>
         {loading && <div className="h-144 md:h-164">
             <ContentLoader noMargin />
         </div>}

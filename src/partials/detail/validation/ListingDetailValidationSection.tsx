@@ -1,4 +1,5 @@
 import DefaultCard from "@turistikrota/ui/cards/default"
+import FormSection from "@turistikrota/ui/form/section"
 import { TFunction, useTranslation } from "next-i18next"
 import { FC, useMemo } from "react"
 import KeyValue from "~/components/KeyValue"
@@ -49,8 +50,15 @@ const ListingDetailValidationSection : FC<Props> = ({validation}) => {
     )
   
     return (
-      <section>
-        <h2 className='mb-2 text-xl font-semibold'>{t('sections.rules')}</h2>
+      <section className="flex flex-col gap-2">
+                    <FormSection.Head className="border-transparent p-0">
+            <FormSection.Head.Title className='text-lg font-semibold'>
+                {t('sections.rules.title')}
+              </FormSection.Head.Title>
+              <FormSection.Head.Subtitle>
+              {t('sections.rules.subtitle')}
+              </FormSection.Head.Subtitle>
+            </FormSection.Head>
         <div className='grid grid-cols-12 gap-2'>
           {items.map((item, idx) => (
             <DefaultCard key={idx} className='col-span-12 md:col-span-6'>

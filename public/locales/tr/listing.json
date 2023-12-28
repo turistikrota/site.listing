@@ -15,9 +15,20 @@
         "filterForStrict": "Net fiyatlar için tarihe göre filtrele"
     },
     "sections": {
-      "category": "Kategoriler",
-      "rules": "Kurallar",
-      "calendar": "Takvim",
+      "category": {
+        "title": "İlan Kategorileri",
+        "subtitle": "Bu bölümde ilana ait kategorileri görebilirsiniz."
+      },
+      "rules": {
+        "title": "İlan Kuralları",
+        "subtitle": "Bu bölümde ilana ait kuralları görebilirsiniz."
+      },
+      "calendar": {
+        "title": "Fiyat Takvimi",
+        "subtitle": "Bu bölümde ilana ait dönemlik fiyatları görebilirsiniz.",
+        "selected": "Selected",
+        "today": "Today"
+      },
       "map": {
         "title": "Harita ve Yakın Çevre",
         "subtitle": "Bu bölümde ilandaki konumu ve yakın çevresindeki turistik yerleri görebilirsiniz.",
