@@ -1,43 +1,43 @@
 {
-    "words": {
-        "from-business": "İşletmesinden"
+  "words": {
+    "from-business": "İşletmesinden"
+  },
+  "business": {
+    "see-profile": "İşletme Profilini Göster"
+  },
+  "price": {
+    "min": "En Düşük",
+    "max": "En Yüksek",
+    "not-available": "Fiyat mevcut değil",
+    "not-available-filtered": "Bu tarih için fiyat mevcut değil",
+    "not-found": "Fiyat bulunamadı",
+    "total": "Toplam Fiyat ({{count}} gece)",
+    "filterForStrict": "Net fiyatlar için tarihe göre filtrele"
+  },
+  "sections": {
+    "category": {
+      "title": "İlan Kategorileri",
+      "subtitle": "Bu bölümde ilana ait kategorileri görebilirsiniz."
     },
-    "business": {
-        "see-profile": "İşletme Profilini Göster"
+    "rules": {
+      "title": "İlan Kuralları",
+      "subtitle": "Bu bölümde ilana ait kuralları görebilirsiniz."
     },
-    "price": {
-        "min": "En Düşük",
-        "max": "En Yüksek",
-        "not-available": "Fiyat mevcut değil",
-        "not-available-filtered": "Bu tarih için fiyat mevcut değil",
-        "not-found": "Fiyat bulunamadı",
-        "total": "Toplam Fiyat ({{count}} gece)",
-        "filterForStrict": "Net fiyatlar için tarihe göre filtrele"
+    "calendar": {
+      "title": "Fiyat Takvimi",
+      "subtitle": "Bu bölümde ilana ait dönemlik fiyatları görebilirsiniz.",
+      "selected": "Selected",
+      "today": "Today"
     },
-    "sections": {
-      "category": {
-        "title": "İlan Kategorileri",
-        "subtitle": "Bu bölümde ilana ait kategorileri görebilirsiniz."
-      },
-      "rules": {
-        "title": "İlan Kuralları",
-        "subtitle": "Bu bölümde ilana ait kuralları görebilirsiniz."
-      },
-      "calendar": {
-        "title": "Fiyat Takvimi",
-        "subtitle": "Bu bölümde ilana ait dönemlik fiyatları görebilirsiniz.",
-        "selected": "Selected",
-        "today": "Today"
-      },
-      "map": {
-        "title": "Harita ve Yakın Çevre",
-        "subtitle": "Bu bölümde ilandaki konumu ve yakın çevresindeki turistik yerleri görebilirsiniz.",
-        "error": {
-          "title": "Bir Hata Oluştu",
-          "description": "Harita yüklenirken bir hata oluştu. Lütfen daha sonra tekra deneyiniz."
-        }
+    "map": {
+      "title": "Harita ve Yakın Çevre",
+      "subtitle": "Bu bölümde ilandaki konumu ve yakın çevresindeki turistik yerleri görebilirsiniz.",
+      "error": {
+        "title": "Bir Hata Oluştu",
+        "description": "Harita yüklenirken bir hata oluştu. Lütfen daha sonra tekra deneyiniz."
       }
-    },
+    }
+  },
   "category-features": {
     "options": {
       "exists": "Var",

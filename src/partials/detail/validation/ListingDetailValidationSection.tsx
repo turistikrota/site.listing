@@ -1,12 +1,12 @@
-import DefaultCard from "@turistikrota/ui/cards/default"
-import FormSection from "@turistikrota/ui/form/section"
-import { TFunction, useTranslation } from "next-i18next"
-import { FC, useMemo } from "react"
-import KeyValue from "~/components/KeyValue"
-import { ListingValidation, ValidationKey } from "~/types/listing"
+import DefaultCard from '@turistikrota/ui/cards/default'
+import FormSection from '@turistikrota/ui/form/section'
+import { TFunction, useTranslation } from 'next-i18next'
+import { FC, useMemo } from 'react'
+import KeyValue from '~/components/KeyValue'
+import { ListingValidation, ValidationKey } from '~/types/listing'
 
 type Props = {
-    validation: ListingValidation
+  validation: ListingValidation
 }
 
 type Item = {
@@ -34,42 +34,38 @@ const RuleMixers: Record<ValidationKey, Mixer> = {
   noGuest: (t, value) => (value ? t('rules.yes') : t('rules.no')),
 }
 
-const ListingDetailValidationSection : FC<Props> = ({validation}) => {
-    const { t } = useTranslation('listing')
+const ListingDetailValidationSection: FC<Props> = ({ validation }) => {
+  const { t } = useTranslation('listing')
 
-    const items: Item[] = useMemo(
-      () =>
-        Object.entries(validation).map(([key, value]) => ({
-          label:
-            typeof value === 'boolean' || key.startsWith('no')
-              ? t(`form.validation.${key}.title`)
-              : t(`form.validation.${key}`),
-          value: RuleMixers[key as ValidationKey](t, value),
-        })),
-      [t, validation],
-    )
-  
-    return (
-      <section className="flex flex-col gap-2">
-                    <FormSection.Head className="border-transparent p-0">
-            <FormSection.Head.Title className='text-lg font-semibold'>
-                {t('sections.rules.title')}
-              </FormSection.Head.Title>
-              <FormSection.Head.Subtitle>
-              {t('sections.rules.subtitle')}
-              </FormSection.Head.Subtitle>
-            </FormSection.Head>
-        <div className='grid grid-cols-12 gap-2'>
-          {items.map((item, idx) => (
-            <DefaultCard key={idx} className='col-span-12 md:col-span-6'>
-              <KeyValue>
-                <KeyValue.Item label={item.label} value={item.value} reversed />
-              </KeyValue>
-            </DefaultCard>
-          ))}
-        </div>
-      </section>
-    )
+  const items: Item[] = useMemo(
+    () =>
+      Object.entries(validation).map(([key, value]) => ({
+        label:
+          typeof value === 'boolean' || key.startsWith('no')
+            ? t(`form.validation.${key}.title`)
+            : t(`form.validation.${key}`),
+        value: RuleMixers[key as ValidationKey](t, value),
+      })),
+    [t, validation],
+  )
+
+  return (
+    <section className='flex flex-col gap-2'>
+      <FormSection.Head className='border-transparent p-0'>
+        <FormSection.Head.Title className='text-lg font-semibold'>{t('sections.rules.title')}</FormSection.Head.Title>
+        <FormSection.Head.Subtitle>{t('sections.rules.subtitle')}</FormSection.Head.Subtitle>
+      </FormSection.Head>
+      <div className='grid grid-cols-12 gap-2'>
+        {items.map((item, idx) => (
+          <DefaultCard key={idx} className='col-span-12 md:col-span-6'>
+            <KeyValue>
+              <KeyValue.Item label={item.label} value={item.value} reversed />
+            </KeyValue>
+          </DefaultCard>
+        ))}
+      </div>
+    </section>
+  )
 }
 
 export default ListingDetailValidationSection

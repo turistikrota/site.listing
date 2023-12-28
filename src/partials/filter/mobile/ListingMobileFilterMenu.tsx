@@ -9,7 +9,6 @@ import { ListingFilter } from '~/types/listing.filter'
 import { FilterComponents } from './ListingMobileFilter.types'
 import ListingMobileFilterGroup from './ListingMobileFilterGroup'
 
-
 type Props = {
   onOpen: (component: FilterComponents, key: keyof ListingFilter) => void
 }
@@ -51,13 +50,13 @@ const items: Item[] = [
   {
     component: 'validation',
     queryKey: 'validation',
-  }
+  },
 ]
 
 type ParserOptions = {
   locale: Locales
   t: ReturnType<typeof useTranslation>['t']
-  selectedCategories:SelectionItem[]
+  selectedCategories: SelectionItem[]
   dayjs: ReturnType<typeof useDayJS>
 }
 
@@ -79,32 +78,37 @@ const componentValueParsers: Record<FilterComponents, (value: any, options: Pars
   },
   category: (value, options) => {
     if (!value || !Array.isArray(value)) return ''
-    return options.selectedCategories.reduce((acc, category) => {
-      if (value.includes(category.id)) {
-        acc.push(category.name)
-      }
-      return acc
-    }, [] as string[]).join(', ')
+    return options.selectedCategories
+      .reduce((acc, category) => {
+        if (value.includes(category.id)) {
+          acc.push(category.name)
+        }
+        return acc
+      }, [] as string[])
+      .join(', ')
   },
   price: (value, options) => {
-    if(!value) return ''
-    if(!value.min && !!value.max) return options.t('filter:components.price.max-price', {max: value.max})
-    if(!!value.min && !value.max) return options.t('filter:components.price.min-price', {min: value.min})
-    return options.t('filter:components.price.range', {min: value.min, max: value.max})
+    if (!value) return ''
+    if (!value.min && !!value.max) return options.t('filter:components.price.max-price', { max: value.max })
+    if (!!value.min && !value.max) return options.t('filter:components.price.min-price', { min: value.min })
+    return options.t('filter:components.price.range', { min: value.min, max: value.max })
   },
   date: (value, options) => {
     if (!value) return ''
-    if(value.start && value.end) return options.t('components.date.range', {
-      start: options.dayjs(value.start).format('DD MMMM YYYY'),
-      end: options.dayjs(value.end).format('DD MMMM YYYY')
-    })
-    if (value.start) return options.t('components.start-date.dynamic', {start: options.dayjs(value.start).format('DD MMMM YYYY')})
-    if (value.end) return options.t('components.end-date.dynamic', {start: options.dayjs(value.end).format('DD MMMM YYYY')})
+    if (value.start && value.end)
+      return options.t('components.date.range', {
+        start: options.dayjs(value.start).format('DD MMMM YYYY'),
+        end: options.dayjs(value.end).format('DD MMMM YYYY'),
+      })
+    if (value.start)
+      return options.t('components.start-date.dynamic', { start: options.dayjs(value.start).format('DD MMMM YYYY') })
+    if (value.end)
+      return options.t('components.end-date.dynamic', { start: options.dayjs(value.end).format('DD MMMM YYYY') })
     return ''
   },
   people: (value, options) => {
     if (!value || (!value.adult && !value.baby && !value.kid)) return ''
-    let text : string[] = []
+    let text: string[] = []
     if (value.adult > 0) {
       text.push(options.t('components.people.dynamic.adult', { count: value.adult }))
     }
@@ -117,18 +121,18 @@ const componentValueParsers: Record<FilterComponents, (value: any, options: Pars
     return text.join(', ')
   },
   validation: (value, options) => {
-    if(!value) return ''
-    let text : string[] = []
+    if (!value) return ''
+    let text: string[] = []
     Object.entries(value).forEach(([key, value]) => {
-      if(value !== 'on' && !Boolean(value)) return
+      if (value !== 'on' && !Boolean(value)) return
       text.push(options.t(`components.validation.${key}.label`))
     })
     return text.join(', ')
-  }
+  },
 }
 
 const ListingMobileFilterFilterMenu: React.FC<Props> = ({ onOpen }) => {
-    const {selectedCategories} = useCategorySelection()
+  const { selectedCategories } = useCategorySelection()
   const { t, i18n } = useTranslation(['filter', 'common'])
   const dayjs = useDayJS(i18n.language)
   const { query } = useListingFilter()

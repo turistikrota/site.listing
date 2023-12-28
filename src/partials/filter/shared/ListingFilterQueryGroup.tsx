@@ -5,10 +5,10 @@ import { FC, useEffect, useState } from 'react'
 import { useListingFilter } from '~/contexts/listing.filter'
 import { useListingPusher } from '~/hooks/listing-pusher'
 
-const ListingFilterQueryGroup : FC = () => {
+const ListingFilterQueryGroup: FC = () => {
   const [word, setWord] = useState<string>('')
   const { t } = useTranslation('filter')
-  const { query} = useListingFilter()
+  const { query } = useListingFilter()
   const { push } = useListingPusher()
 
   useEffect(() => {

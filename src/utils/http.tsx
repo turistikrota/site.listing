@@ -6,7 +6,7 @@ export const httpClient = axios.create({
 })
 
 export const useHttp = () => {
-    const { i18n } = useTranslation()
-    httpClient.defaults.headers.common['Accept-Language'] = i18n.language
-    return httpClient
+  const { i18n } = useTranslation()
+  httpClient.defaults.headers.common['Accept-Language'] = i18n.language
+  return httpClient
 }

@@ -91,7 +91,7 @@ const ListingMobileFilterSortPopup: React.FC<Props> = ({ onClose, open }) => {
   const { t } = useTranslation('sort')
   const [isDefault, setIsDefault] = useState<boolean>(true)
   const { query } = useListingFilter()
-  const {push} = useListingPusher()
+  const { push } = useListingPusher()
 
   useEffect(() => {
     const isSortDefault = query.filter.sort ? query.filter.sort === defaultSort : true

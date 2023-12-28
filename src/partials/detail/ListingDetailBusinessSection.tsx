@@ -1,32 +1,38 @@
-import Button from "@turistikrota/ui/button"
-import { useTranslation } from "next-i18next"
-import Image from "next/image"
-import { FC } from "react"
-import { makeBusinessAvatar } from "~/utils/cdn"
+import Button from '@turistikrota/ui/button'
+import { useTranslation } from 'next-i18next'
+import Image from 'next/image'
+import { FC } from 'react'
+import { makeBusinessAvatar } from '~/utils/cdn'
 
 type Props = {
-    nickName: string
+  nickName: string
 }
 
-const ListingDetailBusinessSection : FC<Props> = ({
-    nickName
-}) => {
-    const { t } = useTranslation('listing')
-    return <section className="flex items-center justify-between gap-2 text-ellipsis overflow-hidden">
-        <div className="flex items-center justify-start gap-2 text-ellipsis overflow-hidden">
-        <Image src={makeBusinessAvatar(nickName)} alt={nickName} width={32} height={32} className="rounded-md bg-second object-cover w-12 h-12 min-w-max" />
-        <div className="flex flex-col overflow-hidden text-ellipsis">
-            <div className="text-base font-bold overflow-hidden text-ellipsis">~{nickName}</div>
-            <div className="text-sm">{t('words.from-business')}</div>
+const ListingDetailBusinessSection: FC<Props> = ({ nickName }) => {
+  const { t } = useTranslation('listing')
+  return (
+    <section className='flex items-center justify-between gap-2 overflow-hidden text-ellipsis'>
+      <div className='flex items-center justify-start gap-2 overflow-hidden text-ellipsis'>
+        <Image
+          src={makeBusinessAvatar(nickName)}
+          alt={nickName}
+          width={32}
+          height={32}
+          className='h-12 w-12 min-w-max rounded-md bg-second object-cover'
+        />
+        <div className='flex flex-col overflow-hidden text-ellipsis'>
+          <div className='overflow-hidden text-ellipsis text-base font-bold'>~{nickName}</div>
+          <div className='text-sm'>{t('words.from-business')}</div>
         </div>
-        </div>
-        <div className="flex items-center justify-end">
-            <Button size="sm" variant="secondary" className="flex items-center justify-center gap-2" block={false}>
-                <i className="bx text-lg bx-link-external"></i>
-                {t('business.see-profile')}
-            </Button>
-        </div>
+      </div>
+      <div className='flex items-center justify-end'>
+        <Button size='sm' variant='secondary' className='flex items-center justify-center gap-2' block={false}>
+          <i className='bx bx-link-external text-lg'></i>
+          {t('business.see-profile')}
+        </Button>
+      </div>
     </section>
+  )
 }
 
 export default ListingDetailBusinessSection

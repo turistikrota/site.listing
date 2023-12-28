@@ -92,7 +92,7 @@ export const getQueryFromKeyBindings = (bindings: ListingKeyBindings) => {
         const sdate = new Date(value).toISOString().split('T')[0]
         query.filter.date = {
           ...query.filter.date,
-          start: sdate
+          start: sdate,
         }
       }
     },
@@ -101,7 +101,7 @@ export const getQueryFromKeyBindings = (bindings: ListingKeyBindings) => {
         const edate = new Date(value).toISOString().split('T')[0]
         query.filter.date = {
           ...query.filter.date,
-          end: edate
+          end: edate,
         }
       }
     },
@@ -218,12 +218,12 @@ export const toQueryString = (query: PaginationRequest<ListingFilter>): string =
     q.set('dist', query.filter.distance.toString())
   }
   if (query.filter.date) {
-    if(query.filter.date.start) {
-    q.set('sdate', query.filter.date.start)
+    if (query.filter.date.start) {
+      q.set('sdate', query.filter.date.start)
     }
-    if(query.filter.date.end) {
+    if (query.filter.date.end) {
       q.set('edate', query.filter.date.end)
-      }
+    }
   }
   if (query.filter.sort) {
     q.set('sort', query.filter.sort)

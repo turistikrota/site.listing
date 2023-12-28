@@ -76,6 +76,5 @@ export const ListingFilterProvider: FC<PropsWithChildren> = ({ children }) => {
     }
   }, [query, setQuery, isQueryChanged, isOnlyPageChanged])
 
-
   return <ListingFilterContext.Provider value={contextValue}>{children}</ListingFilterContext.Provider>
 }

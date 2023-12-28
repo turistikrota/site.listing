@@ -16,12 +16,13 @@ type CloseableProps = {
   onClose: () => void
 }
 
-type Props = ContentProps & CloseableProps & {
+type Props = ContentProps &
+  CloseableProps & {
     open: boolean
   }
 
 const Spin = () => (
-  <div className='w-full min-h-[5vh] flex items-center justify-center'>
+  <div className='flex min-h-[5vh] w-full items-center justify-center'>
     <Spinner />
   </div>
 )
@@ -45,12 +46,12 @@ const Components: Record<FilterComponents, React.ComponentType<any>> = {
   people: dynamic(() => import('../shared/ListingFilterPeopleGroup'), {
     loading: Spin,
   }),
-    price: dynamic(() => import('../shared/ListingFilterPriceGroup'), {
-        loading: Spin,
-    }),
-    validation: dynamic(() => import('../shared/ListingFilterValidationGroup'), {
-        loading: Spin,
-    }),
+  price: dynamic(() => import('../shared/ListingFilterPriceGroup'), {
+    loading: Spin,
+  }),
+  validation: dynamic(() => import('../shared/ListingFilterValidationGroup'), {
+    loading: Spin,
+  }),
 }
 
 const ListingMobileFilterPopup: React.FC<Props> = ({ onClose, open, data, loading }) => {

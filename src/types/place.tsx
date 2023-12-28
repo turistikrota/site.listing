@@ -1,5 +1,4 @@
-import { Type } from "~/api/place.api"
-
+import { Type } from '~/api/place.api'
 
 export type PlaceTypeItems = {
   icon: string

@@ -43,7 +43,7 @@ const EnglishAnalytics: FC = () => {
   )
 }
 
-const Document : FC = () => {
+const Document: FC = () => {
   const { i18n } = useTranslation()
   return (
     <Html lang={i18n.language}>

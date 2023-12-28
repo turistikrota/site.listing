@@ -42,7 +42,11 @@ export const useCategoryFeatures = (inputGroups: InputGroup[], features: Listing
         if (feature) {
           feature.inputGroupUUID = g.uuid
           feature.type = i.type
-          feature.translation = getI18nTranslations<InputTranslation>(i.translations, i18n.language, EmptyInputTranslation)
+          feature.translation = getI18nTranslations<InputTranslation>(
+            i.translations,
+            i18n.language,
+            EmptyInputTranslation,
+          )
           feature.options = i.options
           feature.extra = i.extra
         }

@@ -1,21 +1,20 @@
 {
-    "mobile": {
-      "title": "Sort",
-      "sort-by": {
-        "title": "Sort by",
-        "price": "Price",
-        "most_recent": "Date Added",
-        "nearest": "Nearness",
-        "clear-text": "Clear",
-        "clear-aria-label": "Clear Sort By"
-      },
-      "order-by": {
-        "title": "Sort Method",
-        "desc": "Descending",
-        "asc": "Ascending",
-        "clear-text": "Clear",
-        "clear-aria-label": "Clear Sort Method"
-      }
+  "mobile": {
+    "title": "Sort",
+    "sort-by": {
+      "title": "Sort by",
+      "price": "Price",
+      "most_recent": "Date Added",
+      "nearest": "Nearness",
+      "clear-text": "Clear",
+      "clear-aria-label": "Clear Sort By"
+    },
+    "order-by": {
+      "title": "Sort Method",
+      "desc": "Descending",
+      "asc": "Ascending",
+      "clear-text": "Clear",
+      "clear-aria-label": "Clear Sort Method"
     }
   }
-  
+}

@@ -39,11 +39,11 @@ const getRadiusLabel = (zoomLevel: number): string => {
   return `${Math.round(radius)} m`
 }
 
-const ListingFilterDistanceGroup : FC<Props> = ({ className }) => {
+const ListingFilterDistanceGroup: FC<Props> = ({ className }) => {
   const [distance, setDistance] = useState<number>(DefaultDistance)
   const { t } = useTranslation('filter')
   const isDesktop = useIsDesktop()
-  const { query} = useListingFilter()
+  const { query } = useListingFilter()
   const { push } = useListingPusher()
 
   const DistanceLabels: Record<Distance, string> = useMemo(() => {

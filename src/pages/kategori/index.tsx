@@ -1,4 +1,4 @@
-import CategoryListView, { getServerSideProps } from "../category";
+import CategoryListView, { getServerSideProps } from '../category'
 
-export default CategoryListView;
-export { getServerSideProps };
+export default CategoryListView
+export { getServerSideProps }

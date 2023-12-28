@@ -7,7 +7,7 @@ type Props = {
   title: string
 }
 
-const ListingImagePreviewCard : FC<Props> = ({ images, title }) => {
+const ListingImagePreviewCard: FC<Props> = ({ images, title }) => {
   const preview = useImagePreview()
 
   const openPreview = (_: string, idx: number) => {

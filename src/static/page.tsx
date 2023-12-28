@@ -28,8 +28,8 @@ const Routes: Record<Locales, RouteType> = {
       default: SiteUrls.auth.tr,
     },
     places: {
-        default: SiteUrls.place.tr,
-        detail: `${SiteUrls.place.tr}/`,
+      default: SiteUrls.place.tr,
+      detail: `${SiteUrls.place.tr}/`,
     },
     base: SiteUrls.root.tr,
     aboutUs: `${SiteUrls.root.tr}/hakkimizda`,
@@ -43,8 +43,8 @@ const Routes: Record<Locales, RouteType> = {
       default: SiteUrls.auth.en,
     },
     places: {
-        default: SiteUrls.place.en,
-        detail: `${SiteUrls.place.en}/`,
+      default: SiteUrls.place.en,
+      detail: `${SiteUrls.place.en}/`,
     },
     base: SiteUrls.root.en,
     aboutUs: `${SiteUrls.root.en}/about-us`,

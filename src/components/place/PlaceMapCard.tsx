@@ -12,7 +12,7 @@ import PlaceTypeCard from './PlaceTypeCard'
 
 type Props = PlaceListItem
 
-const PlaceMapCard : FC<Props> = ({ ...item }) => {
+const PlaceMapCard: FC<Props> = ({ ...item }) => {
   const { i18n } = useTranslation('place')
   const translations = getI18nTranslations<TranslationItem>(item.translations, i18n.language, {
     title: '',
@@ -26,8 +26,12 @@ const PlaceMapCard : FC<Props> = ({ ...item }) => {
   }
 
   return (
-    <div className='flex flex-col bg-default rounded-md'>
-      <Link href={`${SiteUrls.place[i18n.language as Locales]}/${translations.slug}`} target='_blank' onClick={checkOutsideClick}>
+    <div className='flex flex-col rounded-md bg-default'>
+      <Link
+        href={`${SiteUrls.place[i18n.language as Locales]}/${translations.slug}`}
+        target='_blank'
+        onClick={checkOutsideClick}
+      >
         <Carousel
           imageAltPrefix={translations.title}
           images={mapAndSortImages(item.images)}
@@ -39,7 +43,7 @@ const PlaceMapCard : FC<Props> = ({ ...item }) => {
           <div className='flex flex-col gap-2'>
             <div className='flex flex-col gap-1'>
               <div className='text-xl font-bold text-gray-900 dark:text-gray-100'>{translations.title}</div>
-              <div className='flex justify-between items-center'>
+              <div className='flex items-center justify-between'>
                 <PlaceTypeCard type={item.type} />
                 <TimeSpentCard data={item.averageTimeSpent} />
               </div>

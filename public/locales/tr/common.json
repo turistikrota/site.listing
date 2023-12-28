@@ -1,81 +1,80 @@
 {
-    "ux": {
-      "button": {
-        "show": "Göster",
-        "hide": "Gizle",
-        "close": "Kapat",
-        "save": "Kaydet",
-        "cancel": "İptal",
-        "zoom-in": "Yakınlaştır",
-        "zoom-out": "Uzaklaştır",
-        "rotate-left": "Sola Döndür",
-        "rotate-right": "Sağa Döndür",
-        "flip-horizontal": "Yatay Çevir",
-        "flip-vertical": "Dikey Çevir",
-        "clear": "Temizle",
-        "clear-filter": "Filtreyi Temizle"
+  "ux": {
+    "button": {
+      "show": "Göster",
+      "hide": "Gizle",
+      "close": "Kapat",
+      "save": "Kaydet",
+      "cancel": "İptal",
+      "zoom-in": "Yakınlaştır",
+      "zoom-out": "Uzaklaştır",
+      "rotate-left": "Sola Döndür",
+      "rotate-right": "Sağa Döndür",
+      "flip-horizontal": "Yatay Çevir",
+      "flip-vertical": "Dikey Çevir",
+      "clear": "Temizle",
+      "clear-filter": "Filtreyi Temizle"
+    },
+    "select": {
+      "default": "Seçiniz"
+    },
+    "label": {
+      "result": "Sonuç"
+    },
+    "input": {
+      "invalid": {
+        "min-max": "Maksimum değer, minimum değerden küçük olamaz"
       },
-      "select": {
-        "default": "Seçiniz"
-      },
-      "label": {
-        "result": "Sonuç"
-      },
-      "input": {
-        "invalid": {
-          "min-max": "Maksimum değer, minimum değerden küçük olamaz"
-        },
-        "search": "Ara",
-        "min": "Min",
-        "max": "Maks"
-      }
+      "search": "Ara",
+      "min": "Min",
+      "max": "Maks"
+    }
+  },
+  "seo": {
+    "list": {
+      "title": "İlanlar",
+      "description": "Turistikrota ile gerçek turizm deneyimini yaşayın. Tarihe, kategoriye, konuma ve daha fazlasına göre ilanları filtreleyin, size uygun ilanı bulun ve rezervasyon yapın.",
+      "keywords": "ilanlar, turistikrota ilanlar, turistikrota, turistikrota.com"
+    }
+  },
+  "switch": {
+    "filter": "Filtre",
+    "sort": "Sırala"
+  },
+  "content-switch": {
+    "map": "Haritayı Göster",
+    "list": "Listeyi Göster"
+  },
+  "brace": {
+    "and": "ve"
+  },
+  "header": {
+    "submodule": "ilan",
+    "left": {
+      "promotion": "Gerçek turizm deneyimini Turistikrota ile yaşa!"
     },
-    "seo": {
-        "list": {
-
-        "title": "İlanlar",
-        "description": "Turistikrota ile gerçek turizm deneyimini yaşayın. Tarihe, kategoriye, konuma ve daha fazlasına göre ilanları filtreleyin, size uygun ilanı bulun ve rezervasyon yapın.",
-        "keywords": "ilanlar, turistikrota ilanlar, turistikrota, turistikrota.com"
-        }
+    "links": {
+      "aboutUs": "Hakkımızda",
+      "login": "Giriş Yap",
+      "selectAccount": "Profili Seç",
+      "home": "Turistikrota'ya Dön"
     },
-    "switch": {
-        "filter": "Filtre",
-        "sort": "Sırala"
-    },
-    "content-switch": {
-        "map": "Haritayı Göster",
-        "list": "Listeyi Göster"
-    },
-    "brace": {
-        "and": "ve"
-    },
-    "header": {
-        "submodule": "ilan",
-        "left": {
-            "promotion": "Gerçek turizm deneyimini Turistikrota ile yaşa!"
-        },
-        "links": {
-            "aboutUs": "Hakkımızda",
-            "login": "Giriş Yap",
-            "selectAccount": "Profili Seç",
-            "home": "Turistikrota'ya Dön"
-        },
-        "button": {
-            "login": "Giriş Yap",
-            "select": "Profili Seç",
-            "profile": "Profil",
-            "loading": "Yükleniyor..."
-        }
-    },
-    "notFoundPage": {
-      "title": "Sayfa Bulunamadı",
-      "subtitle": "Aradığınız sayfayı bulamadık. Lütfen girdiğiniz adresi kontrol edin.",
-      "button": "Anasayfaya Dön"
-    },
-    "notFound": {
-        "title": "Sonuç Bulunamadı",
-        "description": "Filtrelerinizle eşleşen herhangi bir sonuç bulamadık.",
-        "button": "Filtreleri Sıfırla"
-    },
-    "url": "https://ilan.turistikrota.com"
+    "button": {
+      "login": "Giriş Yap",
+      "select": "Profili Seç",
+      "profile": "Profil",
+      "loading": "Yükleniyor..."
+    }
+  },
+  "notFoundPage": {
+    "title": "Sayfa Bulunamadı",
+    "subtitle": "Aradığınız sayfayı bulamadık. Lütfen girdiğiniz adresi kontrol edin.",
+    "button": "Anasayfaya Dön"
+  },
+  "notFound": {
+    "title": "Sonuç Bulunamadı",
+    "description": "Filtrelerinizle eşleşen herhangi bir sonuç bulamadık.",
+    "button": "Filtreleri Sıfırla"
+  },
+  "url": "https://ilan.turistikrota.com"
 }

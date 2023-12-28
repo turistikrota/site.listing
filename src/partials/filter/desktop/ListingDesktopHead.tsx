@@ -1,5 +1,4 @@
-import ListingFilterClearButton from "../shared/ListingFilterClearButton"
-
+import ListingFilterClearButton from '../shared/ListingFilterClearButton'
 
 type TitleProps = {
   className?: string
@@ -15,7 +14,7 @@ const Title: React.FC<React.PropsWithChildren<TitleProps>> = ({ children, classN
 }
 
 const ListingDesktopHead: ListingDesktopHeadType = ({ children }) => {
-  return <div className='flex justify-between items-center mb-2'>{children}</div>
+  return <div className='mb-2 flex items-center justify-between'>{children}</div>
 }
 
 ListingDesktopHead.Title = Title

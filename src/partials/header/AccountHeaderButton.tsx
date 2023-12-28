@@ -24,13 +24,13 @@ const ProfileButton = ({ account }: { account: AccountListItem }) => {
       aria-label={t('header.button.profile')}
       title={t('header.button.profile')}
     >
-      <div className='group relative flex items-center flex-row space-x-1 md:hover:bg-second dark:hover:bg-third rounded-md md:px-3 transition-colors duration-200 ease-in-out'>
-        <div className='flex flex-col items-end justify-center w-12 h-12 rounded-full md:items-center'>
+      <div className='group relative flex flex-row items-center space-x-1 rounded-md transition-colors duration-200 ease-in-out dark:hover:bg-third md:px-3 md:hover:bg-second'>
+        <div className='flex h-12 w-12 flex-col items-end justify-center rounded-full md:items-center'>
           <MobileHeader.Avatar>
             <Image
               src={src}
               onError={onError}
-              className='rounded-md h-full object-cover'
+              className='h-full rounded-md object-cover'
               width={48}
               height={48}
               alt={account.fullName}
@@ -72,7 +72,7 @@ const SelectProfileButton = () => {
     <Link
       href={getAccountRedirectUrl(i18n.language, window.location.href)}
       passHref={true}
-      className='hover:bg-second dark:hover:bg-third rounded-md px-3 py-3 transition-colors duration-200 ease-in-out'
+      className='rounded-md px-3 py-3 transition-colors duration-200 ease-in-out hover:bg-second dark:hover:bg-third'
       aria-label={t('header.links.selectAccount')}
       title={t('header.links.selectAccount')}
     >

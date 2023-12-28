@@ -8,7 +8,7 @@ import { FC } from 'react'
 import '~/styles/globals.css'
 import '~/styles/leaflet.css'
 
-const App : FC<AppProps> = ({ Component, pageProps }) => {
+const App: FC<AppProps> = ({ Component, pageProps }) => {
   return <Component {...pageProps} />
 }
 
