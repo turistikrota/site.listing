@@ -113,7 +113,7 @@ const ListingDetailView: FC<Props> = ({ response, startDate, endDate, ...layoutP
           </div>
           {isDesktop && (
             <StickySection customWidth='w-128 xl:x-144' innerClassName='px-2'>
-              <ListingDetailReservationSection uuid={response.uuid} prices={response.prices} startDate={startDate || undefined} endDate={endDate || undefined} />
+              <ListingDetailReservationSection validation={response.validation} uuid={response.uuid} prices={response.prices} startDate={startDate || undefined} endDate={endDate || undefined} />
             </StickySection>
           )}
         </section>

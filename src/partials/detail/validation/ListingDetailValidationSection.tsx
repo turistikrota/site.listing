@@ -12,6 +12,8 @@ type Props = {
 type Item = {
   label: string
   value: string
+  isBool?: boolean
+  orgValue?: number | boolean
 }
 
 type Mixer = (t: TFunction, value: number | boolean) => string
@@ -45,13 +47,15 @@ const ListingDetailValidationSection: FC<Props> = ({ validation }) => {
             ? t(`form.validation.${key}.title`)
             : t(`form.validation.${key}`),
         value: RuleMixers[key as ValidationKey](t, value),
+        orgValue: value,
+        isBool: typeof value === 'boolean' || key.startsWith('no'),
       })),
     [t, validation],
   )
 
   return (
     <section className='flex flex-col gap-2'>
-      <FormSection.Head className='border-transparent p-0'>
+      <FormSection.Head className='border-transparent !p-0'>
         <FormSection.Head.Title className='text-lg font-semibold'>{t('sections.rules.title')}</FormSection.Head.Title>
         <FormSection.Head.Subtitle>{t('sections.rules.subtitle')}</FormSection.Head.Subtitle>
       </FormSection.Head>
@@ -59,7 +63,7 @@ const ListingDetailValidationSection: FC<Props> = ({ validation }) => {
         {items.map((item, idx) => (
           <DefaultCard key={idx} className='col-span-12 md:col-span-6'>
             <KeyValue>
-              <KeyValue.Item label={item.label} value={item.value} reversed />
+              <KeyValue.Item label={item.label} value={item.value} reversed valueClassName={item.isBool ? item.orgValue ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400' : ''} />
             </KeyValue>
           </DefaultCard>
         ))}

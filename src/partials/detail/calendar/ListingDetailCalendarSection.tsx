@@ -15,7 +15,7 @@ const ListingDetailCalendarSection: FC<Props> = ({ prices }) => {
   const calendarData = useListingCalendar(prices)
   return (
     <section className='flex flex-col gap-2'>
-      <FormSection.Head className='border-transparent p-0'>
+      <FormSection.Head className='border-transparent !p-0'>
         <FormSection.Head.Title className='text-lg font-semibold'>
           {t('sections.calendar.title')}
         </FormSection.Head.Title>

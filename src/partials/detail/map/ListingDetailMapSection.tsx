@@ -40,7 +40,7 @@ const ListingDetailMapSection: FC<Props> = ({ coordinates, isStrict }) => {
 
   return (
     <section className='flex flex-col gap-2'>
-      <FormSection.Head className='border-transparent p-0'>
+      <FormSection.Head className='border-transparent !p-0'>
         <FormSection.Head.Title className='text-lg font-semibold'>{t('sections.map.title')}</FormSection.Head.Title>
         <FormSection.Head.Subtitle>{t('sections.map.subtitle')}</FormSection.Head.Subtitle>
       </FormSection.Head>
