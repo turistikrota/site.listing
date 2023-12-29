@@ -47,7 +47,7 @@ const ListingDetailReservationSection: FC<Props> = ({
       baby
     })
   }, [start, end, adult, kid, baby])
-  
+
   return <div className='flex flex-col gap-4'>
     <Alert type='warning' showIcon>
       <Alert.Title>Uyarı</Alert.Title>
@@ -62,7 +62,11 @@ const ListingDetailReservationSection: FC<Props> = ({
     <hr />
     <ListingCardPriceSection.Row label='Toplam' text={localizedFormatter.format(23000)} />
   </ListingCardPriceSection>
-  <Button>Rezerve Et</Button>
+  <Button size='lg'>Rezerve Et</Button>
+  <div className='flex justify-between gap-2'>
+    <Button variant='secondary'>Neden Turistikrota?</Button>
+    <Button variant='glass'>Süreç Nasıl İşliyor?</Button>
+  </div>
   </div>
 }
 
