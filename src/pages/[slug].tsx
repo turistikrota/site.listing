@@ -72,7 +72,15 @@ export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
   }
 }
 
-const ListingDetailView: FC<Props> = ({ response, startDate, endDate, adultQuery, kidQuery, babyQuery, ...layoutProps }) => {
+const ListingDetailView: FC<Props> = ({
+  response,
+  startDate,
+  endDate,
+  adultQuery,
+  kidQuery,
+  babyQuery,
+  ...layoutProps
+}) => {
   const { t, i18n } = useTranslation('listing')
   const images = useMemo(() => (response ? mapAndSortImages(response.images) : []), [response])
   const isDesktop = useIsDesktop()
@@ -119,7 +127,16 @@ const ListingDetailView: FC<Props> = ({ response, startDate, endDate, adultQuery
           </div>
           {isDesktop && (
             <StickySection customWidth='w-128 xl:x-144' innerClassName='px-2'>
-              <ListingDetailReservationSection validation={response.validation} uuid={response.uuid} prices={response.prices} startDate={startDate || undefined} endDate={endDate || undefined} adultQuery={adultQuery || undefined} kidQuery={kidQuery || undefined} babyQuery={babyQuery || undefined} />
+              <ListingDetailReservationSection
+                validation={response.validation}
+                uuid={response.uuid}
+                prices={response.prices}
+                startDate={startDate || undefined}
+                endDate={endDate || undefined}
+                adultQuery={adultQuery || undefined}
+                kidQuery={kidQuery || undefined}
+                babyQuery={babyQuery || undefined}
+              />
             </StickySection>
           )}
         </section>

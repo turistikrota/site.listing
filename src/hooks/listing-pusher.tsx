@@ -50,7 +50,7 @@ type DetailQuery = {
 
 type DetailPusher = (query: DetailQuery) => void
 
-const toDetailQueryString = (query: DetailQuery) : string => {
+const toDetailQueryString = (query: DetailQuery): string => {
   const { start, end, adult, kid, baby } = query
   const params = []
   if (start) params.push(`start=${start}`)
@@ -61,7 +61,7 @@ const toDetailQueryString = (query: DetailQuery) : string => {
   return params.join('&')
 }
 
-export const useListingDetailPusher = () : DetailPusher => {
+export const useListingDetailPusher = (): DetailPusher => {
   const router = useRouter()
   const pathname = usePathname()
 

@@ -63,7 +63,18 @@ const ListingDetailValidationSection: FC<Props> = ({ validation }) => {
         {items.map((item, idx) => (
           <DefaultCard key={idx} className='col-span-12 md:col-span-6'>
             <KeyValue>
-              <KeyValue.Item label={item.label} value={item.value} reversed valueClassName={item.isBool ? item.orgValue ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400' : ''} />
+              <KeyValue.Item
+                label={item.label}
+                value={item.value}
+                reversed
+                valueClassName={
+                  item.isBool
+                    ? item.orgValue
+                      ? 'text-red-600 dark:text-red-400'
+                      : 'text-green-600 dark:text-green-400'
+                    : ''
+                }
+              />
             </KeyValue>
           </DefaultCard>
         ))}

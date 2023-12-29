@@ -100,13 +100,15 @@ type PriceRowProps = {
   bold?: boolean
 }
 
-const DataRow : FC<PriceRowProps> = ({ label, text, bold }) => {
-  return  <div className='flex items-center justify-between'>
-  <div className='text-sm text-gray-600 dark:text-gray-400'>{label}</div>
-  <div className={`text-gray-900 dark:text-gray-100 ${bold ? 'text-xl font-bold' : 'text-lg font-semibold'}`}>
-    {text}
-  </div>
-</div>
+const DataRow: FC<PriceRowProps> = ({ label, text, bold }) => {
+  return (
+    <div className='flex items-center justify-between'>
+      <div className='text-sm text-gray-600 dark:text-gray-400'>{label}</div>
+      <div className={`text-gray-900 dark:text-gray-100 ${bold ? 'text-xl font-bold' : 'text-lg font-semibold'}`}>
+        {text}
+      </div>
+    </div>
+  )
 }
 
 const RangeRenderer: FC<RangeRendererProps> = ({ min, max, notAvailable }) => {
@@ -127,7 +129,14 @@ const RangeRenderer: FC<RangeRendererProps> = ({ min, max, notAvailable }) => {
   )
 }
 
-const ListingCardPriceBothDates: FC<PropsWithChildren<FilteredProps>> = ({ prices, end, start, dayjs, t, children }) => {
+const ListingCardPriceBothDates: FC<PropsWithChildren<FilteredProps>> = ({
+  prices,
+  end,
+  start,
+  dayjs,
+  t,
+  children,
+}) => {
   const total = calcTotalPrice(start!, end!, prices, dayjs)
   const localizedFormatter = useLocalizedFormatter()
   if (!total || total.price === 0)
@@ -155,7 +164,12 @@ const ListingCardPriceOnlyEnd: FC<FilteredProps> = ({ prices, end, dayjs, t }) =
 }
 
 const ListingCardPriceFiltered: FC<PropsWithChildren<FilteredProps>> = ({ prices, end, start, dayjs, t, children }) => {
-  if (end && start) return <ListingCardPriceBothDates prices={prices} end={end} start={start} dayjs={dayjs} t={t}>{children}</ListingCardPriceBothDates>
+  if (end && start)
+    return (
+      <ListingCardPriceBothDates prices={prices} end={end} start={start} dayjs={dayjs} t={t}>
+        {children}
+      </ListingCardPriceBothDates>
+    )
   if (end) return <ListingCardPriceOnlyEnd prices={prices} end={end} start={start} dayjs={dayjs} t={t} />
   if (start) return <ListingCardPriceOnlyStart prices={prices} end={end} start={start} dayjs={dayjs} t={t} />
   return (
@@ -175,14 +189,8 @@ const ListingCardPriceSection: Section = ({ prices, startDate, endDate, children
   const dayjs = useDayJS(i18n.language)
   return (
     <div className='col-span-12 flex items-center justify-start gap-2'>
-      {(!!startDate || !!endDate) ? (
-        <ListingCardPriceFiltered
-          t={t}
-          dayjs={dayjs}
-          prices={prices}
-          start={startDate}
-          end={endDate}
-        >
+      {!!startDate || !!endDate ? (
+        <ListingCardPriceFiltered t={t} dayjs={dayjs} prices={prices} start={startDate} end={endDate}>
           {children}
         </ListingCardPriceFiltered>
       ) : (

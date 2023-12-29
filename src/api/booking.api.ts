@@ -1,1 +1,1 @@
-export const createBooking = async() => {}
+export const createBooking = async () => {}

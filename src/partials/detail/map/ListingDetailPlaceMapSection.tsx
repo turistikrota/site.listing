@@ -27,18 +27,26 @@ const ListingDetailPlaceMapSection: FC<Props> = ({ data, position, listingCoordi
       <DynamicMap position={position} zoom={15}>
         <MapDefaultConfig />
 
-        {isStrict && <Marker position={listingCoordinates} icon={new Icon.Default({
-          iconUrl: '/images/marker/red.png',
-          iconSize: [48, 48],
-          iconAnchor: [24, 48],
-          iconRetinaUrl: '/images/marker/red.png',
-        })}>
-          <Popup className='map-popup bg-second p-2 rounded-md flex items-center text-center justify-center' closeButton={false}>
-            <div className='w-full text-center'>
-              {t('sections.map.strict')}
-            </div>
-          </Popup>
-          </Marker>}
+        {isStrict && (
+          <Marker
+            position={listingCoordinates}
+            icon={
+              new Icon.Default({
+                iconUrl: '/images/marker/red.png',
+                iconSize: [48, 48],
+                iconAnchor: [24, 48],
+                iconRetinaUrl: '/images/marker/red.png',
+              })
+            }
+          >
+            <Popup
+              className='map-popup flex items-center justify-center rounded-md bg-second p-2 text-center'
+              closeButton={false}
+            >
+              <div className='w-full text-center'>{t('sections.map.strict')}</div>
+            </Popup>
+          </Marker>
+        )}
         {!isStrict && <Circle center={listingCoordinates} radius={200} color='#2e99fd' />}
 
         {data &&

@@ -45,7 +45,11 @@ const ListingListCard: FC<Props> = ({ uuid, meta, business, images, location, pr
           <div className='grid grid-cols-12 gap-2 px-2'>
             <ListingCardBusinessSection nickName={business.nickName} />
             <ListingCardLocationSection city={location.city} street={location.street} className='justify-end' />
-            <ListingCardPriceSection prices={prices} startDate={query.filter.date?.start} endDate={query.filter.date?.end} />
+            <ListingCardPriceSection
+              prices={prices}
+              startDate={query.filter.date?.start}
+              endDate={query.filter.date?.end}
+            />
           </div>
         </div>
       </Link>

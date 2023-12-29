@@ -28,14 +28,26 @@ const ListingDetailReservationSection: FC<Props> = ({
   endDate,
   adultQuery,
   babyQuery,
-  kidQuery
+  kidQuery,
 }) => {
   const { t } = useTranslation('listing')
-  const [start, setStart] = useState<string | undefined>(startDate && !isNaN(Date.parse(startDate)) ? startDate : undefined)
+  const [start, setStart] = useState<string | undefined>(
+    startDate && !isNaN(Date.parse(startDate)) ? startDate : undefined,
+  )
   const [end, setEnd] = useState<string | undefined>(endDate && !isNaN(Date.parse(endDate)) ? endDate : undefined)
-  const [adult, setAdult] = useState<number>(adultQuery && !isNaN(+adultQuery) && validation.minAdult <= +adultQuery && +adultQuery <= validation.maxAdult ? +adultQuery : 0)
-  const [kid, setKid] = useState<number>(kidQuery && !isNaN(+kidQuery) && validation.minKid <= +kidQuery && +kidQuery <= validation.maxKid ? +kidQuery : 0)
-  const [baby, setBaby] = useState<number>(babyQuery && !isNaN(+babyQuery) && validation.minBaby <= +babyQuery && +babyQuery <= validation.maxBaby ? +babyQuery : 0)
+  const [adult, setAdult] = useState<number>(
+    adultQuery && !isNaN(+adultQuery) && validation.minAdult <= +adultQuery && +adultQuery <= validation.maxAdult
+      ? +adultQuery
+      : 0,
+  )
+  const [kid, setKid] = useState<number>(
+    kidQuery && !isNaN(+kidQuery) && validation.minKid <= +kidQuery && +kidQuery <= validation.maxKid ? +kidQuery : 0,
+  )
+  const [baby, setBaby] = useState<number>(
+    babyQuery && !isNaN(+babyQuery) && validation.minBaby <= +babyQuery && +babyQuery <= validation.maxBaby
+      ? +babyQuery
+      : 0,
+  )
   const pusher = useListingDetailPusher()
 
   const localizedFormatter = useLocalizedFormatter()
@@ -46,30 +58,41 @@ const ListingDetailReservationSection: FC<Props> = ({
       end,
       adult,
       kid,
-      baby
+      baby,
     })
   }, [start, end, adult, kid, baby])
 
-  return <div className='flex flex-col gap-4'>
-    <Alert type='warning' showIcon>
-      <Alert.Title>{t('sections.reservation.warning.title')}</Alert.Title>
-      <Alert.Description>
-      {t('sections.reservation.warning.description')}
-      </Alert.Description>
-    </Alert>
-  <ListingDetailDateInput startDate={start} endDate={end} onStartChange={setStart} onEndChange={setEnd} />
-  <ListingDetailPeopleInput validation={validation} adult={adult} kid={kid} baby={baby} onAdultChange={setAdult} onKidChange={setKid} onBabyChange={setBaby} />
-  <ListingCardPriceSection prices={prices} startDate={start} endDate={end}>
-    <ListingCardPriceSection.Row label={t('sections.reservation.ourServices')} text={localizedFormatter.format(3000)} />
-    <hr />
-    <ListingCardPriceSection.Row label={t('sections.reservation.total')} text={localizedFormatter.format(23000)} />
-  </ListingCardPriceSection>
-  <Button size='lg'>{t('sections.reservation.make')}</Button>
-  <div className='flex justify-between gap-2'>
-    <Button variant='secondary'>{t('sections.reservation.whyUs')}</Button>
-    <Button variant='glass'>{t('sections.reservation.howProcess')}</Button>
-  </div>
-  </div>
+  return (
+    <div className='flex flex-col gap-4'>
+      <Alert type='warning' showIcon>
+        <Alert.Title>{t('sections.reservation.warning.title')}</Alert.Title>
+        <Alert.Description>{t('sections.reservation.warning.description')}</Alert.Description>
+      </Alert>
+      <ListingDetailDateInput startDate={start} endDate={end} onStartChange={setStart} onEndChange={setEnd} />
+      <ListingDetailPeopleInput
+        validation={validation}
+        adult={adult}
+        kid={kid}
+        baby={baby}
+        onAdultChange={setAdult}
+        onKidChange={setKid}
+        onBabyChange={setBaby}
+      />
+      <ListingCardPriceSection prices={prices} startDate={start} endDate={end}>
+        <ListingCardPriceSection.Row
+          label={t('sections.reservation.ourServices')}
+          text={localizedFormatter.format(3000)}
+        />
+        <hr />
+        <ListingCardPriceSection.Row label={t('sections.reservation.total')} text={localizedFormatter.format(23000)} />
+      </ListingCardPriceSection>
+      <Button size='lg'>{t('sections.reservation.make')}</Button>
+      <div className='flex justify-between gap-2'>
+        <Button variant='secondary'>{t('sections.reservation.whyUs')}</Button>
+        <Button variant='glass'>{t('sections.reservation.howProcess')}</Button>
+      </div>
+    </div>
+  )
 }
 
 export default ListingDetailReservationSection
