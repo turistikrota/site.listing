@@ -37,6 +37,17 @@
         "description": "Harita yüklenirken bir hata oluştu. Lütfen daha sonra tekra deneyiniz."
       },
       "strict": "İlan Konumu"
+    },
+    "reservation": {
+      "warning": {
+        "title": "Uyarı",
+        "description": "Rezervasyon oluşturmadan önce ilan kurallarını inceleyin ve bu ilanın size uygun olduğundan emin olun."
+      },
+      "ourServices": "Turistikrota Hizmetleri (%10)",
+      "total": "Toplam",
+      "make": "Rezervasyon Yap",
+      "whyUs": "Neden Turistikrota?",
+      "howProcess": "Rezervasyon Süreci"
     }
   },
   "category-features": {
