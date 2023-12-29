@@ -1,9 +1,9 @@
-import { FC } from "react"
+import { FC } from 'react'
 
 type Props = {}
 
 const ListingCardValidationSection: FC<Props> = ({}) => {
-    return <></>
+  return <></>
 }
 
 export default ListingCardValidationSection

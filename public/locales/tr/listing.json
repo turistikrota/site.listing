@@ -1,14 +1,114 @@
 {
-    "words": {
-        "from-business": "İşletmesinden"
+  "words": {
+    "from-business": "İşletmesinden"
+  },
+  "business": {
+    "see-profile": "İşletme Profilini Göster"
+  },
+  "price": {
+    "min": "En Düşük",
+    "max": "En Yüksek",
+    "not-available": "Fiyat mevcut değil",
+    "not-available-filtered": "Bu tarih için fiyat mevcut değil",
+    "not-found": "Fiyat bulunamadı",
+    "total": "Toplam Fiyat ({{count}} gece)",
+    "filterForStrict": "Net fiyatlar için tarihe göre filtrele"
+  },
+  "sections": {
+    "category": {
+      "title": "İlan Kategorileri",
+      "subtitle": "Bu bölümde ilana ait kategorileri görebilirsiniz."
     },
-    "price": {
-        "min": "En Düşük",
-        "max": "En Yüksek",
-        "not-available": "Fiyat mevcut değil",
-        "not-available-filtered": "Bu tarih için fiyat mevcut değil",
-        "not-found": "Fiyat bulunamadı",
-        "total": "Toplam Fiyat ({{count}} gece)",
-        "filterForStrict": "Net fiyatlar için tarihe göre filtrele"
+    "rules": {
+      "title": "İlan Kuralları",
+      "subtitle": "Bu bölümde ilana ait kuralları görebilirsiniz."
+    },
+    "calendar": {
+      "title": "Fiyat Takvimi",
+      "subtitle": "Bu bölümde ilana ait dönemlik fiyatları görebilirsiniz.",
+      "selected": "Selected",
+      "today": "Today"
+    },
+    "map": {
+      "title": "Harita ve Yakın Çevre",
+      "subtitle": "Bu bölümde ilandaki konumu ve yakın çevresindeki turistik yerleri görebilirsiniz.",
+      "error": {
+        "title": "Bir Hata Oluştu",
+        "description": "Harita yüklenirken bir hata oluştu. Lütfen daha sonra tekra deneyiniz."
+      },
+      "strict": "İlan Konumu"
+    },
+    "reservation": {
+      "warning": {
+        "title": "Uyarı",
+        "description": "Rezervasyon oluşturmadan önce ilan kurallarını inceleyin ve bu ilanın size uygun olduğundan emin olun."
+      },
+      "ourServices": "Turistikrota Hizmetleri (%10)",
+      "total": "Toplam",
+      "make": "Rezervasyon Yap",
+      "whyUs": "Neden Turistikrota?",
+      "howProcess": "Rezervasyon Süreci"
     }
+  },
+  "category-features": {
+    "options": {
+      "exists": "Var",
+      "not-exists": "Yok"
+    },
+    "heating": {
+      "air-conditioning": "Klima ile",
+      "stove": "Soba ile",
+      "gas": "Doğalgaz ile"
+    }
+  },
+  "rules": {
+    "yes": "Evet",
+    "no": "Hayır",
+    "date": "{{value}} gün",
+    "adult": "{{value}} kişi",
+    "kid": "{{value}} çocuk",
+    "baby": "{{value}} bebek"
+  },
+  "form": {
+    "validation": {
+      "title": "Özel Kurallar",
+      "subtitle": "Bu bölümde ilanınızın özel kurallarını girebilirsiniz.",
+      "minAdult": "En az yetişkin sayısı",
+      "maxAdult": "En çok yetişkin sayısı",
+      "minKid": "En az çocuk sayısı",
+      "maxKid": "En çok çocuk sayısı",
+      "minBaby": "En az bebek sayısı",
+      "maxBaby": "En çok bebek sayısı",
+      "minDate": "En az gün sayısı",
+      "maxDate": "En çok gün sayısı",
+      "onlyFamily": {
+        "title": "Sadece Aileler",
+        "description": "Bu ilan sadece ailelere özeldir. Aile dışı kişiler bu ilanı rezerve edemezler."
+      },
+      "noPet": {
+        "title": "Evcil Hayvan Yok",
+        "description": "Bu ilan evcil hayvan kabul etmemektedir."
+      },
+      "noSmoke": {
+        "title": "Sigara İçmek Yasak",
+        "description": "Bu ilanı rezerve eden kişiler rezervasyon süresince sigara içemezler."
+      },
+      "noAlcohol": {
+        "title": "Alkol Yasak",
+        "description": "Bu ilanı rezerve eden kişiler rezervasyon süresince alkol tüketemezler."
+      },
+      "noParty": {
+        "title": "Parti Yasak",
+        "description": "Bu ilanı rezerve eden kişiler burada parti düzenleyemezler."
+      },
+      "noUnmarried": {
+        "title": "Evli Olmayanlar Yasak",
+        "description": "Bu ilanı rezerve eden kişiler evli olmalıdır."
+      },
+      "noGuest": {
+        "title": "Misafir Yasak",
+        "description": "Bu ilanı rezerve eden kişiler misafir kabul edemezler."
+      }
+    }
+  }
 }

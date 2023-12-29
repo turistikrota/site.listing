@@ -1,127 +1,129 @@
 {
-    "title": "Filtrele",
-    "clear-all": "Tüm Filtreleri Temizle",
-    "clear-filter": "Filtreyi Temizle",
-    "apply": "Uygula",
-    "see-results": "Sonuçları Gör ({{count}})",
-    "results": "{{count}} sonuç bulundu",
-    "switch": {
-      "filter": "Filtre",
-      "sort": "Sırala"
+  "title": "Filtrele",
+  "clear-all": "Tüm Filtreleri Temizle",
+  "clear-filter": "Filtreyi Temizle",
+  "apply": "Uygula",
+  "see-results": "Sonuçları Gör ({{count}})",
+  "results": "{{count}} sonuç bulundu",
+  "switch": {
+    "filter": "Filtre",
+    "sort": "Sırala"
+  },
+  "components": {
+    "date": {
+      "title": "Tarih Aralığı",
+      "text": "Tarih Aralığı",
+      "description": "Rezerasyonunuzun başlangıç ve bitiş tarihlerini seçin.",
+      "range": "{{start}} ve {{end}} arası"
     },
-    "components": {
-        "date": {
-            "title": "Tarih Aralığı",
-            "text": "Tarih Aralığı",
-            "description": "Rezerasyonunuzun başlangıç ve bitiş tarihlerini seçin.",
-            "range": "{{start}} ve {{end}} arası"
-        },
-        "start-date": {
-            "label": "Başlangıç Tarihi",
-            "description": "Rezervasyonunuzun başlangıç tarihini seçin.",
-            "invalid": "Lütfen geçerli bir başlangıç tarihi seçin.",
-            "past": "Başlangıç tarihi bugünden önce olamaz.",
-            "dynamic": "{{start}} ve sonrası"
-        },
-        "end-date": {
-            "label": "Bitiş Tarihi",
-            "description": "Rezervasyonunuzun bitiş tarihini seçin.",
-            "invalid": "Lütfen geçerli bir bitiş tarihi seçin.",
-            "past": "Bitiş tarihi bugünden önce olamaz.",
-            "before-start": "Bitiş tarihi başlangıç tarihinden önce olamaz.",
-            "dynamic": "{{end}} ve öncesi"
-        },
-        "city-select": {
-            "title": "Şehir Seçin",
-            "text": "Şehir"
-        },
-        "category": {
-            "title": "Kategori Seçin",
-            "text": "Kategori",
-            "all": "Tüm Kategoriler"
-        },
-        "distance": {
-          "title": "Mesafe",
-          "text": "Mesafe",
-          "description": "Görmek istediğiniz yerlerin şehir merkezine kaç kilometre uzaklıkta olmasını istediğinizi girin.",
-          "label": "Mesafe (km)"
-        },
-        "people": {
-            "title": "Kişiler",
-            "text": "Kişiler",
-            "description": "Rezervasyonunuzda kaç kişi, çocuk ve bebek olacağını seçin.",
-            "adult": {
-                "label": "Yetişkin",
-                "description": "Yetişkin sayısını seçin."
-            },
-            "kid": {
-                "label": "Çocuk",
-                "description": "Çocuk sayısını seçin."
-            },
-            "baby": {
-                "label": "Bebek",
-                "description": "Bebek sayısını seçin."
-            },
-            "dynamic": {
-                "adult": "{{count}} yetişkin",
-                "kid": "{{count}} çocuk",
-                "baby": "{{count}} bebek"
-            }
-        },
-        "price": {
-            "title": "Fiyat",
-            "text": "Fiyat",
-            "description": "Rezervasyonunuzun fiyat aralığını seçin.",
-            "min": {
-                "label": "Minimum Fiyat",
-                "description": "Minimum fiyatı seçin."
-            },
-            "max": {
-                "label": "Maksimum Fiyat",
-                "description": "Maksimum fiyatı seçin."
-            },
-            "range": "{{min}} ₺ ve {{max}} ₺ arası",
-            "min-price": "{{min}} ₺ ve üzeri",
-            "max-price": "{{max}} ₺ ve altı"
-        },
-        "query": {
-          "title": "Kelime ile Ara",
-          "text": "Kelime ile Ara",
-          "description": "Mekan adı, açıklama veya etiketlerle arama yapın.",
-          "label": "Kelime"
-        },
-        "validation": {
-            "title": "Kurallar",
-            "text": "Kurallar",
-            "description": "İlan kurallarına göre filtreleme yapın.",
-            "family": {
-                "label": "Sadece Aile",
-                "description": "Sadece ailelerin kalabileceği mekanları göster."
-            },
-            "pet": {
-                "label": "Evcil Hayvan",
-                "description": "Evcil hayvan kabul eden mekanları göster."
-            },
-            "smoke": {
-                "label": "Sigara İçilebilir",
-                "description": "Sigara içilebilen mekanları göster."
-            },
-            "alcohol": {
-                "label": "Alkol İçilebilir",
-                "description": "Alkol içilebilen mekanları göster."
-            },
-            "party": {
-                "label": "Parti Düzenlenebilir",
-                "description": "Parti düzenlenebilen mekanları göster."
-            },
-            "unmarried": {
-                "label": "Evli Olmayan Çiftler",
-                "description": "Evli olmayan çiftlerin kalabileceği mekanları göster."
-            },
-            "guest": {
-                "label": "Misafir Kabul Edilebilir",
-                "description": "Misafir kabul edilebilen mekanları göster."
-            }
-        }
+    "start-date": {
+      "label": "Başlangıç Tarihi",
+      "labelDetail": "Giriş",
+      "description": "Rezervasyonunuzun başlangıç tarihini seçin.",
+      "invalid": "Lütfen geçerli bir başlangıç tarihi seçin.",
+      "past": "Başlangıç tarihi bugünden önce olamaz.",
+      "dynamic": "{{start}} ve sonrası"
+    },
+    "end-date": {
+      "label": "Bitiş Tarihi",
+      "labelDetail": "Çıkış",
+      "description": "Rezervasyonunuzun bitiş tarihini seçin.",
+      "invalid": "Lütfen geçerli bir bitiş tarihi seçin.",
+      "past": "Bitiş tarihi bugünden önce olamaz.",
+      "before-start": "Bitiş tarihi başlangıç tarihinden önce olamaz.",
+      "dynamic": "{{end}} ve öncesi"
+    },
+    "city-select": {
+      "title": "Şehir Seçin",
+      "text": "Şehir"
+    },
+    "category": {
+      "title": "Kategori Seçin",
+      "text": "Kategori",
+      "all": "Tüm Kategoriler"
+    },
+    "distance": {
+      "title": "Mesafe",
+      "text": "Mesafe",
+      "description": "Görmek istediğiniz yerlerin şehir merkezine kaç kilometre uzaklıkta olmasını istediğinizi girin.",
+      "label": "Mesafe (km)"
+    },
+    "people": {
+      "title": "Kişiler",
+      "text": "Kişiler",
+      "description": "Rezervasyonunuzda kaç kişi, çocuk ve bebek olacağını seçin.",
+      "adult": {
+        "label": "Yetişkin",
+        "description": "Yetişkin sayısını seçin."
+      },
+      "kid": {
+        "label": "Çocuk",
+        "description": "Çocuk sayısını seçin."
+      },
+      "baby": {
+        "label": "Bebek",
+        "description": "Bebek sayısını seçin."
+      },
+      "dynamic": {
+        "adult": "{{count}} yetişkin",
+        "kid": "{{count}} çocuk",
+        "baby": "{{count}} bebek"
+      }
+    },
+    "price": {
+      "title": "Fiyat",
+      "text": "Fiyat",
+      "description": "Rezervasyonunuzun fiyat aralığını seçin.",
+      "min": {
+        "label": "Minimum Fiyat",
+        "description": "Minimum fiyatı seçin."
+      },
+      "max": {
+        "label": "Maksimum Fiyat",
+        "description": "Maksimum fiyatı seçin."
+      },
+      "range": "{{min}} ₺ ve {{max}} ₺ arası",
+      "min-price": "{{min}} ₺ ve üzeri",
+      "max-price": "{{max}} ₺ ve altı"
+    },
+    "query": {
+      "title": "Kelime ile Ara",
+      "text": "Kelime ile Ara",
+      "description": "Mekan adı, açıklama veya etiketlerle arama yapın.",
+      "label": "Kelime"
+    },
+    "validation": {
+      "title": "Kurallar",
+      "text": "Kurallar",
+      "description": "İlan kurallarına göre filtreleme yapın.",
+      "family": {
+        "label": "Sadece Aile",
+        "description": "Sadece ailelerin kalabileceği mekanları göster."
+      },
+      "pet": {
+        "label": "Evcil Hayvan",
+        "description": "Evcil hayvan kabul eden mekanları göster."
+      },
+      "smoke": {
+        "label": "Sigara İçilebilir",
+        "description": "Sigara içilebilen mekanları göster."
+      },
+      "alcohol": {
+        "label": "Alkol İçilebilir",
+        "description": "Alkol içilebilen mekanları göster."
+      },
+      "party": {
+        "label": "Parti Düzenlenebilir",
+        "description": "Parti düzenlenebilen mekanları göster."
+      },
+      "unmarried": {
+        "label": "Evli Olmayan Çiftler",
+        "description": "Evli olmayan çiftlerin kalabileceği mekanları göster."
+      },
+      "guest": {
+        "label": "Misafir Kabul Edilebilir",
+        "description": "Misafir kabul edilebilen mekanları göster."
+      }
     }
+  }
 }

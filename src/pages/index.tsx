@@ -1,24 +1,24 @@
-import { ListResponse } from "@turistikrota/ui"
-import { GetServerSidePropsContext } from "next"
+import { ListResponse } from '@turistikrota/ui'
+import { GetServerSidePropsContext } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { filterListings } from "~/api/listing.api"
-import { Config } from "~/config"
-import { ListingFilterProvider } from "~/contexts/listing.filter"
-import MapLayout from "~/layouts/MapLayout"
-import { LayoutProps } from "~/layouts/layout.types"
-import ContentSwitcher from "~/partials/content/ContentSwitcher"
-import { isApiError } from "~/types/error"
-import { ListingListItem } from "~/types/listing"
-import { getQueryFromSearchParams } from "~/utils/listing.utils"
+import { filterListings } from '~/api/listing.api'
+import { Config } from '~/config'
+import { ListingFilterProvider } from '~/contexts/listing.filter'
+import MapLayout from '~/layouts/MapLayout'
+import { LayoutProps } from '~/layouts/layout.types'
+import ContentSwitcher from '~/partials/content/ContentSwitcher'
+import { isApiError } from '~/types/error'
+import { ListingListItem } from '~/types/listing'
+import { getQueryFromSearchParams } from '~/utils/listing.utils'
 
 type Props = LayoutProps & {
   response?: ListResponse<ListingListItem>
   error?: any
 }
 
-export default function Home({response, error, ...layoutProps} : Props) {
+export default function Home({ response, error, ...layoutProps }: Props) {
   return (
-    <MapLayout  {...layoutProps}>
+    <MapLayout {...layoutProps}>
       <ListingFilterProvider>
         <ContentSwitcher response={response} error={error} />
       </ListingFilterProvider>
@@ -30,7 +30,7 @@ type ServerSideResult = {
   props: Props
 }
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) : Promise<ServerSideResult> {
+export async function getServerSideProps(ctx: GetServerSidePropsContext): Promise<ServerSideResult> {
   const urlSearchParams = new URLSearchParams(ctx.query as any)
   const query = getQueryFromSearchParams(urlSearchParams)
   let err: any

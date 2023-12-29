@@ -16,7 +16,7 @@ export type ListingMeta = {
   slug: string
 }
 
-type ListingFeature = {
+export type ListingFeature = {
   categoryInputUUID: string
   value: string
   isPayed: boolean
@@ -38,7 +38,7 @@ type ListingLocation = {
   coordinates: Coordinates
 }
 
-type ListingValidation = {
+export type ListingValidation = {
   minAdult: number
   maxAdult: number
   minKid: number
@@ -55,6 +55,8 @@ type ListingValidation = {
   noUnmarried: boolean
   noGuest: boolean
 }
+export type ValidationKey = keyof ListingValidation
+export type ValidationValue<Key extends ValidationKey> = ListingValidation[Key]
 
 export type ListingListItem = {
   uuid: string
@@ -69,4 +71,18 @@ export const EmptyListingMeta: ListingMeta = {
   title: '',
   description: '',
   slug: '',
+}
+
+export type ListingDetail = {
+  uuid: string
+  business: ListingBusiness
+  images: ListingImage[]
+  meta: I18nTranslation<ListingMeta>
+  categoryUUIDs: string[]
+  features: ListingFeature[]
+  prices: ListingPrice[]
+  location: ListingLocation
+  validation: ListingValidation
+  createdAt: string
+  updatedAt: string
 }

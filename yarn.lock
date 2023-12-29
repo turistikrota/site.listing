@@ -229,10 +229,10 @@
   resolved "https://registry.yarnpkg.com/@turistikrota/prettier-config/-/prettier-config-1.0.0.tgz#5a44640f7ed992a669428e9f89ee3cd8a61d5adb"
   integrity sha512-l7JI9DyhIgSXwTszLKwIsoFSA2ew8ooPB/nw3h4JlVsgY/DUz+te9D3nWAj2QcUmZTFtKMeB8TvWtGBgiFrpPw==
 
-"@turistikrota/ui@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@turistikrota/ui/-/ui-1.0.7.tgz#afbbf231fa0532d1d110fe14e253ab1f409503a6"
-  integrity sha512-YXkSuY2QQfcZE/8uq8kjpQrwGIrLHAHbjuvKQj/are2vVpyRZcS7nVUcck3700Of2J4+34TL1vZ97iOvn9A43g==
+"@turistikrota/ui@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@turistikrota/ui/-/ui-1.0.9.tgz#a680fafb31785e945502d2787b43a308f3aaa9ef"
+  integrity sha512-bdlUw3pdkP40L9CMmzHVbIK/NVZeiANwXbab60fOtVXxvbU4HzNjjqlNuRagSvsm8gBPuEin4YTskSkNjvjG1g==
   dependencies:
     cssnano "^6.0.1"
     react-circular-progressbar "^2.1.0"
@@ -3398,6 +3398,11 @@ prettier-linter-helpers@^1.0.0:
   integrity sha512-GbK2cP9nraSSUF9N2XwUwqfzlAFlMNYYl+ShE/V+H8a9uNl/oUqB1w2EL54Jh0OlyRSd8RfWYJ3coVS4TROP2w==
   dependencies:
     fast-diff "^1.1.2"
+
+prettier-plugin-tailwindcss@^0.5.10:
+  version "0.5.10"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-tailwindcss/-/prettier-plugin-tailwindcss-0.5.10.tgz#c7a68d8751e4963f290f980fd61f9d9882660b50"
+  integrity sha512-9UGSejqFxGG6brYjFfTYlJ8zs4L/lvZg1AngFfaC5Fs1otSskASv5IWKmjPu5MlABQUtTKtMArKyYr/hWpXSUg==
 
 prettier@^3.1.1:
   version "3.1.1"

@@ -35,10 +35,10 @@ type ButtonProps = {
 
 const FixedButton: React.FC<ButtonProps> = ({ text, variant, icon, onClick }) => {
   return (
-    <div className='fixed bottom-6 right-1/2 transform translate-x-1/2 z-500 min-w-max'>
+    <div className='fixed bottom-6 right-1/2 z-500 min-w-max translate-x-1/2 transform'>
       <Button
         onClick={() => onClick()}
-        className='hover:scale-103 hover:shadow-lg flex items-center justify-center gap-2 text-lg'
+        className='flex items-center justify-center gap-2 text-lg hover:scale-103 hover:shadow-lg'
         variant={variant}
         title={text}
       >
@@ -54,7 +54,7 @@ export default function ContentSwitcher({ response, error }: Props) {
   const { query, isQueryChanged, clean, isOnlyPageChanged, isFiltered, setQuery } = useListingFilter()
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const { listings, isLoading, refetch, nextPage, error: apiError } = useListings(query, response)
-  const {push, immediatePush } = useListingPusher()
+  const { push, immediatePush } = useListingPusher()
   const active = useMemo(() => {
     return query.filter.v ? query.filter.v : 'list'
   }, [query.filter])
@@ -93,7 +93,7 @@ export default function ContentSwitcher({ response, error }: Props) {
   if (active === 'list') {
     return (
       <>
-        <ListingListSeo coordinates={query.filter.coordinates}  />
+        <ListingListSeo coordinates={query.filter.coordinates} />
         {errorMessage && (
           <div className='p-4 pb-0'>
             <Alert type='error' closable onClose={() => setErrorMessage('')}>
@@ -114,7 +114,7 @@ export default function ContentSwitcher({ response, error }: Props) {
 
   return (
     <>
-      <ListingListSeo coordinates={query.filter.coordinates}  />
+      <ListingListSeo coordinates={query.filter.coordinates} />
       {errorMessage && (
         <div className='p-4 pb-0'>
           <Alert type='error' closable onClose={() => setErrorMessage(null)}>

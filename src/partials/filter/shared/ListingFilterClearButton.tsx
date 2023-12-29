@@ -9,7 +9,7 @@ const ListingFilterClearButton: React.FC<Props> = ({ onClear, text }) => {
   const { t } = useTranslation('common')
   return (
     <span
-      className='text-sm text-primary hover:opacity-90 transition-colors'
+      className='text-sm text-primary transition-colors hover:opacity-90'
       onClick={() => onClear && onClear()}
       role='button'
       title={t('ux.button.clear-filter')}

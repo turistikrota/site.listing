@@ -1,0 +1,49 @@
+{
+  "card": {
+    "minute": "min",
+    "hour": "hour",
+    "time-spent": "{{min}} - {{max}} {{unit}}",
+    "free": "free admission",
+    "payed": "payed admission"
+  },
+  "types": {
+    "eating": "Eat",
+    "coffee": "Coffee",
+    "bar": "Bar",
+    "beach": "Beach",
+    "amaze": "Amaze",
+    "shopping": "Shopping",
+    "transport": "Transport",
+    "culture": "Culture",
+    "nature": "Nature",
+    "health": "Health",
+    "sport": "Sport",
+    "nightlife": "Nightlife",
+    "garden": "Garden",
+    "temple": "Temple",
+    "museum": "Museum",
+    "antique": "Antique",
+    "themePark": "Theme Park",
+    "other": "Other"
+  },
+  "types_desc": {
+    "eating": "This is a place where you can eat.",
+    "coffee": "This is a place where you can drink coffee.",
+    "bar": "This is a place where you can drink alcohol.",
+    "beach": "This is a beach.",
+    "amaze": "This is a place where you can have fun.",
+    "shopping": "This is a place where you can shop.",
+    "transport": "This is a place where you can use public transport.",
+    "culture": "This is a place where you can learn something.",
+    "nature": "This is a place where you can enjoy nature.",
+    "health": "This is a place where you can get medical help.",
+    "sport": "This is a place where you can do sports.",
+    "nightlife": "This is a place where you can have fun at night.",
+    "garden": "You can enjoy nature here.",
+    "temple": "You can worship here.",
+    "museum": "You can learn new things here.",
+    "antique": "You can see ancient things here.",
+    "themePark": "You can have a fun time here.",
+    "other": "This is a place where you can do something else."
+  }
+}

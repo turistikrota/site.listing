@@ -1,5 +1,114 @@
 {
-    "words": {
-        "from-business": "From Business"
+  "words": {
+    "from-business": "From Business"
+  },
+  "business": {
+    "see-profile": "View Business Profile"
+  },
+  "price": {
+    "min": "Minimum",
+    "max": "Maximum",
+    "not-available": "Price not available",
+    "not-available-filtered": "Price not available for this date",
+    "not-found": "Price not found",
+    "total": "Total Price ({{count}} nights)",
+    "filterForStrict": "Filter by date for clear prices"
+  },
+  "sections": {
+    "category": {
+      "title": "Listing Categories",
+      "subtitle": "In this section, you can see the categories related to the listing."
+    },
+    "rules": {
+      "title": "Listing Rules",
+      "subtitle": "In this section, you can see the rules related to the listing."
+    },
+    "calendar": {
+      "title": "Price Calendar",
+      "subtitle": "In this section, you can see the seasonal prices related to the listing.",
+      "selected": "Selected",
+      "today": "Today"
+    },
+    "map": {
+      "title": "Map and Nearby Areas",
+      "subtitle": "In this section, you can see the location of the listing and nearby attractions.",
+      "error": {
+        "title": "An Error Occurred",
+        "description": "There was an error loading the map. Please try again later."
+      },
+      "strict": "Listing Location"
+    },
+    "reservation": {
+      "warning": {
+        "title": "Warning",
+        "description": "Before making a reservation, review the listing rules and ensure this listing is suitable for you."
+      },
+      "ourServices": "Turistikrota Services (10% off)",
+      "total": "Total",
+      "make": "Make Reservation",
+      "whyUs": "Why Turistikrota?",
+      "howProcess": "Reservation Process"
     }
+  },
+  "category-features": {
+    "options": {
+      "exists": "Exists",
+      "not-exists": "Doesn't Exist"
+    },
+    "heating": {
+      "air-conditioning": "With Air Conditioning",
+      "stove": "With Stove",
+      "gas": "With Gas"
+    }
+  },
+  "rules": {
+    "yes": "Yes",
+    "no": "No",
+    "date": "{{value}} days",
+    "adult": "{{value}} adults",
+    "kid": "{{value}} kids",
+    "baby": "{{value}} babies"
+  },
+  "form": {
+    "validation": {
+      "title": "Special Rules",
+      "subtitle": "In this section, you can enter special rules for your listing.",
+      "minAdult": "Minimum number of adults",
+      "maxAdult": "Maximum number of adults",
+      "minKid": "Minimum number of kids",
+      "maxKid": "Maximum number of kids",
+      "minBaby": "Minimum number of babies",
+      "maxBaby": "Maximum number of babies",
+      "minDate": "Minimum number of days",
+      "maxDate": "Maximum number of days",
+      "onlyFamily": {
+        "title": "Only Families",
+        "description": "This listing is exclusive for families. Those not in a family cannot reserve this listing."
+      },
+      "noPet": {
+        "title": "No Pets",
+        "description": "This listing does not accept pets."
+      },
+      "noSmoke": {
+        "title": "No Smoking",
+        "description": "Those who reserve this listing cannot smoke during their stay."
+      },
+      "noAlcohol": {
+        "title": "No Alcohol",
+        "description": "Those who reserve this listing cannot consume alcohol during their stay."
+      },
+      "noParty": {
+        "title": "No Parties",
+        "description": "Those who reserve this listing cannot organize parties here."
+      },
+      "noUnmarried": {
+        "title": "No Unmarried Individuals",
+        "description": "Those who reserve this listing must be married."
+      },
+      "noGuest": {
+        "title": "No Guests",
+        "description": "Those who reserve this listing cannot accept guests."
+      }
+    }
+  }
 }

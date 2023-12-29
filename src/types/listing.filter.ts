@@ -54,7 +54,7 @@ export type ListingFilter = {
   date?: ListingFilterDateRange
   sort?: ListingSort
   order?: ListingOrder
-  v?: ContentType 
+  v?: ContentType
 }
 
 export type ListingFilterBody = {
@@ -67,12 +67,12 @@ export type ListingFilterBody = {
   distance?: number
   sort?: ListingSort
   order?: ListingOrder
-  v?: ContentType 
+  v?: ContentType
 } & {
   start_date?: string
   end_date?: string
 }
- 
+
 export type ListingFilterKeys = keyof ListingFilter
 
 export type ContentType = 'list' | 'map'
@@ -120,7 +120,7 @@ export function isOrder(order: string): order is ListingOrder {
   return Object.values(ListingOrder).includes(order as ListingOrder)
 }
 
-export function toFilterBody(query: ListingFilter) : ListingFilterBody {
+export function toFilterBody(query: ListingFilter): ListingFilterBody {
   return {
     query: query.query,
     price: query.price,

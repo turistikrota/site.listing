@@ -22,7 +22,7 @@ type FilterComponent = React.FC<Props> & {
 }
 
 const FilterTitleSection: React.FC<React.PropsWithChildren> = ({ children }) => {
-  return <div className='flex justify-between items-center'>{children}</div>
+  return <div className='flex items-center justify-between'>{children}</div>
 }
 const FilterTitle: React.FC<React.PropsWithChildren> = ({ children }) => {
   return <span className='text-2xl font-semibold'>{children}</span>
@@ -39,7 +39,7 @@ const FilterHead: FilterComponent = ({
 }) => {
   const { t } = useTranslation('common')
   const { query } = useListingFilter()
-  const {push} = useListingPusher()
+  const { push } = useListingPusher()
 
   const clear = () => {
     if (filterKey) {
@@ -48,11 +48,11 @@ const FilterHead: FilterComponent = ({
   }
   return (
     <>
-      <div className='flex justify-between items-center'>
+      <div className='flex items-center justify-between'>
         <div className='flex items-center'>
           {closeable && (
             <span
-              className='text-gray-600 dark:text-gray-300 mr-3 h-full flex items-center'
+              className='mr-3 flex h-full items-center text-gray-600 dark:text-gray-300'
               onClick={onClose}
               role='button'
               title={t('ux.button.close')}
@@ -64,10 +64,12 @@ const FilterHead: FilterComponent = ({
           <span className='text-2xl font-semibold'>{title}</span>
         </div>
         {filterKey && !!query.filter[filterKey] && <ListingFilterClearButton onClear={() => clear()} />}
-        {!filterKey && clearable && <ListingFilterClearButton onClear={() => onClearAll()} text={t('ux.button.clear-filter')} />}
+        {!filterKey && clearable && (
+          <ListingFilterClearButton onClear={() => onClearAll()} text={t('ux.button.clear-filter')} />
+        )}
       </div>
       {!closeable && (
-        <span className='text-gray-500 text-sm dark:text-gray-400'>
+        <span className='text-sm text-gray-500 dark:text-gray-400'>
           {resultCount} {t('ux.label.result')}
         </span>
       )}

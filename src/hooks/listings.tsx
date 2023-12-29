@@ -28,7 +28,7 @@ export const useListings = (
     {
       cache: false,
       method: 'POST',
-      params:  toFilterBody(query.filter),
+      params: toFilterBody(query.filter),
       withSSR: initial,
     },
   )

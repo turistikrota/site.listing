@@ -24,8 +24,8 @@ export const SiteUrls: Record<Sites, SiteUrl> = {
     tr: process.env.NEXT_PUBLIC_SITE_ROOT_TR_URL!,
     en: process.env.NEXT_PUBLIC_SITE_ROOT_EN_URL!,
   },
-    [Sites.Place]: {
-        tr: process.env.NEXT_PUBLIC_SITE_PLACE_TR_URL!,
-        en: process.env.NEXT_PUBLIC_SITE_PLACE_EN_URL!,
-    },
+  [Sites.Place]: {
+    tr: process.env.NEXT_PUBLIC_SITE_PLACE_TR_URL!,
+    en: process.env.NEXT_PUBLIC_SITE_PLACE_EN_URL!,
+  },
 }

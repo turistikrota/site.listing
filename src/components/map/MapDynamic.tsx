@@ -41,8 +41,10 @@ export default function MapDynamic({
 
   useEffect(() => {
     Leaflet.Icon.Default.mergeOptions({
-      iconRetinaUrl: '/images/marker-icon.png',
-      iconUrl: '/images/marker-icon.png',
+      iconRetinaUrl: '/images/marker/blue.png',
+      iconUrl: '/images/marker/blue.png',
+      iconSize: [38, 38],
+      iconAnchor: [19, 38],
       shadowUrl: '',
     })
   }, [])
@@ -54,7 +56,7 @@ export default function MapDynamic({
       ref={setMap}
       center={position}
       zoom={zoom}
-      className={`h-full w-full min-h-full ${className}`}
+      className={`h-full min-h-full w-full ${className}`}
     >
       {children}
     </MapContainer>

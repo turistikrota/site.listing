@@ -79,7 +79,17 @@ export const EmptyCategoryMeta: CategoryMeta = {
   slug: '',
   description: '',
   title: '',
+}
 
+export const EmptyInputTranslation: InputTranslation = {
+  help: '',
+  name: '',
+  placeholder: '',
+}
+
+export const EmptyBaseTranslation: BaseTranslation = {
+  description: '',
+  name: '',
 }
 
 export type CategoryListItem = {

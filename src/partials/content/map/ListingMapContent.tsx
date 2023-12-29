@@ -20,9 +20,9 @@ const DynamicMap = dynamic(() => import('~/components/map/MapDynamic'), {
 const defaultPosition: LatLngTuple = [41.0082, 28.9784]
 
 type MapProps = {
-    loading: boolean
-    data: ListResponse<ListingListItem> | null
-    onNextPage?: () => void
+  loading: boolean
+  data: ListResponse<ListingListItem> | null
+  onNextPage?: () => void
   position: LatLngTuple
   onChange: (coordinates: Coordinates, zoom: number) => void
   filterCoordinates?: Coordinates

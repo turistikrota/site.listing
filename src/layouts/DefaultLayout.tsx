@@ -4,12 +4,7 @@ import { AccountProvider } from '~/hooks/account'
 import OnlyMobileHeader from '~/partials/header/OnlyMobileHeader'
 import { LayoutProps } from './layout.types'
 
-
-const DefaultLayout : FC<React.PropsWithChildren<LayoutProps>> = ({
-  children,
-  accessTokenIsExists,
-  accountCookie,
-}) => {
+const DefaultLayout: FC<React.PropsWithChildren<LayoutProps>> = ({ children, accessTokenIsExists, accountCookie }) => {
   return (
     <AccountProvider accessTokenIsExists={accessTokenIsExists} accountCookie={accountCookie}>
       <OnlyMobileHeader accessTokenIsExists={accessTokenIsExists} />

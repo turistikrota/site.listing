@@ -1,5 +1,4 @@
 export type LayoutProps = {
-    accessTokenIsExists: boolean
-    accountCookie: string
-  }
-  
+  accessTokenIsExists: boolean
+  accountCookie: string
+}

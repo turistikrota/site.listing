@@ -23,7 +23,7 @@ export default function OnlyMobileHeader({ accessTokenIsExists }: Props) {
         <TopHeader.Left>
           <Link
             href={getStaticRoute(i18n.language).base}
-            className='hover:opacity-80 transition-all duration-200 ease-in-out'
+            className='transition-all duration-200 ease-in-out hover:opacity-80'
           >
             {t('header.links.home')}
           </Link>
@@ -31,7 +31,7 @@ export default function OnlyMobileHeader({ accessTokenIsExists }: Props) {
         <TopHeader.Right>
           <Link
             href={getStaticRoute(i18n.language).aboutUs}
-            className='hover:opacity-80 transition-all duration-200 ease-in-out'
+            className='transition-all duration-200 ease-in-out hover:opacity-80'
           >
             {t('header.links.aboutUs')}
           </Link>

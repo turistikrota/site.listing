@@ -5,7 +5,7 @@ import { useSizeWithoutHeader } from '~/hooks/dom'
 import OnlyMobileHeader from '~/partials/header/OnlyMobileHeader'
 import { LayoutProps } from './layout.types'
 
-const MapLayout : FC<React.PropsWithChildren<LayoutProps>> = ({ children, accessTokenIsExists, accountCookie })  => {
+const MapLayout: FC<React.PropsWithChildren<LayoutProps>> = ({ children, accessTokenIsExists, accountCookie }) => {
   const size = useSizeWithoutHeader()
   return (
     <AccountProvider accessTokenIsExists={accessTokenIsExists} accountCookie={accountCookie}>
