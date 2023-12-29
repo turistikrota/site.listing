@@ -31,6 +31,9 @@ type Props = LayoutProps & {
   response: ListingDetail | null
   startDate: string | null
   endDate: string | null
+  adultQuery: string | null
+  kidQuery: string | null
+  babyQuery: string | null
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
@@ -62,11 +65,14 @@ export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
       accountCookie: ctx.req.cookies[Config.cookies.accountName] ?? '',
       startDate: typeof ctx.query?.start === 'string' ? ctx.query.start : null,
       endDate: typeof ctx.query?.end === 'string' ? ctx.query.end : null,
+      adultQuery: typeof ctx.query?.adult === 'string' ? ctx.query.adult : null,
+      kidQuery: typeof ctx.query?.kid === 'string' ? ctx.query.kid : null,
+      babyQuery: typeof ctx.query?.baby === 'string' ? ctx.query.baby : null,
     },
   }
 }
 
-const ListingDetailView: FC<Props> = ({ response, startDate, endDate, ...layoutProps }) => {
+const ListingDetailView: FC<Props> = ({ response, startDate, endDate, adultQuery, kidQuery, babyQuery, ...layoutProps }) => {
   const { t, i18n } = useTranslation('listing')
   const images = useMemo(() => (response ? mapAndSortImages(response.images) : []), [response])
   const isDesktop = useIsDesktop()
@@ -113,7 +119,7 @@ const ListingDetailView: FC<Props> = ({ response, startDate, endDate, ...layoutP
           </div>
           {isDesktop && (
             <StickySection customWidth='w-128 xl:x-144' innerClassName='px-2'>
-              <ListingDetailReservationSection validation={response.validation} uuid={response.uuid} prices={response.prices} startDate={startDate || undefined} endDate={endDate || undefined} />
+              <ListingDetailReservationSection validation={response.validation} uuid={response.uuid} prices={response.prices} startDate={startDate || undefined} endDate={endDate || undefined} adultQuery={adultQuery || undefined} kidQuery={kidQuery || undefined} babyQuery={babyQuery || undefined} />
             </StickySection>
           )}
         </section>

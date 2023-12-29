@@ -1,7 +1,8 @@
 import Alert from '@turistikrota/ui/alert'
 import Button from '@turistikrota/ui/button'
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import ListingCardPriceSection from '~/components/listing/sections/ListingCardPriceSection'
+import { useListingDetailPusher } from '~/hooks/listing-pusher'
 import { useLocalizedFormatter } from '~/hooks/pricing'
 import { ListingPrice, ListingValidation } from '~/types/listing'
 import ListingDetailDateInput from './ListingDetailDateInput'
@@ -30,11 +31,23 @@ const ListingDetailReservationSection: FC<Props> = ({
 }) => {
   const [start, setStart] = useState<string | undefined>(startDate && !isNaN(Date.parse(startDate)) ? startDate : undefined)
   const [end, setEnd] = useState<string | undefined>(endDate && !isNaN(Date.parse(endDate)) ? endDate : undefined)
-  const [adult, setAdult] = useState<number>(adultQuery && !isNaN(+adultQuery) ? +adultQuery : 1)
-  const [kid, setKid] = useState<number>(kidQuery && !isNaN(+kidQuery) ? +kidQuery : 0)
-  const [baby, setBaby] = useState<number>(babyQuery && !isNaN(+babyQuery) ? +babyQuery : 0)
-  
+  const [adult, setAdult] = useState<number>(adultQuery && !isNaN(+adultQuery) && validation.minAdult <= +adultQuery && +adultQuery <= validation.maxAdult ? +adultQuery : 0)
+  const [kid, setKid] = useState<number>(kidQuery && !isNaN(+kidQuery) && validation.minKid <= +kidQuery && +kidQuery <= validation.maxKid ? +kidQuery : 0)
+  const [baby, setBaby] = useState<number>(babyQuery && !isNaN(+babyQuery) && validation.minBaby <= +babyQuery && +babyQuery <= validation.maxBaby ? +babyQuery : 0)
+  const pusher = useListingDetailPusher()
+
   const localizedFormatter = useLocalizedFormatter()
+
+  useEffect(() => {
+    pusher({
+      start,
+      end,
+      adult,
+      kid,
+      baby
+    })
+  }, [start, end, adult, kid, baby])
+  
   return <div className='flex flex-col gap-4'>
     <Alert type='warning' showIcon>
       <Alert.Title>Uyarı</Alert.Title>

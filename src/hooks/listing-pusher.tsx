@@ -39,3 +39,36 @@ export const useListingPusher = (): PusherResult => {
     push,
   }
 }
+
+type DetailQuery = {
+  start?: string
+  end?: string
+  adult?: number
+  kid?: number
+  baby?: number
+}
+
+type DetailPusher = (query: DetailQuery) => void
+
+const toDetailQueryString = (query: DetailQuery) : string => {
+  const { start, end, adult, kid, baby } = query
+  const params = []
+  if (start) params.push(`start=${start}`)
+  if (end) params.push(`end=${end}`)
+  if (adult) params.push(`adult=${adult}`)
+  if (kid) params.push(`kid=${kid}`)
+  if (baby) params.push(`baby=${baby}`)
+  return params.join('&')
+}
+
+export const useListingDetailPusher = () : DetailPusher => {
+  const router = useRouter()
+  const pathname = usePathname()
+
+  const push = (query: DetailQuery) => {
+    const path = `${pathname}?${toDetailQueryString(query)}`
+    router.push(path, undefined, { shallow: true })
+  }
+
+  return push
+}
