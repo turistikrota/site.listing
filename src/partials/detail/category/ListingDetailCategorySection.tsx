@@ -2,13 +2,11 @@ import DefaultCard from '@turistikrota/ui/cards/default'
 import FormSection from '@turistikrota/ui/form/section'
 import ContentLoader from '@turistikrota/ui/loader'
 import { useTranslation } from 'next-i18next'
-import { FC, useMemo } from 'react'
+import { FC } from 'react'
 import {
   CategoryFields,
   CategoryListItem,
-  CategoryMeta,
   EmptyBaseTranslation,
-  EmptyCategoryMeta,
   fetchCategoryFields,
   fetchCategoryListByUUIDs,
 } from '~/api/category.api'
@@ -33,15 +31,6 @@ const ListingDetailCategorySection: FC<Props> = ({ categoryUUIDs, features }) =>
     fetchCategoryListByUUIDs(categoryUUIDs),
   )
 
-  const categorySlugs = useMemo<string[]>(() => {
-    const slugs: string[] = []
-    if (!categories) return slugs
-    categories.forEach((c) => {
-      slugs.push(getI18nTranslations<CategoryMeta>(c.meta, i18n.language, EmptyCategoryMeta).slug)
-    })
-    return slugs
-  }, [categories, i18n.language])
-
   const { filterByGroup, fixValue } = useCategoryFeatures(fields?.inputGroups ?? [], features)
 
   if (fieldLoading || categoryLoading) return <ContentLoader noMargin />
@@ -59,7 +48,7 @@ const ListingDetailCategorySection: FC<Props> = ({ categoryUUIDs, features }) =>
         <div className='grid grid-cols-12 gap-2'>
           {categories &&
             categories.map((c, idx) => (
-              <ListingCategoryCard key={idx} slugs={categorySlugs.slice(0, idx + 1)} {...c} />
+              <ListingCategoryCard key={idx} uuids={categoryUUIDs.slice(0, idx + 1)} {...c} />
             ))}
         </div>
       </section>

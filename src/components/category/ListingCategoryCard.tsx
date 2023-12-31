@@ -7,10 +7,10 @@ import { getI18nTranslations } from '~/utils/i18n'
 import { mapAndSortImages } from '~/utils/listing.utils'
 
 type Props = CategoryListItem & {
-  slugs: string[]
+  uuids: string[]
 }
 
-const ListingCategoryCard: FC<Props> = ({ meta, images, slugs }) => {
+const ListingCategoryCard: FC<Props> = ({ meta, images, uuids }) => {
   const { i18n } = useTranslation('listing')
   const translations = useMemo(
     () => getI18nTranslations<CategoryMeta>(meta, i18n.language, EmptyCategoryMeta),
@@ -19,7 +19,7 @@ const ListingCategoryCard: FC<Props> = ({ meta, images, slugs }) => {
   const imageUrl = useMemo<string>(() => mapAndSortImages(images)[0], [images])
   return (
     <Link
-      href={decodeURIComponent(`/?categories=${slugs.join(',')}`)}
+      href={decodeURIComponent(`/?categories=${uuids.join(',')}`)}
       className='duraiton-200 col-span-6 flex items-center justify-start gap-2 overflow-hidden text-ellipsis rounded-md bg-second p-2 transition-all hover:brightness-110 md:col-span-3'
     >
       <Image

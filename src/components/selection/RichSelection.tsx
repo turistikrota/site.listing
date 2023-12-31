@@ -3,14 +3,13 @@ import React from 'react'
 export type SelectionItem = {
   image: string
   name: string
-  slug: string
   id: string
   children?: SelectionItem[]
 }
 
 type Props = {
   items: SelectionItem[]
-  selectedSlugs: string[]
+  selectedIds: string[]
   onToggle: (item: SelectionItem) => void
   childLevel?: number
   className?: string
@@ -23,7 +22,7 @@ type ItemProps = {
   onClick: () => void
 }
 
-const RichSelection: React.FC<Props> = ({ items, onToggle, selectedSlugs, childLevel = 0, className }) => {
+const RichSelection: React.FC<Props> = ({ items, onToggle, selectedIds, childLevel = 0, className }) => {
   return (
     <div
       className={className}
@@ -38,14 +37,14 @@ const RichSelection: React.FC<Props> = ({ items, onToggle, selectedSlugs, childL
               key={idx}
               image={item.image}
               name={item.name}
-              selected={selectedSlugs.includes(item.slug)}
+              selected={selectedIds.includes(item.id)}
               onClick={() => onToggle(item)}
             />
             {item.children && item.children.length > 0 && (
               <RichSelection
                 items={item.children}
                 onToggle={onToggle}
-                selectedSlugs={selectedSlugs}
+                selectedIds={selectedIds}
                 childLevel={childLevel + 1}
                 className='col-span-12'
               />
