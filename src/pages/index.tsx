@@ -33,7 +33,7 @@ type ServerSideResult = {
 }
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext): Promise<ServerSideResult> {
-  const urlSearchParams = new URLSearchParams(encodeURIComponent(ctx.query as any))
+  const urlSearchParams = new URLSearchParams(ctx.query as any)
   const query = getQueryFromSearchParams(urlSearchParams)
   const lastCategory: string | undefined =
     query.filter.categories && query.filter.categories.length > 0

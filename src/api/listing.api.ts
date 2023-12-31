@@ -9,7 +9,6 @@ export const filterListings = async (
   page = 1,
   limit = 10,
 ): Promise<ListResponse<ListingListItem>> => {
-  console.log(toFilterBody(filter))
   const res = await httpClient
     .post(apiUrl(Services.Listing, `/filter?page=${page}&limit=${limit}`), toFilterBody(filter))
     .catch((err) => {

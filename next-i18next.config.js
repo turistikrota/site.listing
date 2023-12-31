@@ -18,7 +18,7 @@ const i18n = {
   ],
   localeDetection: false,
   reloadOnPrerender: process.env.NODE_ENV === 'development',
-  debug: process.env.NODE_ENV === 'development',
+  debug: false,
 }
 
 module.exports = { i18n }
