@@ -38,17 +38,7 @@ const ListItemSection: FC<ItemProps> = ({ data, loading, sortVisible, onClear, i
           <ListingDesktopSortGroup />
         </div>
       )}
-      {data &&
-        [
-          ...data.list,
-          ...data.list,
-          ...data.list,
-          ...data.list,
-          ...data.list,
-          ...data.list,
-          ...data.list,
-          ...data.list,
-        ].map((item, idx) => <ListingListCard key={idx} {...item} />)}
+      {data && data.list.map((item, idx) => <ListingListCard key={idx} {...item} />)}
       {data && data.list.length === 0 && (
         <div className='col-span-12'>
           <NoResultsFound onResetFilters={onClear} isFiltered={isFiltered} />
