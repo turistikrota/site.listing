@@ -6,7 +6,8 @@ import ListingListCard from '~/components/listing/ListingListCard'
 import NoResultsFound from '~/components/state/NoResultsFound'
 import { useListingFilter } from '~/contexts/listing.filter'
 import { useListingPusher } from '~/hooks/listing-pusher'
-import CategoryDetailLayout from '~/layouts/CategoryDetailLayout'
+import CategoryDetailFooter from '~/partials/category/CategoryDetailFooter'
+import CategoryDetailHeader from '~/partials/category/CategoryDetailHeader'
 import { ListingListItem } from '~/types/listing'
 import { deepMerge } from '~/utils/deepMerge'
 import { ContentProps } from '../ContentSwitcher'
@@ -40,7 +41,7 @@ const ListItemSection: FC<ItemProps> = ({ data, loading, onClear, isFiltered }) 
   )
 }
 
-const ListingListContent: FC<Props> = ({ data, loading, categoryDetail, isNext }) => {
+const ListingListContent: FC<Props> = ({ data, loading, isNext }) => {
   const { query, clean, isFiltered } = useListingFilter()
   const { push } = useListingPusher()
 
@@ -57,13 +58,15 @@ const ListingListContent: FC<Props> = ({ data, loading, categoryDetail, isNext }
   useInfiniteScroll(handleScroll, loading, 10)
   return (
     <section className='mx-auto max-w-7xl p-2 lg:h-full xl:py-0'>
-      <CategoryDetailLayout categoryDetail={categoryDetail}>
+      <>
+        <CategoryDetailHeader />
         <ListingHeadSection />
         <section className='flex flex-col gap-2 lg:flex-row'>
           <ListFilterAside data={data} loading={loading} />
           <ListItemSection data={data} loading={loading} onClear={clean} isFiltered={isFiltered} />
         </section>
-      </CategoryDetailLayout>
+        <CategoryDetailFooter />
+      </>
     </section>
   )
 }

@@ -9,6 +9,7 @@ import { CategoryDetail } from '~/api/category.api'
 import { useListingFilter } from '~/contexts/listing.filter'
 import { useListingPusher } from '~/hooks/listing-pusher'
 import { useListings } from '~/hooks/listings'
+import CategoryDetailLayout from '~/layouts/CategoryDetailLayout'
 import { isValidationError } from '~/types/error'
 import { ListingListItem } from '~/types/listing'
 import { ContentType } from '~/types/listing.filter'
@@ -24,7 +25,6 @@ type Props = {
 export type ContentProps = {
   loading: boolean
   data: ListResponse<ListingListItem> | null
-  categoryDetail?: CategoryDetail
 }
 
 const DynamicList = dynamic(() => import('./list/ListingListContent'))
@@ -53,7 +53,7 @@ const FixedButton: React.FC<ButtonProps> = ({ text, variant, icon, onClick }) =>
   )
 }
 
-const ContentSwitcher: FC<Props> = ({ response, error }) => {
+const ContentSwitcher: FC<Props> = ({ response, categoryDetail, error }) => {
   const { t } = useTranslation('common')
   const { query, isQueryChanged, clean, isOnlyPageChanged, isFiltered, setQuery } = useListingFilter()
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -96,7 +96,7 @@ const ContentSwitcher: FC<Props> = ({ response, error }) => {
 
   if (active === 'list') {
     return (
-      <>
+      <CategoryDetailLayout categoryDetail={categoryDetail}>
         <ListingListSeo coordinates={query.filter.coordinates} />
         {errorMessage && (
           <div className='p-4 pb-0'>
@@ -112,12 +112,12 @@ const ContentSwitcher: FC<Props> = ({ response, error }) => {
           onClick={() => toggleActive('map')}
           variant='primary'
         />
-      </>
+      </CategoryDetailLayout>
     )
   }
 
   return (
-    <>
+    <CategoryDetailLayout categoryDetail={categoryDetail}>
       <ListingListSeo coordinates={query.filter.coordinates} />
       {errorMessage && (
         <div className='p-4 pb-0'>
@@ -139,7 +139,7 @@ const ContentSwitcher: FC<Props> = ({ response, error }) => {
         onClick={() => toggleActive('list')}
         variant='secondary'
       />
-    </>
+    </CategoryDetailLayout>
   )
 }
 

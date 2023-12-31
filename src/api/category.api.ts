@@ -123,6 +123,16 @@ export const EmptyBaseTranslation: BaseTranslation = {
   name: '',
 }
 
+export const EmptyCategoryMetaWithSeo: CategoryMetaWithSeo = {
+  ...EmptyCategoryMeta,
+  seo: {
+    canonical: '',
+    description: '',
+    keywords: '',
+    title: '',
+  },
+}
+
 export type CategoryListItem = {
   uuid: string
   mainUUIDs: string[]

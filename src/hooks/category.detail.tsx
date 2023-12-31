@@ -1,13 +1,25 @@
-import { useState } from 'react'
+import { FC, PropsWithChildren, createContext, useContext, useState } from 'react'
 import { CategoryDetail, fetchCategory } from '~/api/category.api'
 
-type Result = {
+type CategoryDetailContextType = {
   details: CategoryDetail | undefined
   loading: boolean
   sync: (uuid: string | undefined) => void
 }
 
-export const useCategoryDetail = (initial: CategoryDetail | undefined = undefined): Result => {
+type ProviderProps = {
+  initial?: CategoryDetail
+}
+
+const CategoryDetailContext = createContext<CategoryDetailContextType>({
+  details: undefined,
+  loading: false,
+  sync: () => {},
+})
+
+export const useCategoryDetail = () => useContext(CategoryDetailContext)
+
+export const CategoryDetailProvider: FC<PropsWithChildren<ProviderProps>> = ({ initial, children }) => {
   const [details, setDetails] = useState<CategoryDetail | undefined>(initial)
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -28,9 +40,5 @@ export const useCategoryDetail = (initial: CategoryDetail | undefined = undefine
       })
   }
 
-  return {
-    details,
-    loading,
-    sync,
-  }
+  return <CategoryDetailContext.Provider value={{ details, loading, sync }}>{children}</CategoryDetailContext.Provider>
 }
