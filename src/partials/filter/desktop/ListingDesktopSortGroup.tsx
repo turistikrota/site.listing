@@ -1,7 +1,7 @@
 import Dropdown from '@turistikrota/ui/dropdown'
 import { deepMerge } from '@turistikrota/ui/utils'
 import { useTranslation } from 'next-i18next'
-import { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useListingFilter } from '~/contexts/listing.filter'
 import { useListingPusher } from '~/hooks/listing-pusher'
 import { useListingSort } from '~/hooks/listing-sort'
@@ -63,7 +63,7 @@ const OrderSection: React.FC<OrderSectionProps> = ({ selected, onSelect }) => {
   )
 }
 
-export default function PlaceDesktopSortGroup() {
+const ListingDesktopSortGroup: FC = () => {
   const { defaultOrder, defaultSort } = useListingSort()
   const [isDefault, setIsDefault] = useState<boolean>(true)
   const { query } = useListingFilter()
@@ -90,3 +90,5 @@ export default function PlaceDesktopSortGroup() {
     </div>
   )
 }
+
+export default ListingDesktopSortGroup

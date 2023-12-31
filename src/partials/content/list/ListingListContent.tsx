@@ -5,6 +5,7 @@ import { FC } from 'react'
 import ListingListCard from '~/components/listing/ListingListCard'
 import NoResultsFound from '~/components/state/NoResultsFound'
 import { useListingFilter } from '~/contexts/listing.filter'
+import { useCategoryDetail } from '~/hooks/category.detail'
 import { useListingPusher } from '~/hooks/listing-pusher'
 import CategoryDetailFooter from '~/partials/category/CategoryDetailFooter'
 import CategoryDetailHeader from '~/partials/category/CategoryDetailHeader'
@@ -25,21 +26,20 @@ type ItemProps = {
   loading: boolean
   data: ListResponse<ListingListItem> | null
   onClear: () => void
+  sortVisible: boolean
 }
 
-const ListItemSection: FC<ItemProps> = ({ data, loading, onClear, isFiltered }) => {
+const ListItemSection: FC<ItemProps> = ({ data, loading, sortVisible, onClear, isFiltered }) => {
   const isWidthExist = useWindowWidth()
   return (
     <section className={`grid grow grid-cols-12 gap-2 md:h-full ${!isWidthExist ? 'ml-0 md:ml-80' : ''}`}>
-      <div className='col-span-12 flex justify-end'>
-        <ListingDesktopSortGroup />
-      </div>
+      {sortVisible && (
+        <div className='col-span-12 flex justify-end'>
+          <ListingDesktopSortGroup />
+        </div>
+      )}
       {data &&
         [
-          ...data.list,
-          ...data.list,
-          ...data.list,
-          ...data.list,
           ...data.list,
           ...data.list,
           ...data.list,
@@ -54,12 +54,13 @@ const ListItemSection: FC<ItemProps> = ({ data, loading, onClear, isFiltered }) 
           <NoResultsFound onResetFilters={onClear} isFiltered={isFiltered} />
         </div>
       )}
-      <div className='pb-5 md:pb-0'></div>
+      {!sortVisible && <div className='md:pb-15 col-span-12 pb-20'></div>}
     </section>
   )
 }
 
 const ListingListContent: FC<Props> = ({ data, loading, isNext }) => {
+  const { details } = useCategoryDetail()
   const { query, clean, isFiltered } = useListingFilter()
   const { push } = useListingPusher()
 
@@ -77,11 +78,17 @@ const ListingListContent: FC<Props> = ({ data, loading, isNext }) => {
   return (
     <section className='mx-auto max-w-7xl p-2 lg:h-full xl:pb-0'>
       <>
-        <ListingHeadSection />
+        <ListingHeadSection sortVisible={!details} />
         <CategoryDetailHeader />
         <section className='flex flex-col gap-2 lg:flex-row'>
           <ListFilterAside data={data} loading={loading} />
-          <ListItemSection data={data} loading={loading} onClear={clean} isFiltered={isFiltered} />
+          <ListItemSection
+            sortVisible={!!details}
+            data={data}
+            loading={loading}
+            onClear={clean}
+            isFiltered={isFiltered}
+          />
         </section>
         <CategoryDetailFooter />
       </>

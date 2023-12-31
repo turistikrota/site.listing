@@ -4,7 +4,12 @@ import { CategoryMetaWithSeo, EmptyCategoryMetaWithSeo } from '~/api/category.ap
 import { useListingFilter } from '~/contexts/listing.filter'
 import { useCategoryDetail } from '~/hooks/category.detail'
 import { useListSeo } from '~/hooks/seo'
+import ListingDesktopSortGroup from '~/partials/filter/desktop/ListingDesktopSortGroup'
 import { getI18nTranslations } from '~/utils/i18n'
+
+type Props = {
+  sortVisible: boolean
+}
 
 type SeoTuple = {
   title: string
@@ -20,7 +25,7 @@ const minimizeDescription = (description: string): string => {
   return description.slice(0, 100) + '...'
 }
 
-const ListingHeadSection: React.FC = () => {
+const ListingHeadSection: React.FC<Props> = ({ sortVisible }) => {
   const { details } = useCategoryDetail()
   const { query } = useListingFilter()
   const { title, description } = useListSeo({
@@ -41,6 +46,7 @@ const ListingHeadSection: React.FC = () => {
         <h1 className='text-3xl font-bold text-gray-800 dark:text-gray-300'>{seo.title}</h1>
         <p className='text-sm text-gray-600 dark:text-gray-400'>{minimizeDescription(seo.description)}</p>
       </div>
+      {sortVisible && <ListingDesktopSortGroup />}
     </section>
   )
 }
