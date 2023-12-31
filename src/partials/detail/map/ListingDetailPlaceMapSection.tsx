@@ -32,10 +32,9 @@ const ListingDetailPlaceMapSection: FC<Props> = ({ data, position, listingCoordi
             position={listingCoordinates}
             icon={
               new Icon.Default({
-                iconUrl: '/images/marker/red.png',
+                iconUrl: '/images/marker/home.png',
                 iconSize: [48, 48],
                 iconAnchor: [24, 48],
-                iconRetinaUrl: '/images/marker/red.png',
               })
             }
           >
@@ -51,7 +50,17 @@ const ListingDetailPlaceMapSection: FC<Props> = ({ data, position, listingCoordi
 
         {data &&
           data.map((item, idx) => (
-            <Marker key={idx} position={item.coordinates}>
+            <Marker
+              key={idx}
+              position={item.coordinates}
+              icon={
+                new Icon.Default({
+                  iconUrl: `/images/marker/${item.type}.png`,
+                  iconSize: [38, 38],
+                  iconAnchor: [19, 38],
+                })
+              }
+            >
               <Popup className='map-popup'>
                 <PlaceMapCard {...item} />
               </Popup>
