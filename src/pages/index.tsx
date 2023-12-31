@@ -5,6 +5,7 @@ import { CategoryDetail, fetchCategory } from '~/api/category.api'
 import { filterListings } from '~/api/listing.api'
 import { Config } from '~/config'
 import { ListingFilterProvider } from '~/contexts/listing.filter'
+import AnalyticLayout from '~/layouts/AnalyticLayout'
 import MapLayout from '~/layouts/MapLayout'
 import { LayoutProps } from '~/layouts/layout.types'
 import ContentSwitcher from '~/partials/content/ContentSwitcher'
@@ -20,11 +21,13 @@ type Props = LayoutProps & {
 
 export default function Home({ response, categoryDetail, error, ...layoutProps }: Props) {
   return (
-    <MapLayout {...layoutProps}>
-      <ListingFilterProvider>
-        <ContentSwitcher response={response} categoryDetail={categoryDetail || undefined} error={error} />
-      </ListingFilterProvider>
-    </MapLayout>
+    <AnalyticLayout>
+      <MapLayout {...layoutProps}>
+        <ListingFilterProvider>
+          <ContentSwitcher response={response} categoryDetail={categoryDetail || undefined} error={error} />
+        </ListingFilterProvider>
+      </MapLayout>
+    </AnalyticLayout>
   )
 }
 
