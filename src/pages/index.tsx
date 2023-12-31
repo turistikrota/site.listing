@@ -14,7 +14,7 @@ import { getQueryFromSearchParams } from '~/utils/listing.utils'
 
 type Props = LayoutProps & {
   response?: ListResponse<ListingListItem>
-  categoryDetail?: CategoryDetail
+  categoryDetail: CategoryDetail | null
   error?: any
 }
 
@@ -22,7 +22,7 @@ export default function Home({ response, categoryDetail, error, ...layoutProps }
   return (
     <MapLayout {...layoutProps}>
       <ListingFilterProvider>
-        <ContentSwitcher response={response} categoryDetail={categoryDetail} error={error} />
+        <ContentSwitcher response={response} categoryDetail={categoryDetail || undefined} error={error} />
       </ListingFilterProvider>
     </MapLayout>
   )
@@ -33,7 +33,7 @@ type ServerSideResult = {
 }
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext): Promise<ServerSideResult> {
-  const urlSearchParams = new URLSearchParams(ctx.query as any)
+  const urlSearchParams = new URLSearchParams(encodeURIComponent(ctx.query as any))
   const query = getQueryFromSearchParams(urlSearchParams)
   const lastCategory: string | undefined =
     query.filter.categories && query.filter.categories.length > 0
@@ -48,7 +48,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext): Promis
     props: {
       ...(await serverSideTranslations(ctx.locale || 'en', ['common', 'filter', 'sort', 'listing'])),
       response: res,
-      categoryDetail,
+      categoryDetail: categoryDetail ? categoryDetail : null,
       error: !!err && isApiError(err) ? err.response.data : null,
       accessTokenIsExists: !!ctx.req.cookies[Config.cookies.accessToken],
       accountCookie: ctx.req.cookies[Config.cookies.accountName] ?? '',

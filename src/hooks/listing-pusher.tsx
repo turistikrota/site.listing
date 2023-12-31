@@ -58,7 +58,7 @@ const toDetailQueryString = (query: DetailQuery): string => {
   if (adult) params.push(`adult=${adult}`)
   if (kid) params.push(`kid=${kid}`)
   if (baby) params.push(`baby=${baby}`)
-  return params.join('&')
+  return encodeURIComponent(params.join('&'))
 }
 
 export const useListingDetailPusher = (): DetailPusher => {

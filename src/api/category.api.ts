@@ -1,4 +1,4 @@
-import { I18nTranslation } from '@turistikrota/ui/types'
+import { I18nTranslation, Locales } from '@turistikrota/ui/types'
 import { Services, apiUrl } from '~/config/services'
 import { httpClient } from '~/utils/http'
 
@@ -130,19 +130,30 @@ export type CategoryListItem = {
   meta: I18nTranslation<CategoryMeta>
 }
 
-export const fetchCategoryFields = async (uuids: string[]): Promise<CategoryFields> => {
-  const res = await httpClient.get(apiUrl(Services.Category, `/fields?uuids=${uuids.join(',')}`)).catch(() => ({
-    data: {
-      inputGroups: [],
-      alerts: [],
-      rules: [],
-    },
-  }))
+const withLocaleHeaders = (locale: Locales) => ({
+  headers: {
+    'Accept-Language': locale,
+  },
+})
+
+export const fetchCategoryFields = async (slugs: string[], locale: Locales = Locales.en): Promise<CategoryFields> => {
+  const res = await httpClient
+    .get(apiUrl(Services.Category, `/by-slug/fields?slugs=${slugs.join(',')}`), withLocaleHeaders(locale))
+    .catch(() => ({
+      data: {
+        inputGroups: [],
+        alerts: [],
+        rules: [],
+      },
+    }))
   return res.data
 }
 
-export const fetchCategory = async (uuid: string): Promise<CategoryDetail | undefined> => {
-  const res = await httpClient.get(apiUrl(Services.Category, `/${uuid}`)).catch(() => ({
+export const fetchCategory = async (
+  slug: string,
+  locale: Locales = Locales.en,
+): Promise<CategoryDetail | undefined> => {
+  const res = await httpClient.get(apiUrl(Services.Category, `/${slug}`), withLocaleHeaders(locale)).catch(() => ({
     data: {
       inputGroups: [],
       alerts: [],
@@ -159,10 +170,24 @@ export const fetchMainCategories = async (): Promise<CategoryListItem[]> => {
   return res.data
 }
 
-export const fetchChildCategories = async (uuid: string): Promise<CategoryListItem[]> => {
-  const res = await httpClient.get(apiUrl(Services.Category, `/${uuid}/child`)).catch(() => ({
-    data: [],
-  }))
+export const fetchChildCategories = async (slug: string, locale: Locales = Locales.en): Promise<CategoryListItem[]> => {
+  const res = await httpClient
+    .get(apiUrl(Services.Category, `/by-slug/${slug}/child`), withLocaleHeaders(locale))
+    .catch(() => ({
+      data: [],
+    }))
+  return res.data
+}
+
+export const fetchCategoryListBySlugs = async (
+  slugs: string[],
+  locale: Locales = Locales.en,
+): Promise<CategoryListItem[]> => {
+  const res = await httpClient
+    .get(apiUrl(Services.Category, `/by-slug/?slugs=${slugs.join(',')}`), withLocaleHeaders(locale))
+    .catch(() => ({
+      data: [],
+    }))
   return res.data
 }
 

@@ -10,19 +10,19 @@ import { uniqueArray } from '~/utils/object'
 
 const ListingFilterCategoryGroup: FC = () => {
   const { i18n } = useTranslation('filter')
-  const { selectedCategoryIds, toggleCategory, categories } = useCategorySelection()
+  const { selectedCategorySlugs, toggleCategory, categories } = useCategorySelection()
   const { query } = useListingFilter()
   const { push } = useListingPusher()
 
   const debouncedToggleCategory = debounce(toggleCategory, 300)
 
   const onToggle = (category: SelectionItem) => {
-    if (query.filter.categories && query.filter.categories.includes(category.id)) {
+    if (query.filter.categories && query.filter.categories.includes(category.slug)) {
       push({
         ...query,
         filter: {
           ...query.filter,
-          categories: uniqueArray(query.filter.categories?.filter((c) => c !== category.id)),
+          categories: uniqueArray(query.filter.categories?.filter((c) => c !== category.slug)),
         },
       })
     } else {
@@ -30,7 +30,7 @@ const ListingFilterCategoryGroup: FC = () => {
         ...query,
         filter: {
           ...query.filter,
-          categories: uniqueArray([...(query.filter.categories || []), category.id]),
+          categories: uniqueArray([...(query.filter.categories || []), category.slug]),
         },
       })
     }
@@ -41,7 +41,7 @@ const ListingFilterCategoryGroup: FC = () => {
     <>
       <div>
         <ScrollableSection>
-          <RichSelection items={categories} selectedIds={selectedCategoryIds} onToggle={onToggle} />
+          <RichSelection items={categories} selectedSlugs={selectedCategorySlugs} onToggle={onToggle} />
         </ScrollableSection>
       </div>
     </>
