@@ -46,7 +46,10 @@ const ListingDetailCategorySection: FC<Props> = ({ categoryUUIDs, features }) =>
           <FormSection.Head.Subtitle>{t('sections.category.subtitle')}</FormSection.Head.Subtitle>
         </FormSection.Head>
         <div className='grid grid-cols-12 gap-2'>
-          {categories && categories.map((c, idx) => <ListingCategoryCard key={idx} {...c} />)}
+          {categories &&
+            categories.map((c, idx) => (
+              <ListingCategoryCard key={idx} uuids={categoryUUIDs.slice(0, idx + 1)} {...c} />
+            ))}
         </div>
       </section>
 

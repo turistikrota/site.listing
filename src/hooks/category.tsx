@@ -9,6 +9,7 @@ import {
 } from '~/api/category.api'
 import { SelectionItem } from '~/components/selection/RichSelection'
 import { getI18nTranslations } from '~/utils/i18n'
+import { useCategoryDetail } from './category.detail'
 
 export type CategoryState = CategoryListItem & {
   children?: SelectionItem[]
@@ -16,6 +17,7 @@ export type CategoryState = CategoryListItem & {
 
 type CategorySelectionContext = {
   loading: boolean
+  lastCategory?: SelectionItem
   categories: SelectionItem[]
   selectedCategories: SelectionItem[]
   selectedCategoryIds: string[]
@@ -24,6 +26,7 @@ type CategorySelectionContext = {
 
 const CategorySelectionContext = createContext<CategorySelectionContext>({
   loading: false,
+  lastCategory: undefined,
   categories: [],
   selectedCategories: [],
   selectedCategoryIds: [],
@@ -67,6 +70,7 @@ export const CategorySelectionProvider: React.FC<React.PropsWithChildren<Provide
   categories,
   clear,
 }) => {
+  const { details, sync } = useCategoryDetail()
   const [loading, setLoading] = useState(false)
   const { i18n } = useTranslation()
   const mapper = useMemo(() => createCategoryMapper(i18n.language), [i18n.language])
@@ -75,9 +79,23 @@ export const CategorySelectionProvider: React.FC<React.PropsWithChildren<Provide
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [allCategories, setAllCategories] = useState<SelectionItem[]>([])
 
+  const setSelecteds = (arr: string[]) => {
+    setSelectedCategories(arr)
+    if (arr.length > 0) {
+      sync(arr[arr.length - 1])
+    } else {
+      sync(undefined)
+    }
+  }
+
   const selecteds = useMemo<SelectionItem[]>(() => {
     return findCategory(allCategories, selectedCategories)
   }, [allCategories, selectedCategories])
+
+  const lastCategory = useMemo<SelectionItem | undefined>(() => {
+    if (selecteds.length === 0) return
+    return selecteds[selecteds.length - 1]
+  }, [selecteds])
 
   useEffect(() => {
     fetchMainCategories().then((res) => {
@@ -88,7 +106,7 @@ export const CategorySelectionProvider: React.FC<React.PropsWithChildren<Provide
 
   useEffect(() => {
     if (!Array.isArray(categories)) {
-      setSelectedCategories([])
+      setSelecteds([])
       setAllCategories(
         allCategories.map((s) => ({
           ...s,
@@ -146,7 +164,7 @@ export const CategorySelectionProvider: React.FC<React.PropsWithChildren<Provide
     if (!anyMainFound && clear) clear()
 
     setAllCategories(allCategories)
-    setSelectedCategories(initialSelectedCategories)
+    setSelecteds(initialSelectedCategories)
     setLoading(false)
   }
 
@@ -162,9 +180,9 @@ export const CategorySelectionProvider: React.FC<React.PropsWithChildren<Provide
 
   const toggleCategory = (category: SelectionItem) => {
     if (selectedCategories.includes(category.id)) {
-      setSelectedCategories(selectedCategories.filter((c) => c !== category.id))
+      setSelecteds(selectedCategories.filter((c) => c !== category.id))
     } else {
-      setSelectedCategories([...selectedCategories, category.id])
+      setSelecteds([...selectedCategories, category.id])
       getChildCategories(category.id, category)
     }
   }
@@ -173,6 +191,7 @@ export const CategorySelectionProvider: React.FC<React.PropsWithChildren<Provide
     <CategorySelectionContext.Provider
       value={{
         loading,
+        lastCategory,
         categories: allCategories,
         selectedCategories: selecteds,
         selectedCategoryIds: selectedCategories,

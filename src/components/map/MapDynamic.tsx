@@ -41,8 +41,8 @@ export default function MapDynamic({
 
   useEffect(() => {
     Leaflet.Icon.Default.mergeOptions({
-      iconRetinaUrl: '/images/marker/blue.png',
-      iconUrl: '/images/marker/blue.png',
+      iconRetinaUrl: '/images/marker/other.png',
+      iconUrl: '/images/marker/other.png',
       iconSize: [38, 38],
       iconAnchor: [19, 38],
       shadowUrl: '',

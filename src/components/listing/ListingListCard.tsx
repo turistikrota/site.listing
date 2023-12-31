@@ -29,13 +29,7 @@ const ListingListCard: FC<Props> = ({ uuid, meta, business, images, location, pr
     >
       <Link href={translations.slug} target='_blank' onClick={checkOutsideClick} className='h-full'>
         <div className='flex h-full flex-col'>
-          <Carousel
-            imageAltPrefix=''
-            images={mapAndSortImages(images)}
-            sizeClassName='h-72'
-            imageClassName='rounded-b-none'
-            imgLoadingClassName='rounded-t-md'
-          />
+          <Carousel imageAltPrefix='' images={mapAndSortImages(images)} variant={Carousel.Variants.List} />
           <div className='flex h-full flex-col justify-between p-2'>
             <div className='flex flex-col gap-2'>
               <div className='line-clamp-2 text-xl font-bold'>{translations.title}</div>

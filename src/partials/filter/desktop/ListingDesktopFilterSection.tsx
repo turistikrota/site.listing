@@ -16,7 +16,7 @@ const ListingDesktopFilterSection: FC<Props> = ({ data }) => {
   const { isFiltered, clean } = useListingFilter()
 
   return (
-    <StickySection innerClassName='rounded-md border'>
+    <StickySection innerClassName={`rounded-md border`}>
       <div className='flex items-center justify-between border-b p-2'>
         <span className='text-gray-400'>
           {t('results', {

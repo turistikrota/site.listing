@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next'
 import { useListingFilter } from '~/contexts/listing.filter'
 import { EmptyListingMeta, ListingListItem, ListingMeta } from '~/types/listing'
 import { getI18nTranslations } from '~/utils/i18n'
-import { mapAndSortImages } from '~/utils/listing.utils'
 import ListingCardBusinessSection from './sections/ListingCardBusinessSection'
 import ListingCardLocationSection from './sections/ListingCardLocationSection'
 import ListingCardPriceSection from './sections/ListingCardPriceSection'
@@ -27,9 +26,19 @@ const ListingMapCard: FC<Props> = ({ uuid, meta, business, images, location, pri
       <Link href={translations.slug} target='_blank' onClick={checkOutsideClick}>
         <Carousel
           imageAltPrefix={translations.title}
-          images={mapAndSortImages(images)}
-          imageClassName='rounded-b-none'
-          sizeClassName='h-75 w-75'
+          images={[
+            'https://s3.turistikrota.com/places/mall-of-istanbul-avrupa-nin-alisveris-ve-eglence-merkezi-edca9f0d.webp',
+            'https://s3.turistikrota.com/places/mall-of-istanbul-avrupa-nin-alisveris-ve-eglence-merkezi-f1b2a19c.webp',
+            'https://s3.turistikrota.com/places/mall-of-istanbul-avrupa-nin-alisveris-ve-eglence-merkezi-cdd2305f.webp',
+            'https://s3.turistikrota.com/places/mall-of-istanbul-avrupa-nin-alisveris-ve-eglence-merkezi-0fd3091b.webp',
+            'https://s3.turistikrota.com/places/mall-of-istanbul-avrupa-nin-alisveris-ve-eglence-merkezi-95e8ce06.webp',
+            'https://s3.turistikrota.com/places/mall-of-istanbul-avrupa-nin-alisveris-ve-eglence-merkezi-4a458e1e.webp',
+            'https://s3.turistikrota.com/places/mall-of-istanbul-avrupa-nin-alisveris-ve-eglence-merkezi-350a3d74.webp',
+            'https://s3.turistikrota.com/places/mall-of-istanbul-avrupa-nin-alisveris-ve-eglence-merkezi-88060728.webp',
+            'https://s3.turistikrota.com/places/mall-of-istanbul-avrupa-nin-alisveris-ve-eglence-merkezi-b2a22463.webp',
+            'https://s3.turistikrota.com/places/mall-of-istanbul-avrupa-nin-alisveris-ve-eglence-merkezi-f0ae273d.webp',
+          ]}
+          variant={Carousel.Variants.Map}
         />
 
         <div className='flex flex-col gap-2 p-2'>

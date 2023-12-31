@@ -4,10 +4,12 @@ import { Coordinates, ListResponse, Variant } from '@turistikrota/ui/types'
 import debounce from '@turistikrota/ui/utils/debounce'
 import { useTranslation } from 'next-i18next'
 import dynamic from 'next/dynamic'
-import { useEffect, useMemo, useState } from 'react'
+import { FC, useEffect, useMemo, useState } from 'react'
+import { CategoryDetail } from '~/api/category.api'
 import { useListingFilter } from '~/contexts/listing.filter'
 import { useListingPusher } from '~/hooks/listing-pusher'
 import { useListings } from '~/hooks/listings'
+import CategoryDetailLayout from '~/layouts/CategoryDetailLayout'
 import { isValidationError } from '~/types/error'
 import { ListingListItem } from '~/types/listing'
 import { ContentType } from '~/types/listing.filter'
@@ -16,8 +18,10 @@ import ListingListSeo from '../seo/ListingListSeo'
 
 type Props = {
   response?: ListResponse<ListingListItem>
+  categoryDetail?: CategoryDetail
   error: any
 }
+
 export type ContentProps = {
   loading: boolean
   data: ListResponse<ListingListItem> | null
@@ -49,7 +53,7 @@ const FixedButton: React.FC<ButtonProps> = ({ text, variant, icon, onClick }) =>
   )
 }
 
-export default function ContentSwitcher({ response, error }: Props) {
+const ContentSwitcher: FC<Props> = ({ response, categoryDetail, error }) => {
   const { t } = useTranslation('common')
   const { query, isQueryChanged, clean, isOnlyPageChanged, isFiltered, setQuery } = useListingFilter()
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -92,7 +96,7 @@ export default function ContentSwitcher({ response, error }: Props) {
 
   if (active === 'list') {
     return (
-      <>
+      <CategoryDetailLayout categoryDetail={categoryDetail}>
         <ListingListSeo coordinates={query.filter.coordinates} />
         {errorMessage && (
           <div className='p-4 pb-0'>
@@ -108,12 +112,12 @@ export default function ContentSwitcher({ response, error }: Props) {
           onClick={() => toggleActive('map')}
           variant='primary'
         />
-      </>
+      </CategoryDetailLayout>
     )
   }
 
   return (
-    <>
+    <CategoryDetailLayout categoryDetail={categoryDetail}>
       <ListingListSeo coordinates={query.filter.coordinates} />
       {errorMessage && (
         <div className='p-4 pb-0'>
@@ -135,6 +139,8 @@ export default function ContentSwitcher({ response, error }: Props) {
         onClick={() => toggleActive('list')}
         variant='secondary'
       />
-    </>
+    </CategoryDetailLayout>
   )
 }
+
+export default ContentSwitcher

@@ -76,7 +76,7 @@ export const getQueryFromKeyBindings = (bindings: ListingKeyBindings) => {
       }
     },
     categories: (value: string) => {
-      const categories = value.split('-')
+      const categories = value.split(',')
       if (categories.length > 0) {
         query.filter.categories = categories
       }
@@ -208,7 +208,7 @@ export const toQueryString = (query: PaginationRequest<ListingFilter>): string =
     q.set('lng', lng.toString())
   }
   if (query.filter.categories) {
-    q.set('categories', query.filter.categories.join('-'))
+    q.set('categories', query.filter.categories.join(','))
   }
   if (query.filter.features) {
     const features = query.filter.features.map((feature) => `${feature.categoryInputUUID}:${feature.value}`)
@@ -273,7 +273,7 @@ export const toQueryString = (query: PaginationRequest<ListingFilter>): string =
       q.set('guest', toBool(query.filter.validation.guest))
     }
   }
-  return q.toString()
+  return decodeURIComponent(q.toString())
 }
 
 export const mapAndSortImages = (images: ListingImage[]): string[] => {
