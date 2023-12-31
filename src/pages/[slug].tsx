@@ -10,6 +10,7 @@ import { FC, useMemo } from 'react'
 import ListingImagePreviewCard from '~/components/listing/ListingImagePreviewCard'
 import { Config } from '~/config'
 import { Services, apiUrl } from '~/config/services'
+import AnalyticLayout from '~/layouts/AnalyticLayout'
 import DefaultLayout from '~/layouts/DefaultLayout'
 import { LayoutProps } from '~/layouts/layout.types'
 import ListingDetailBasicInfoSection from '~/partials/detail/ListingDetailBasicInfoSection'
@@ -107,40 +108,42 @@ const ListingDetailView: FC<Props> = ({
     )
   }
   return (
-    <DefaultLayout {...layoutProps}>
-      <ImagePreviewProvider altPrefix={translations.title} list={images}>
-        <section className='mx-auto grid max-w-7xl grow grid-cols-12 p-2 lg:flex lg:h-full xl:px-0'>
-          <div className='col-span-12 flex w-full flex-col gap-4'>
-            <ListingImagePreviewCard images={images} title={translations.title} />
-            {!isDesktop && <ListingDetailReservationButton />}
-            <ListingDetailBasicInfoSection title={translations.title} description={translations.description} />
-            <ListingDetailBusinessSection nickName={response.business.nickName} />
-            <hr />
-            <ListingDetailCategorySection categoryUUIDs={response.categoryUUIDs} features={response.features} />
-            <ListingDetailValidationSection validation={response.validation} />
-            <ListingDetailCalendarSection prices={response.prices} />
-            <ListingDetailMapSection
-              coordinates={response.location.coordinates}
-              isStrict={response.location.isStrict}
-            />
-          </div>
-          {isDesktop && (
-            <StickySection customWidth='w-128 xl:x-144' innerClassName='px-2'>
-              <ListingDetailReservationSection
-                validation={response.validation}
-                uuid={response.uuid}
-                prices={response.prices}
-                startDate={startDate || undefined}
-                endDate={endDate || undefined}
-                adultQuery={adultQuery || undefined}
-                kidQuery={kidQuery || undefined}
-                babyQuery={babyQuery || undefined}
+    <AnalyticLayout>
+      <DefaultLayout {...layoutProps}>
+        <ImagePreviewProvider altPrefix={translations.title} list={images}>
+          <section className='mx-auto grid max-w-7xl grow grid-cols-12 p-2 lg:flex lg:h-full xl:px-0'>
+            <div className='col-span-12 flex w-full flex-col gap-4'>
+              <ListingImagePreviewCard images={images} title={translations.title} />
+              {!isDesktop && <ListingDetailReservationButton />}
+              <ListingDetailBasicInfoSection title={translations.title} description={translations.description} />
+              <ListingDetailBusinessSection nickName={response.business.nickName} />
+              <hr />
+              <ListingDetailCategorySection categoryUUIDs={response.categoryUUIDs} features={response.features} />
+              <ListingDetailValidationSection validation={response.validation} />
+              <ListingDetailCalendarSection prices={response.prices} />
+              <ListingDetailMapSection
+                coordinates={response.location.coordinates}
+                isStrict={response.location.isStrict}
               />
-            </StickySection>
-          )}
-        </section>
-      </ImagePreviewProvider>
-    </DefaultLayout>
+            </div>
+            {isDesktop && (
+              <StickySection customWidth='w-128 xl:x-144' innerClassName='px-2'>
+                <ListingDetailReservationSection
+                  validation={response.validation}
+                  uuid={response.uuid}
+                  prices={response.prices}
+                  startDate={startDate || undefined}
+                  endDate={endDate || undefined}
+                  adultQuery={adultQuery || undefined}
+                  kidQuery={kidQuery || undefined}
+                  babyQuery={babyQuery || undefined}
+                />
+              </StickySection>
+            )}
+          </section>
+        </ImagePreviewProvider>
+      </DefaultLayout>
+    </AnalyticLayout>
   )
 }
 
