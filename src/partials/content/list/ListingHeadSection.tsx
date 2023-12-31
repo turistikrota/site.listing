@@ -4,7 +4,6 @@ import { CategoryMetaWithSeo, EmptyCategoryMetaWithSeo } from '~/api/category.ap
 import { useListingFilter } from '~/contexts/listing.filter'
 import { useCategoryDetail } from '~/hooks/category.detail'
 import { useListSeo } from '~/hooks/seo'
-import ListingDesktopSortGroup from '~/partials/filter/desktop/ListingDesktopSortGroup'
 import { getI18nTranslations } from '~/utils/i18n'
 
 type SeoTuple = {
@@ -37,12 +36,11 @@ const ListingHeadSection: React.FC = () => {
     }
   }, [details, title, description, i18n.language])
   return (
-    <section className={`flex w-full items-center justify-between border-none pb-4 pt-0 ${!details ? 'lg:pt-4' : ''}`}>
+    <section className={`flex w-full items-center justify-between border-none pb-2`}>
       <div className='flex flex-col'>
         <h1 className='text-3xl font-bold text-gray-800 dark:text-gray-300'>{seo.title}</h1>
         <p className='text-sm text-gray-600 dark:text-gray-400'>{minimizeDescription(seo.description)}</p>
       </div>
-      <ListingDesktopSortGroup />
     </section>
   )
 }

@@ -11,14 +11,14 @@ const CategoryDetailFooter: FC = () => {
 
   if (loading)
     return (
-      <section className='h-20'>
+      <section className='h-104'>
         <ContentLoader noMargin />
       </section>
     )
 
   if (!details) return <></>
   return (
-    <section>
+    <section className='mt-3 pb-20'>
       <CategoryDetailMarkdownSection url={getI18nTranslations<string>(details.md, i18n.language, '')} />
     </section>
   )
