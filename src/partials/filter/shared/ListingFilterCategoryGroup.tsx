@@ -1,3 +1,4 @@
+import debounce from '@turistikrota/ui/utils/debounce'
 import { useTranslation } from 'next-i18next'
 import { FC } from 'react'
 import ScrollableSection from '~/components/section/ScrollableSection'
@@ -12,6 +13,8 @@ const ListingFilterCategoryGroup: FC = () => {
   const { selectedCategoryIds, toggleCategory, categories } = useCategorySelection()
   const { query } = useListingFilter()
   const { push } = useListingPusher()
+
+  const debouncedToggleCategory = debounce(toggleCategory, 300)
 
   const onToggle = (category: SelectionItem) => {
     if (query.filter.categories && query.filter.categories.includes(category.id)) {
@@ -31,7 +34,7 @@ const ListingFilterCategoryGroup: FC = () => {
         },
       })
     }
-    toggleCategory(category)
+    debouncedToggleCategory(category)
   }
 
   return (

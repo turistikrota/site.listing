@@ -16,6 +16,7 @@ export type CategoryState = CategoryListItem & {
 
 type CategorySelectionContext = {
   loading: boolean
+  lastCategory?: SelectionItem
   categories: SelectionItem[]
   selectedCategories: SelectionItem[]
   selectedCategoryIds: string[]
@@ -24,6 +25,7 @@ type CategorySelectionContext = {
 
 const CategorySelectionContext = createContext<CategorySelectionContext>({
   loading: false,
+  lastCategory: undefined,
   categories: [],
   selectedCategories: [],
   selectedCategoryIds: [],
@@ -78,6 +80,11 @@ export const CategorySelectionProvider: React.FC<React.PropsWithChildren<Provide
   const selecteds = useMemo<SelectionItem[]>(() => {
     return findCategory(allCategories, selectedCategories)
   }, [allCategories, selectedCategories])
+
+  const lastCategory = useMemo<SelectionItem | undefined>(() => {
+    if (selecteds.length === 0) return
+    return selecteds[selecteds.length - 1]
+  }, [selecteds])
 
   useEffect(() => {
     fetchMainCategories().then((res) => {
@@ -173,6 +180,7 @@ export const CategorySelectionProvider: React.FC<React.PropsWithChildren<Provide
     <CategorySelectionContext.Provider
       value={{
         loading,
+        lastCategory,
         categories: allCategories,
         selectedCategories: selecteds,
         selectedCategoryIds: selectedCategories,
