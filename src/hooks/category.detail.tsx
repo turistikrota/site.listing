@@ -1,13 +1,21 @@
 import { useState } from 'react'
+import { CategoryDetail } from '~/api/category.api'
 
 type Result = {
-  visible: boolean
+  details: CategoryDetail | undefined
+  loading: boolean
+  sync: (uuid: string) => void | Promise<void>
 }
 
-export const useCategoryDetail = (): Result => {
-  const [visible, setVisible] = useState(false)
+export const useCategoryDetail = (initial: CategoryDetail | undefined = undefined): Result => {
+  const [details, setDetails] = useState<CategoryDetail | undefined>(initial)
+  const [loading, setLoading] = useState<boolean>(false)
+
+  const sync = async (uuid: string) => {}
 
   return {
-    visible,
+    details,
+    loading,
+    sync,
   }
 }

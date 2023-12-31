@@ -1,19 +1,30 @@
+import ContentLoader from '@turistikrota/ui/loader'
 import { FC, PropsWithChildren } from 'react'
+import { CategoryDetail } from '~/api/category.api'
 import { useCategoryDetail } from '~/hooks/category.detail'
-import CategoryDetailFooter from '~/partials/category/CategoryDetailFooter'
 import CategoryDetailHeader from '~/partials/category/CategoryDetailHeader'
 
 type Props = {
-  visible?: boolean
+  categoryDetail?: CategoryDetail
 }
 
-const CategoryDetailLayout: FC<PropsWithChildren<Props>> = ({ children }) => {
-  useCategoryDetail()
+const CategoryDetailLayout: FC<PropsWithChildren<Props>> = ({ children, categoryDetail }) => {
+  const { details, loading } = useCategoryDetail(categoryDetail)
   return (
     <>
-      <CategoryDetailHeader />
+      {loading && (
+        <div className='h-32'>
+          <ContentLoader noMargin />
+        </div>
+      )}
+      {!loading && details && <CategoryDetailHeader />}
       {children}
-      <CategoryDetailFooter />
+      {loading && (
+        <div className='h-32'>
+          <ContentLoader noMargin />
+        </div>
+      )}
+      {!loading && details && <CategoryDetailHeader />}
     </>
   )
 }

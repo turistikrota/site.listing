@@ -9,15 +9,14 @@ import { useListingPusher } from '~/hooks/listing-pusher'
 import CategoryDetailLayout from '~/layouts/CategoryDetailLayout'
 import { ListingListItem } from '~/types/listing'
 import { deepMerge } from '~/utils/deepMerge'
+import { ContentProps } from '../ContentSwitcher'
 import ListFilterAside from './ListFilterAside'
 import ListingHeadSection from './ListingHeadSection'
 
 type Props = {
   isNext: boolean
-  loading: boolean
-  data: ListResponse<ListingListItem> | null
   onNextPage?: () => void
-}
+} & ContentProps
 
 type ItemProps = {
   isFiltered: boolean
@@ -41,7 +40,7 @@ const ListItemSection: FC<ItemProps> = ({ data, loading, onClear, isFiltered }) 
   )
 }
 
-const ListingListContent: FC<Props> = ({ data, loading, isNext }) => {
+const ListingListContent: FC<Props> = ({ data, loading, categoryDetail, isNext }) => {
   const { query, clean, isFiltered } = useListingFilter()
   const { push } = useListingPusher()
 
@@ -58,7 +57,7 @@ const ListingListContent: FC<Props> = ({ data, loading, isNext }) => {
   useInfiniteScroll(handleScroll, loading, 10)
   return (
     <section className='mx-auto max-w-7xl p-2 lg:h-full xl:py-0'>
-      <CategoryDetailLayout>
+      <CategoryDetailLayout categoryDetail={categoryDetail}>
         <ListingHeadSection />
         <section className='flex flex-col gap-2 lg:flex-row'>
           <ListFilterAside data={data} loading={loading} />
