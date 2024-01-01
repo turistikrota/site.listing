@@ -106,10 +106,10 @@ export type ListingKeyBindings = {
 
 export type ListingKeys = keyof ListingKeyBindings
 
-export type Distance = 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15
+export type Distance = 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18
 
 export function isDistance(distance: any): distance is Distance {
-  return typeof distance === 'number' && distance >= 7 && distance <= 15
+  return typeof distance === 'number' && distance >= 7 && distance <= 18
 }
 
 export function isSort(sort: string): sort is ListingSort {

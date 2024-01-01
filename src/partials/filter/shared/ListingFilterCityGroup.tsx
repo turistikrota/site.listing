@@ -23,11 +23,11 @@ const ListingFilterCityGroup: FC<Props> = ({ className }) => {
 
   const onSelectCity = (city: City, direction: boolean) => {
     if (query.filter.coordinates === city.coordinates) {
-      push(deepMerge(query, { filter: { coordinates: undefined } }))
+      push(deepMerge(query, { filter: { coordinates: undefined, distance: undefined } }))
       return
     }
     const newCoordinates = direction ? city.coordinates : undefined
-    push(deepMerge(query, { filter: { coordinates: newCoordinates } }))
+    push(deepMerge(query, { filter: { coordinates: newCoordinates, distance: 12 } }))
   }
   return (
     <>
