@@ -4,6 +4,8 @@ export enum Services {
   Place = 'place',
   Listing = 'listing',
   Category = 'category',
+  Pay = 'pay',
+  Booking = 'booking',
 }
 
 export const ApiUrls: Record<Services, string> = {
@@ -12,6 +14,8 @@ export const ApiUrls: Record<Services, string> = {
   [Services.Place]: process.env.NEXT_PUBLIC_PLACE_API_URL!,
   [Services.Listing]: process.env.NEXT_PUBLIC_LISTING_API_URL!,
   [Services.Category]: process.env.NEXT_PUBLIC_CATEGORY_API_URL!,
+  [Services.Pay]: process.env.NEXT_PUBLIC_PAY_API_URL!,
+  [Services.Booking]: process.env.NEXT_PUBLIC_BOOKING_API_URL!,
 }
 
 export const apiUrl = (service: Services, path: string) => `${ApiUrls[service]}${path}`
