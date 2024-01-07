@@ -8,12 +8,13 @@ type Result = {
   cimissionRate: number
   comission: number
   total: number
+  days: number
 }
 
 export const useBookingPriceCalc = (range: ListingPrice[], start?: string, end?: string): Result => {
-  const price = useListingPricingTotalPrice(range, start, end)
+  const [price, days] = useListingPricingTotalPrice(range, start, end)
   const { comissionRate } = usePayConfig()
   const comission = useMemo(() => price * comissionRate, [price, comissionRate])
   const total = useMemo(() => price + comission, [price, comission])
-  return { price: price, cimissionRate: comissionRate, comission: comission, total }
+  return { price: price, days: days, cimissionRate: comissionRate, comission: comission, total }
 }

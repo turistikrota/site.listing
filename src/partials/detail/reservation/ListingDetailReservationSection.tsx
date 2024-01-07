@@ -80,7 +80,7 @@ const ListingDetailReservationSection: FC<Props> = ({
         onKidChange={setKid}
         onBabyChange={setBaby}
       />
-      <ListingCardPriceSection prices={prices} startDate={start} endDate={end}>
+      <ListingCardPriceSection prices={prices} startDate={start} endDate={end} withComission={false}>
         <ListingCardPriceSection.Row
           label={t('sections.reservation.ourServices', {
             rate: pricing.cimissionRate * 100,

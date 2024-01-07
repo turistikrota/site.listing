@@ -10,7 +10,7 @@ export type TotalPriceRes = {
   days: number
 }
 
-export const useListingPricingTotalPrice = (range: ListingPrice[], start?: string, end?: string): number => {
+export const useListingPricingTotalPrice = (range: ListingPrice[], start?: string, end?: string): [number, number] => {
   const { i18n } = useTranslation()
   const dayjs = useDayJS(i18n.language)
   const [total, setTotal] = useState<TotalPriceRes | undefined>(undefined)
@@ -20,7 +20,7 @@ export const useListingPricingTotalPrice = (range: ListingPrice[], start?: strin
     setTotal(calcTotalPrice(start, end, range, dayjs))
   }, [start, end, range])
 
-  return total?.price ?? 0
+  return total ? [total.price, total.days] : [0, 0]
 }
 
 export const calcTotalPrice = (
