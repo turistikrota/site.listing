@@ -1,5 +1,6 @@
 import { TFunction, useTranslation } from 'next-i18next'
 import { FC, PropsWithChildren } from 'react'
+import { useBookingPriceCalc } from '~/hooks/booking-price.calculator'
 import { useDayJS } from '~/hooks/dayjs'
 import { useLocalizedFormatter } from '~/hooks/pricing'
 import { ListingPrice } from '~/types/listing'
@@ -13,6 +14,7 @@ type Section = FC<PropsWithChildren<Props>> & {
 
 type Props = {
   prices: ListingPrice[]
+  withComission?: boolean
   startDate?: string
   endDate?: string
 }
@@ -23,15 +25,11 @@ type PriceRange = {
   max?: number
 }
 
-type TotalPriceRes = {
-  price: number
-  days: number
-}
-
 type FilteredProps = Props &
   ListingFilterDateRange & {
     t: TFunction
     dayjs: DayJS
+    withComission?: boolean
   }
 
 const calcMinMaxPrice = (prices: ListingPrice[]): PriceRange => {
@@ -39,23 +37,6 @@ const calcMinMaxPrice = (prices: ListingPrice[]): PriceRange => {
   if (pricesSorted.length === 0) return { notAvailable: true, min: 0 }
   if (pricesSorted.length === 1) return { min: pricesSorted[0].price, max: pricesSorted[0].price }
   return { min: pricesSorted[0].price, max: pricesSorted[pricesSorted.length - 1].price }
-}
-
-const calcTotalPrice = (start: string, end: string, range: ListingPrice[], dayjs: DayJS): TotalPriceRes | undefined => {
-  const startDate = dayjs(start)
-  const endDate = dayjs(end)
-  const days = endDate.diff(startDate, 'day')
-  if (days < 0) return undefined
-  const totalPrice = range.reduce((total, price) => {
-    const priceStartDate = dayjs(price.startDate)
-    const priceEndDate = dayjs(price.endDate)
-    if (priceStartDate.isAfter(endDate)) return total
-    if (priceEndDate.isBefore(startDate)) return total
-    const priceDays = priceEndDate.diff(priceStartDate, 'day')
-    const daysToPay = Math.min(days, priceDays)
-    return total + daysToPay * price.price
-  }, 0)
-  return { price: totalPrice, days }
 }
 
 const calcMinMaxRangeFromStart = (start: string, range: ListingPrice[], dayjs: DayJS): PriceRange => {
@@ -135,11 +116,12 @@ const ListingCardPriceBothDates: FC<PropsWithChildren<FilteredProps>> = ({
   start,
   dayjs,
   t,
+  withComission,
   children,
 }) => {
-  const total = calcTotalPrice(start!, end!, prices, dayjs)
+  const pricing = useBookingPriceCalc(prices, start, end)
   const localizedFormatter = useLocalizedFormatter()
-  if (!total || total.price === 0)
+  if (!pricing.total || pricing.total === 0)
     return (
       <div className='w-full text-center text-sm font-bold text-red-600 dark:text-red-400'>
         {t('price.not-available-filtered')}
@@ -147,7 +129,11 @@ const ListingCardPriceBothDates: FC<PropsWithChildren<FilteredProps>> = ({
     )
   return (
     <div className='flex w-full flex-col gap-1'>
-      <DataRow bold label={t('price.total', { count: total.days })} text={localizedFormatter.format(total.price)} />
+      <DataRow
+        bold
+        label={t('price.total', { count: pricing.days })}
+        text={localizedFormatter.format(withComission ? pricing.total : pricing.price)}
+      />
       {children}
     </div>
   )
@@ -163,10 +149,25 @@ const ListingCardPriceOnlyEnd: FC<FilteredProps> = ({ prices, end, dayjs, t }) =
   return <RangeRenderer min={min} max={max} notAvailable={notAvailable} />
 }
 
-const ListingCardPriceFiltered: FC<PropsWithChildren<FilteredProps>> = ({ prices, end, start, dayjs, t, children }) => {
+const ListingCardPriceFiltered: FC<PropsWithChildren<FilteredProps>> = ({
+  prices,
+  end,
+  start,
+  dayjs,
+  t,
+  withComission,
+  children,
+}) => {
   if (end && start)
     return (
-      <ListingCardPriceBothDates prices={prices} end={end} start={start} dayjs={dayjs} t={t}>
+      <ListingCardPriceBothDates
+        withComission={withComission}
+        prices={prices}
+        end={end}
+        start={start}
+        dayjs={dayjs}
+        t={t}
+      >
         {children}
       </ListingCardPriceBothDates>
     )
@@ -184,13 +185,20 @@ const ListingCardPriceRange: FC<Props> = ({ prices }) => {
   return <RangeRenderer min={min!} max={max!} notAvailable={notAvailable!} />
 }
 
-const ListingCardPriceSection: Section = ({ prices, startDate, endDate, children }) => {
+const ListingCardPriceSection: Section = ({ prices, withComission, startDate, endDate, children }) => {
   const { t, i18n } = useTranslation('listing')
   const dayjs = useDayJS(i18n.language)
   return (
     <div className='col-span-12 flex items-center justify-start gap-2'>
       {!!startDate || !!endDate ? (
-        <ListingCardPriceFiltered t={t} dayjs={dayjs} prices={prices} start={startDate} end={endDate}>
+        <ListingCardPriceFiltered
+          withComission={withComission}
+          t={t}
+          dayjs={dayjs}
+          prices={prices}
+          start={startDate}
+          end={endDate}
+        >
           {children}
         </ListingCardPriceFiltered>
       ) : (

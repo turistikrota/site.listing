@@ -5,6 +5,9 @@
   "business": {
     "see-profile": "İşletme Profilini Göster"
   },
+  "status": {
+    "unavailable": "Bu ilan bu tarihler ve bu kişi sayısı için uygun değil."
+  },
   "price": {
     "min": "En Düşük",
     "max": "En Yüksek",
@@ -43,7 +46,7 @@
         "title": "Uyarı",
         "description": "Rezervasyon oluşturmadan önce ilan kurallarını inceleyin ve bu ilanın size uygun olduğundan emin olun."
       },
-      "ourServices": "Turistikrota Hizmetleri (%10)",
+      "ourServices": "Turistikrota Hizmetleri (%{{rate}})",
       "total": "Toplam",
       "make": "Rezervasyon Yap",
       "whyUs": "Neden Turistikrota?",

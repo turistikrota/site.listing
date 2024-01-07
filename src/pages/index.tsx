@@ -3,6 +3,7 @@ import { GetServerSidePropsContext } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { CategoryDetail, fetchCategory } from '~/api/category.api'
 import { filterListings } from '~/api/listing.api'
+import { PaymentConfig, fetchPaymentConfig } from '~/api/pay.api'
 import { Config } from '~/config'
 import { ListingFilterProvider } from '~/contexts/listing.filter'
 import AnalyticLayout from '~/layouts/AnalyticLayout'
@@ -15,16 +16,22 @@ import { getQueryFromSearchParams } from '~/utils/listing.utils'
 
 type Props = LayoutProps & {
   response?: ListResponse<ListingListItem>
+  payConfig: PaymentConfig | null
   categoryDetail: CategoryDetail | null
   error?: any
 }
 
-export default function Home({ response, categoryDetail, error, ...layoutProps }: Props) {
+export default function Home({ response, categoryDetail, error, payConfig, ...layoutProps }: Props) {
   return (
     <AnalyticLayout>
       <MapLayout {...layoutProps}>
         <ListingFilterProvider>
-          <ContentSwitcher response={response} categoryDetail={categoryDetail || undefined} error={error} />
+          <ContentSwitcher
+            response={response}
+            categoryDetail={categoryDetail || undefined}
+            payConfig={payConfig || undefined}
+            error={error}
+          />
         </ListingFilterProvider>
       </MapLayout>
     </AnalyticLayout>
@@ -43,14 +50,16 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext): Promis
       ? query.filter.categories[query.filter.categories.length - 1]
       : undefined
   let err: any
-  const [res, categoryDetail] = await Promise.all([
+  const [res, categoryDetail, payConfig] = await Promise.all([
     filterListings(query.filter, query.page, query.limit),
     lastCategory ? fetchCategory(lastCategory) : Promise.resolve(undefined),
+    fetchPaymentConfig(),
   ])
   return {
     props: {
       ...(await serverSideTranslations(ctx.locale || 'en', ['common', 'filter', 'sort', 'listing'])),
       response: res,
+      payConfig: payConfig ? payConfig : null,
       categoryDetail: categoryDetail ? categoryDetail : null,
       error: !!err && isApiError(err) ? err.response.data : null,
       accessTokenIsExists: !!ctx.req.cookies[Config.cookies.accessToken],

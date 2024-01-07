@@ -1,0 +1,59 @@
+import { useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { checkAvailability, createBooking, isCreateErrorResult, isCreateOkResult } from '~/api/booking.api'
+import { getAccountRedirectUrl } from '~/utils/auth'
+
+type Result = {
+  loading: boolean
+  disabled: boolean
+  error?: string
+  submit: () => Promise<void>
+}
+
+type Params = {
+  uuid: string
+  adult: number
+  kid?: number
+  baby?: number
+  start?: string
+  end?: string
+}
+
+export const useBookingCreator = ({ uuid, adult, kid, baby, start, end }: Params): Result => {
+  const { i18n, t } = useTranslation('listing')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | undefined>(undefined)
+  const disabled = useMemo(() => !start || !end || loading, [start, end, loading])
+
+  const onSubmit = async () => {
+    if (!start || !end || loading) return
+    setLoading(true)
+    const [isAvailable, error] = await checkAvailability(uuid, start, end, i18n.language)
+    if (error) {
+      setLoading(false)
+      setError(error)
+      return
+    }
+    if (!isAvailable) {
+      setLoading(false)
+      setError(t('status.unavailable'))
+      return
+    }
+    const result = await createBooking({ uuid, start, end, adult, kid, baby })
+    if (isCreateErrorResult(result)) {
+      if (result.status === 401) {
+        window.open(getAccountRedirectUrl(i18n.language, window.location.href))
+      } else {
+        setError(result.message)
+      }
+      return
+    }
+    if (isCreateOkResult(result)) {
+      // redirect to booking detail page
+    }
+    setLoading(false)
+    setError(undefined)
+  }
+
+  return { loading, disabled, error, submit: onSubmit }
+}

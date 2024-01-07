@@ -32,6 +32,7 @@ const ListingDetailPlaceMapSection: FC<Props> = ({ data, position, listingCoordi
             position={listingCoordinates}
             icon={
               new Icon.Default({
+                iconRetinaUrl: '/images/marker/home.png',
                 iconUrl: '/images/marker/home.png',
                 iconSize: [48, 48],
                 iconAnchor: [24, 48],
@@ -56,6 +57,7 @@ const ListingDetailPlaceMapSection: FC<Props> = ({ data, position, listingCoordi
               icon={
                 new Icon.Default({
                   iconUrl: `/images/marker/${item.type}.png`,
+                  iconRetinaUrl: `/images/marker/${item.type}.png`,
                   iconSize: [38, 38],
                   iconAnchor: [19, 38],
                 })

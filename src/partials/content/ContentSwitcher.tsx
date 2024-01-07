@@ -6,7 +6,9 @@ import { useTranslation } from 'next-i18next'
 import dynamic from 'next/dynamic'
 import { FC, useEffect, useMemo, useState } from 'react'
 import { CategoryDetail } from '~/api/category.api'
+import { PaymentConfig } from '~/api/pay.api'
 import { useListingFilter } from '~/contexts/listing.filter'
+import { PayConfigProvider } from '~/contexts/pay.config'
 import { useListingPusher } from '~/hooks/listing-pusher'
 import { useListings } from '~/hooks/listings'
 import CategoryDetailLayout from '~/layouts/CategoryDetailLayout'
@@ -18,6 +20,7 @@ import ListingListSeo from '../seo/ListingListSeo'
 
 type Props = {
   response?: ListResponse<ListingListItem>
+  payConfig?: PaymentConfig
   categoryDetail?: CategoryDetail
   error: any
 }
@@ -53,7 +56,7 @@ const FixedButton: React.FC<ButtonProps> = ({ text, variant, icon, onClick }) =>
   )
 }
 
-const ContentSwitcher: FC<Props> = ({ response, categoryDetail, error }) => {
+const ContentSwitcher: FC<Props> = ({ response, categoryDetail, payConfig, error }) => {
   const { t } = useTranslation('common')
   const { query, isQueryChanged, clean, isOnlyPageChanged, isFiltered, setQuery } = useListingFilter()
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -97,48 +100,52 @@ const ContentSwitcher: FC<Props> = ({ response, categoryDetail, error }) => {
   if (active === 'list') {
     return (
       <CategoryDetailLayout categoryDetail={categoryDetail}>
-        <ListingListSeo coordinates={query.filter.coordinates} />
-        {errorMessage && (
-          <div className='p-4 pb-0'>
-            <Alert type='error' closable onClose={() => setErrorMessage('')}>
-              {errorMessage}
-            </Alert>
-          </div>
-        )}
-        <DynamicList data={listings} loading={isLoading} isNext={listings.isNext} />
-        <FixedButton
-          text={t('content-switch.map')}
-          icon='map-alt'
-          onClick={() => toggleActive('map')}
-          variant='primary'
-        />
+        <PayConfigProvider initialComissionRate={payConfig?.comissionRate}>
+          <ListingListSeo coordinates={query.filter.coordinates} />
+          {errorMessage && (
+            <div className='p-4 pb-0'>
+              <Alert type='error' closable onClose={() => setErrorMessage('')}>
+                {errorMessage}
+              </Alert>
+            </div>
+          )}
+          <DynamicList data={listings} loading={isLoading} isNext={listings.isNext} />
+          <FixedButton
+            text={t('content-switch.map')}
+            icon='map-alt'
+            onClick={() => toggleActive('map')}
+            variant='primary'
+          />
+        </PayConfigProvider>
       </CategoryDetailLayout>
     )
   }
 
   return (
     <CategoryDetailLayout categoryDetail={categoryDetail}>
-      <ListingListSeo coordinates={query.filter.coordinates} />
-      {errorMessage && (
-        <div className='p-4 pb-0'>
-          <Alert type='error' closable onClose={() => setErrorMessage(null)}>
-            {errorMessage}
-          </Alert>
-        </div>
-      )}
-      <DynamicMap
-        data={listings}
-        loading={isLoading}
-        onChange={onCoordinateChange}
-        filterCoordinates={query.filter.coordinates}
-        position={[41.0082, 28.9784]}
-      />
-      <FixedButton
-        text={t('content-switch.list')}
-        icon='list-ul'
-        onClick={() => toggleActive('list')}
-        variant='secondary'
-      />
+      <PayConfigProvider initialComissionRate={payConfig?.comissionRate}>
+        <ListingListSeo coordinates={query.filter.coordinates} />
+        {errorMessage && (
+          <div className='p-4 pb-0'>
+            <Alert type='error' closable onClose={() => setErrorMessage(null)}>
+              {errorMessage}
+            </Alert>
+          </div>
+        )}
+        <DynamicMap
+          data={listings}
+          loading={isLoading}
+          onChange={onCoordinateChange}
+          filterCoordinates={query.filter.coordinates}
+          position={[41.0082, 28.9784]}
+        />
+        <FixedButton
+          text={t('content-switch.list')}
+          icon='list-ul'
+          onClick={() => toggleActive('list')}
+          variant='secondary'
+        />
+      </PayConfigProvider>
     </CategoryDetailLayout>
   )
 }
