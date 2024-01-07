@@ -52,7 +52,7 @@ const ListingDetailReservationSection: FC<Props> = ({
       : 0,
   )
   const pricing = useBookingPriceCalc(prices, start, end)
-  const creator = useBookingCreator(uuid, start, end)
+  const creator = useBookingCreator({ uuid, start, end, kid, baby, adult })
   const pusher = useListingDetailPusher()
 
   const localizedFormatter = useLocalizedFormatter()
