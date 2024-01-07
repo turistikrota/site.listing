@@ -1,6 +1,7 @@
 import { TFunction, useTranslation } from 'next-i18next'
 import { FC, PropsWithChildren } from 'react'
 import { useDayJS } from '~/hooks/dayjs'
+import { calcTotalPrice } from '~/hooks/listing.pricing'
 import { useLocalizedFormatter } from '~/hooks/pricing'
 import { ListingPrice } from '~/types/listing'
 import { ListingFilterDateRange } from '~/types/listing.filter'
@@ -23,11 +24,6 @@ type PriceRange = {
   max?: number
 }
 
-type TotalPriceRes = {
-  price: number
-  days: number
-}
-
 type FilteredProps = Props &
   ListingFilterDateRange & {
     t: TFunction
@@ -39,23 +35,6 @@ const calcMinMaxPrice = (prices: ListingPrice[]): PriceRange => {
   if (pricesSorted.length === 0) return { notAvailable: true, min: 0 }
   if (pricesSorted.length === 1) return { min: pricesSorted[0].price, max: pricesSorted[0].price }
   return { min: pricesSorted[0].price, max: pricesSorted[pricesSorted.length - 1].price }
-}
-
-const calcTotalPrice = (start: string, end: string, range: ListingPrice[], dayjs: DayJS): TotalPriceRes | undefined => {
-  const startDate = dayjs(start)
-  const endDate = dayjs(end)
-  const days = endDate.diff(startDate, 'day')
-  if (days < 0) return undefined
-  const totalPrice = range.reduce((total, price) => {
-    const priceStartDate = dayjs(price.startDate)
-    const priceEndDate = dayjs(price.endDate)
-    if (priceStartDate.isAfter(endDate)) return total
-    if (priceEndDate.isBefore(startDate)) return total
-    const priceDays = priceEndDate.diff(priceStartDate, 'day')
-    const daysToPay = Math.min(days, priceDays)
-    return total + daysToPay * price.price
-  }, 0)
-  return { price: totalPrice, days }
 }
 
 const calcMinMaxRangeFromStart = (start: string, range: ListingPrice[], dayjs: DayJS): PriceRange => {

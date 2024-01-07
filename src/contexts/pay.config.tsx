@@ -5,6 +5,10 @@ type PayConfigContextType = {
   comissionRate: number
 }
 
+type ProviderProps = {
+  initialComissionRate?: number
+}
+
 const PayConfigContext = createContext<PayConfigContextType | undefined>(undefined)
 
 export const usePayConfig = (): PayConfigContextType => {
@@ -15,10 +19,11 @@ export const usePayConfig = (): PayConfigContextType => {
   return context
 }
 
-export const PayConfigProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [comissionRate, setComissionRate] = useState<number>(0.5)
+export const PayConfigProvider: FC<PropsWithChildren<ProviderProps>> = ({ children, initialComissionRate }) => {
+  const [comissionRate, setComissionRate] = useState<number>(initialComissionRate || 0.5)
 
   useEffect(() => {
+    if (initialComissionRate) return
     fetchPaymentConfig()
       .then((res) => {
         if (!res) return

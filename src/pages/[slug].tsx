@@ -7,9 +7,11 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
 import { FC, useMemo } from 'react'
+import { fetchListingDetails } from '~/api/listing.api'
+import { PaymentConfig, fetchPaymentConfig } from '~/api/pay.api'
 import ListingImagePreviewCard from '~/components/listing/ListingImagePreviewCard'
 import { Config } from '~/config'
-import { Services, apiUrl } from '~/config/services'
+import { PayConfigProvider } from '~/contexts/pay.config'
 import AnalyticLayout from '~/layouts/AnalyticLayout'
 import DefaultLayout from '~/layouts/DefaultLayout'
 import { LayoutProps } from '~/layouts/layout.types'
@@ -22,13 +24,13 @@ import ListingDetailReservationButton from '~/partials/detail/reservation/Listin
 import ListingDetailReservationSection from '~/partials/detail/reservation/ListingDetailReservationSection'
 import ListingDetailValidationSection from '~/partials/detail/validation/ListingDetailValidationSection'
 import { EmptyListingMeta, ListingDetail, ListingMeta } from '~/types/listing'
-import { httpClient } from '~/utils/http'
 import { getI18nTranslations } from '~/utils/i18n'
 import { mapAndSortImages } from '~/utils/listing.utils'
 import { makeHtmlTitle, renderHtmlTitle } from '~/utils/seo'
 
 type Props = LayoutProps & {
   response: ListingDetail | null
+  payConfig: PaymentConfig | null
   startDate: string | null
   endDate: string | null
   adultQuery: string | null
@@ -38,21 +40,13 @@ type Props = LayoutProps & {
 
 export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
   const slug = ctx.query.slug
-  if (!slug)
+  if (!slug || typeof slug !== 'string')
     return {
       notFound: true,
     }
   const locale = ctx.locale || 'tr'
-  const res = await httpClient
-    .get(apiUrl(Services.Listing, `/${slug}`), {
-      headers: {
-        'Accept-Language': locale,
-      },
-    })
-    .catch((err) => {
-      return { data: undefined, status: 500 }
-    })
-  if (res.status === 404) {
+  const [details, payConfig] = await Promise.all([fetchListingDetails(slug, locale), fetchPaymentConfig()])
+  if (details.status === 404) {
     return {
       notFound: true,
     }
@@ -60,7 +54,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
   return {
     props: {
       ...(await serverSideTranslations(ctx.locale || 'tr', ['common', 'listing', 'place', 'filter'])),
-      response: res.data ? res.data : null,
+      response: details.data ? details.data : null,
+      payConfig: payConfig ? payConfig : null,
       accessTokenIsExists: !!ctx.req.cookies[Config.cookies.accessToken],
       accountCookie: ctx.req.cookies[Config.cookies.accountName] ?? '',
       startDate: typeof ctx.query?.start === 'string' ? ctx.query.start : null,
@@ -128,16 +123,18 @@ const ListingDetailView: FC<Props> = ({
             </div>
             {isDesktop && (
               <StickySection customWidth='w-128 xl:x-144' innerClassName='px-2'>
-                <ListingDetailReservationSection
-                  validation={response.validation}
-                  uuid={response.uuid}
-                  prices={response.prices}
-                  startDate={startDate || undefined}
-                  endDate={endDate || undefined}
-                  adultQuery={adultQuery || undefined}
-                  kidQuery={kidQuery || undefined}
-                  babyQuery={babyQuery || undefined}
-                />
+                <PayConfigProvider>
+                  <ListingDetailReservationSection
+                    validation={response.validation}
+                    uuid={response.uuid}
+                    prices={response.prices}
+                    startDate={startDate || undefined}
+                    endDate={endDate || undefined}
+                    adultQuery={adultQuery || undefined}
+                    kidQuery={kidQuery || undefined}
+                    babyQuery={babyQuery || undefined}
+                  />
+                </PayConfigProvider>
               </StickySection>
             )}
           </section>

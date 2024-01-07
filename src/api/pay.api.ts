@@ -1,7 +1,7 @@
 import { Services, apiUrl } from '~/config/services'
 import { httpClient } from '~/utils/http'
 
-type PaymentConfig = {
+export type PaymentConfig = {
   comissionRate: number
 }
 

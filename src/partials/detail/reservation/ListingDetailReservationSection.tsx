@@ -3,6 +3,7 @@ import Button from '@turistikrota/ui/button'
 import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ListingCardPriceSection from '~/components/listing/sections/ListingCardPriceSection'
+import { useBookingPriceCalc } from '~/hooks/booking-price.calculator'
 import { useListingDetailPusher } from '~/hooks/listing-pusher'
 import { useLocalizedFormatter } from '~/hooks/pricing'
 import { ListingPrice, ListingValidation } from '~/types/listing'
@@ -48,6 +49,7 @@ const ListingDetailReservationSection: FC<Props> = ({
       ? +babyQuery
       : 0,
   )
+  const pricing = useBookingPriceCalc(prices, start, end)
   const pusher = useListingDetailPusher()
 
   const localizedFormatter = useLocalizedFormatter()
@@ -80,11 +82,16 @@ const ListingDetailReservationSection: FC<Props> = ({
       />
       <ListingCardPriceSection prices={prices} startDate={start} endDate={end}>
         <ListingCardPriceSection.Row
-          label={t('sections.reservation.ourServices')}
-          text={localizedFormatter.format(3000)}
+          label={t('sections.reservation.ourServices', {
+            rate: pricing.cimissionRate * 100,
+          })}
+          text={localizedFormatter.format(pricing.comission)}
         />
         <hr />
-        <ListingCardPriceSection.Row label={t('sections.reservation.total')} text={localizedFormatter.format(23000)} />
+        <ListingCardPriceSection.Row
+          label={t('sections.reservation.total')}
+          text={localizedFormatter.format(pricing.total)}
+        />
       </ListingCardPriceSection>
       <Button size='lg'>{t('sections.reservation.make')}</Button>
       <div className='flex justify-between gap-2'>

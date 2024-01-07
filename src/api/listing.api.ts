@@ -16,3 +16,15 @@ export const filterListings = async (
     })
   return res.data ? res.data : { list: [] }
 }
+
+export const fetchListingDetails = async (slug: string, locale: string) => {
+  return httpClient
+    .get(apiUrl(Services.Listing, `/${slug}`), {
+      headers: {
+        'Accept-Language': locale,
+      },
+    })
+    .catch((err) => {
+      return { data: undefined, status: 500 }
+    })
+}
