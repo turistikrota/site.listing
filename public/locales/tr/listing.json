@@ -5,6 +5,9 @@
   "business": {
     "see-profile": "İşletme Profilini Göster"
   },
+  "status": {
+    "unavailable": "Bu ilan bu tarihler ve bu kişi sayısı için uygun değil."
+  },
   "price": {
     "min": "En Düşük",
     "max": "En Yüksek",

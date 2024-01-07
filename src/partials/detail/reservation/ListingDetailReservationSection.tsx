@@ -1,9 +1,11 @@
 import Alert from '@turistikrota/ui/alert'
 import Button from '@turistikrota/ui/button'
+import ErrorText from '@turistikrota/ui/text/error'
 import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ListingCardPriceSection from '~/components/listing/sections/ListingCardPriceSection'
 import { useBookingPriceCalc } from '~/hooks/booking-price.calculator'
+import { useBookingCreator } from '~/hooks/booking.creator'
 import { useListingDetailPusher } from '~/hooks/listing-pusher'
 import { useLocalizedFormatter } from '~/hooks/pricing'
 import { ListingPrice, ListingValidation } from '~/types/listing'
@@ -50,6 +52,7 @@ const ListingDetailReservationSection: FC<Props> = ({
       : 0,
   )
   const pricing = useBookingPriceCalc(prices, start, end)
+  const creator = useBookingCreator(uuid, start, end)
   const pusher = useListingDetailPusher()
 
   const localizedFormatter = useLocalizedFormatter()
@@ -93,7 +96,16 @@ const ListingDetailReservationSection: FC<Props> = ({
           text={localizedFormatter.format(pricing.total)}
         />
       </ListingCardPriceSection>
-      <Button size='lg'>{t('sections.reservation.make')}</Button>
+      <Button
+        size='lg'
+        disabled={creator.disabled}
+        className={creator.disabled ? 'flex items-center justify-center gap-2' : ''}
+        onClick={creator.submit}
+      >
+        {creator.loading && <i className='bx bx-loader-alt bx-spin' />}
+        {t('sections.reservation.make')}
+      </Button>
+      {creator.error && <ErrorText>{creator.error}</ErrorText>}
       <div className='flex justify-between gap-2'>
         <Button variant='secondary'>{t('sections.reservation.whyUs')}</Button>
         <Button variant='glass'>{t('sections.reservation.howProcess')}</Button>
