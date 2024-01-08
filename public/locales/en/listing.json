@@ -1,9 +1,15 @@
 {
+  "seo": {
+    "keywords": "turistikrota, turistikrota listing"
+  },
   "words": {
     "from-business": "From Business"
   },
   "business": {
     "see-profile": "View Business Profile"
+  },
+  "status": {
+    "unavailable": "This ad is not available for these dates and this number of people."
   },
   "price": {
     "min": "Minimum",
