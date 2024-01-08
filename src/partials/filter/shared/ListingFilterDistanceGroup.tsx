@@ -71,10 +71,9 @@ const ListingFilterDistanceGroup: FC<Props> = ({ className }) => {
   }, [query.filter.coordinates])
 
   useEffect(() => {
-    if (query.filter.distance !== distance) {
+    if (query.filter.distance !== distance && distance !== DefaultDistance) {
       const newDistance = query.filter.distance || DefaultDistance
       setDistance(newDistance)
-      push(deepMerge(query, { filter: { distance: newDistance } }))
     }
   }, [query])
 
