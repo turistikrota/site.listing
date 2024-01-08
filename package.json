@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@turistikrota/fonts": "^1.0.1",
-    "@turistikrota/location-tr": "^0.0.8",
+    "@turistikrota/location-tr": "^0.0.9",
     "@turistikrota/ui": "^1.1.3",
     "axios": "^1.6.2",
     "boxicons": "^2.1.4",
