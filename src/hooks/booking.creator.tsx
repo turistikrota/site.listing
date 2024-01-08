@@ -1,6 +1,8 @@
+import { Locales } from '@turistikrota/ui'
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { checkAvailability, createBooking, isCreateErrorResult, isCreateOkResult } from '~/api/booking.api'
+import { SiteUrls } from '~/static/site'
 import { getAccountRedirectUrl } from '~/utils/auth'
 
 type Result = {
@@ -49,7 +51,7 @@ export const useBookingCreator = ({ uuid, adult, kid, baby, start, end }: Params
       return
     }
     if (isCreateOkResult(result)) {
-      // redirect to booking detail page
+      window.open(`${SiteUrls.booking[i18n.language as Locales]}/${result.uuid}`, '_self')
     }
     setLoading(false)
     setError(undefined)

@@ -1,4 +1,3 @@
-import Button from '@turistikrota/ui/button'
 import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { FC } from 'react'
@@ -25,12 +24,14 @@ const ListingDetailBusinessSection: FC<Props> = ({ nickName }) => {
           <div className='text-sm'>{t('words.from-business')}</div>
         </div>
       </div>
+      {/*
       <div className='flex items-center justify-end'>
         <Button size='sm' variant='secondary' className='flex items-center justify-center gap-2' block={false}>
           <i className='bx bx-link-external text-lg'></i>
           {t('business.see-profile')}
         </Button>
       </div>
+      */}
     </section>
   )
 }

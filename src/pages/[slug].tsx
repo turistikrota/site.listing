@@ -112,25 +112,36 @@ const ListingDetailView: FC<Props> = ({
         isStrict={response.location.isStrict}
       />
       <DefaultLayout {...layoutProps}>
-        <ImagePreviewProvider altPrefix={translations.title} list={images}>
-          <section className='mx-auto grid max-w-7xl grow grid-cols-12 p-2 lg:flex lg:h-full xl:px-0'>
-            <div className='col-span-12 flex w-full flex-col gap-4'>
-              <ListingImagePreviewCard images={images} title={translations.title} />
-              {!isDesktop && <ListingDetailReservationButton />}
-              <ListingDetailBasicInfoSection title={translations.title} description={translations.description} />
-              <ListingDetailBusinessSection nickName={response.business.nickName} />
-              <hr />
-              <ListingDetailCategorySection categoryUUIDs={response.categoryUUIDs} features={response.features} />
-              <ListingDetailValidationSection validation={response.validation} />
-              <ListingDetailCalendarSection prices={response.prices} />
-              <ListingDetailMapSection
-                coordinates={response.location.coordinates}
-                isStrict={response.location.isStrict}
-              />
-            </div>
-            {isDesktop && (
-              <StickySection customWidth='w-128 xl:x-144' innerClassName='px-2'>
-                <PayConfigProvider>
+        <PayConfigProvider>
+          <ImagePreviewProvider altPrefix={translations.title} list={images}>
+            <section className='mx-auto grid max-w-7xl grow grid-cols-12 p-2 lg:flex lg:h-full xl:px-0'>
+              <div className='col-span-12 flex w-full flex-col gap-4'>
+                <ListingImagePreviewCard images={images} title={translations.title} />
+                {!isDesktop && (
+                  <ListingDetailReservationButton
+                    validation={response.validation}
+                    uuid={response.uuid}
+                    prices={response.prices}
+                    startDate={startDate || undefined}
+                    endDate={endDate || undefined}
+                    adultQuery={adultQuery || undefined}
+                    kidQuery={kidQuery || undefined}
+                    babyQuery={babyQuery || undefined}
+                  />
+                )}
+                <ListingDetailBasicInfoSection title={translations.title} description={translations.description} />
+                <ListingDetailBusinessSection nickName={response.business.nickName} />
+                <hr />
+                <ListingDetailCategorySection categoryUUIDs={response.categoryUUIDs} features={response.features} />
+                <ListingDetailValidationSection validation={response.validation} />
+                <ListingDetailCalendarSection prices={response.prices} />
+                <ListingDetailMapSection
+                  coordinates={response.location.coordinates}
+                  isStrict={response.location.isStrict}
+                />
+              </div>
+              {isDesktop && (
+                <StickySection customWidth='w-128 xl:x-144' innerClassName='px-2'>
                   <ListingDetailReservationSection
                     validation={response.validation}
                     uuid={response.uuid}
@@ -141,11 +152,11 @@ const ListingDetailView: FC<Props> = ({
                     kidQuery={kidQuery || undefined}
                     babyQuery={babyQuery || undefined}
                   />
-                </PayConfigProvider>
-              </StickySection>
-            )}
-          </section>
-        </ImagePreviewProvider>
+                </StickySection>
+              )}
+            </section>
+          </ImagePreviewProvider>
+        </PayConfigProvider>
       </DefaultLayout>
     </AnalyticLayout>
   )

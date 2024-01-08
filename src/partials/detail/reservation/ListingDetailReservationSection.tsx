@@ -12,7 +12,7 @@ import { ListingPrice, ListingValidation } from '~/types/listing'
 import ListingDetailDateInput from './ListingDetailDateInput'
 import ListingDetailPeopleInput from './ListingDetailPeopleInput'
 
-type Props = {
+export type Props = {
   uuid: string
   startDate?: string
   endDate?: string
