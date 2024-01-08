@@ -1,6 +1,6 @@
 import { Locales } from '@turistikrota/ui'
+import { useTranslation } from 'next-i18next'
 import { useMemo, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { checkAvailability, createBooking, isCreateErrorResult, isCreateOkResult } from '~/api/booking.api'
 import { SiteUrls } from '~/static/site'
 import { getAccountRedirectUrl } from '~/utils/auth'

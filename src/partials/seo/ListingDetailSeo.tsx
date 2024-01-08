@@ -1,7 +1,7 @@
 import { Coordinates } from '@turistikrota/ui/types'
+import { useTranslation } from 'next-i18next'
 import Head from 'next/head'
 import { useMemo } from 'react'
-import { useTranslation } from 'react-i18next'
 import { ListingMeta } from '~/types/listing'
 import { makeHtmlTitle } from '~/utils/seo'
 import BaseSeo from './BaseSeo'

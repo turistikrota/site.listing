@@ -18,10 +18,9 @@ const ListingImagePreviewCard: FC<Props> = ({ images, title }) => {
     <Carousel
       imageAltPrefix={title}
       images={images}
-      sizeClassName='h-104'
       onClick={openPreview}
       autoPlay
-      showSubImages
+      variant={Carousel.Variants.DetailVertical}
     />
   )
 }
