@@ -1,0 +1,41 @@
+name: Build, Publish and Deploy to Production
+
+on:
+  release:
+    types: [released]
+
+env:
+  IMAGE_TAG: ${{ github.event.release.tag_name }}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build and publish docker
+        run: |
+          docker build . --file Dockerfile --tag turistikrota/site.listing:$IMAGE_TAG
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login docker.io --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          docker push turistikrota/site.listing:$IMAGE_TAG
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull and run the Docker image on the server
+        uses: appleboy/ssh-action@master
+        env:
+          DIR: ${{ secrets.DIR }}
+          APP_PORT: ${{ secrets.APP_PORT }}
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: ${{ secrets.SERVER_PORT }}
+          envs: DIR,APP_PORT,IMAGE_TAG
+          script: |
+            docker service ls | grep -q site-listing && docker service rm site-listing || true
+            cd $DIR
+            docker pull turistikrota/site.listing:$IMAGE_TAG
+            docker service create --name site-listing --env-file .env --publish $APP_PORT:3000 --hostname 0.0.0.0 turistikrota/site.listing:$IMAGE_TAG
