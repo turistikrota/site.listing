@@ -13,9 +13,9 @@ type SeoProps = {
 
 export const useListSeo = ({ coordinates }: SeoProps): Result => {
   const { t, i18n } = useTranslation('common')
-  let title = t('seo.list.title')
-  let description = t('seo.list.description')
-  let keywords = t('seo.list.keywords')
+  const title = t('seo.list.title')
+  const description = t('seo.list.description')
+  const keywords = t('seo.list.keywords')
   return {
     title,
     description,

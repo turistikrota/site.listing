@@ -108,7 +108,7 @@ const componentValueParsers: Record<FilterComponents, (value: any, options: Pars
   },
   people: (value, options) => {
     if (!value || (!value.adult && !value.baby && !value.kid)) return ''
-    let text: string[] = []
+    const text: string[] = []
     if (value.adult > 0) {
       text.push(options.t('components.people.dynamic.adult', { count: value.adult }))
     }
@@ -122,9 +122,9 @@ const componentValueParsers: Record<FilterComponents, (value: any, options: Pars
   },
   validation: (value, options) => {
     if (!value) return ''
-    let text: string[] = []
+    const text: string[] = []
     Object.entries(value).forEach(([key, value]) => {
-      if (value !== 'on' && !Boolean(value)) return
+      if (value !== 'on' && !value) return
       text.push(options.t(`components.validation.${key}.label`))
     })
     return text.join(', ')
