@@ -23,6 +23,7 @@ import ListingDetailMapSection from '~/partials/detail/map/ListingDetailMapSecti
 import ListingDetailReservationButton from '~/partials/detail/reservation/ListingDetailReservationButton'
 import ListingDetailReservationSection from '~/partials/detail/reservation/ListingDetailReservationSection'
 import ListingDetailValidationSection from '~/partials/detail/validation/ListingDetailValidationSection'
+import ListingDetailSeo from '~/partials/seo/ListingDetailSeo'
 import { EmptyListingMeta, ListingDetail, ListingMeta } from '~/types/listing'
 import { getI18nTranslations } from '~/utils/i18n'
 import { mapAndSortImages } from '~/utils/listing.utils'
@@ -104,6 +105,12 @@ const ListingDetailView: FC<Props> = ({
   }
   return (
     <AnalyticLayout>
+      <ListingDetailSeo
+        meta={translations}
+        coordinates={response.location.coordinates}
+        images={images}
+        isStrict={response.location.isStrict}
+      />
       <DefaultLayout {...layoutProps}>
         <ImagePreviewProvider altPrefix={translations.title} list={images}>
           <section className='mx-auto grid max-w-7xl grow grid-cols-12 p-2 lg:flex lg:h-full xl:px-0'>
