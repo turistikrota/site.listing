@@ -5,6 +5,7 @@ export enum Sites {
   Auth = 'auth',
   Root = 'root',
   Place = 'place',
+  Booking = 'booking',
 }
 
 type SiteUrl = {
@@ -27,5 +28,9 @@ export const SiteUrls: Record<Sites, SiteUrl> = {
   [Sites.Place]: {
     tr: process.env.NEXT_PUBLIC_SITE_PLACE_TR_URL!,
     en: process.env.NEXT_PUBLIC_SITE_PLACE_EN_URL!,
+  },
+  [Sites.Booking]: {
+    tr: process.env.NEXT_PUBLIC_SITE_BOOKING_TR_URL!,
+    en: process.env.NEXT_PUBLIC_SITE_BOOKING_EN_URL!,
   },
 }
