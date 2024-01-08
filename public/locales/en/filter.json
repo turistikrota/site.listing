@@ -18,6 +18,7 @@
     },
     "start-date": {
       "label": "Start Date",
+      "labelDetail": "Check-in",
       "description": "Select the start date of your reservation.",
       "invalid": "Please select a valid start date.",
       "past": "Start date cannot be before today.",
@@ -25,6 +26,7 @@
     },
     "end-date": {
       "label": "End Date",
+      "labelDetail": "Check-out",
       "description": "Select the end date of your reservation.",
       "invalid": "Please select a valid end date.",
       "past": "End date cannot be before today.",
