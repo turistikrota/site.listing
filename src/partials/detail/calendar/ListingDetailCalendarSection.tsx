@@ -4,13 +4,14 @@ import FormSection from '@turistikrota/ui/form/section'
 import { useTranslation } from 'next-i18next'
 import { FC } from 'react'
 import { useListingCalendar } from '~/hooks/listing.calendar'
-import { ListingPrice } from '~/types/listing'
+import { Currency, ListingPrice } from '~/types/listing'
 
 type Props = {
   prices: ListingPrice[]
+  currency: Currency
 }
 
-const ListingDetailCalendarSection: FC<Props> = ({ prices }) => {
+const ListingDetailCalendarSection: FC<Props> = ({ prices, currency }) => {
   const { t, i18n } = useTranslation('listing')
   const calendarData = useListingCalendar(prices)
   return (
@@ -23,6 +24,7 @@ const ListingDetailCalendarSection: FC<Props> = ({ prices }) => {
       </FormSection.Head>
       <Calendar<number>
         locale={i18n.language as Locales}
+        currency={currency}
         textSelected={t('sections.calendar.selected')}
         textToday={t('sections.calendar.today')}
         data={calendarData}

@@ -135,7 +135,7 @@ const ListingDetailView: FC<Props> = ({
                 <hr />
                 <ListingDetailCategorySection categoryUUIDs={response.categoryUUIDs} features={response.features} />
                 <ListingDetailValidationSection validation={response.validation} />
-                <ListingDetailCalendarSection prices={response.prices} />
+                <ListingDetailCalendarSection prices={response.prices} currency={response.currency} />
                 <ListingDetailMapSection
                   coordinates={response.location.coordinates}
                   isStrict={response.location.isStrict}
