@@ -1,10 +1,12 @@
 import { useTranslation } from 'next-i18next'
+import { Currency } from '~/types/listing'
 
-export const useLocalizedFormatter = (): Intl.NumberFormat => {
+export const useLocalizedFormatter = (currency?: Currency): Intl.NumberFormat => {
   const { i18n } = useTranslation()
+  console.log(currency)
   return new Intl.NumberFormat(i18n.language, {
     style: 'currency',
-    currency: 'TRY',
+    currency: currency ? currency : Currency.TRY,
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   })

@@ -58,6 +58,12 @@ export type ListingValidation = {
 export type ValidationKey = keyof ListingValidation
 export type ValidationValue<Key extends ValidationKey> = ListingValidation[Key]
 
+export enum Currency {
+  EUR = 'EUR',
+  USD = 'USD',
+  TRY = 'TRY',
+}
+
 export type ListingListItem = {
   uuid: string
   business: ListingBusiness
@@ -65,6 +71,7 @@ export type ListingListItem = {
   meta: I18nTranslation<ListingMeta>
   prices: ListingPrice[]
   location: ListingLocation
+  currency: Currency
 }
 
 export const EmptyListingMeta: ListingMeta = {
@@ -83,6 +90,7 @@ export type ListingDetail = {
   prices: ListingPrice[]
   location: ListingLocation
   validation: ListingValidation
+  currency: Currency
   createdAt: string
   updatedAt: string
 }

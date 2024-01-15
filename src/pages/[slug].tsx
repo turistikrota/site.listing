@@ -127,6 +127,7 @@ const ListingDetailView: FC<Props> = ({
                     adultQuery={adultQuery || undefined}
                     kidQuery={kidQuery || undefined}
                     babyQuery={babyQuery || undefined}
+                    currency={response.currency}
                   />
                 )}
                 <ListingDetailBasicInfoSection title={translations.title} description={translations.description} />
@@ -151,6 +152,7 @@ const ListingDetailView: FC<Props> = ({
                     adultQuery={adultQuery || undefined}
                     kidQuery={kidQuery || undefined}
                     babyQuery={babyQuery || undefined}
+                    currency={response.currency}
                   />
                 </StickySection>
               )}
