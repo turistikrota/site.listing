@@ -12,7 +12,7 @@ import ListingCardPriceSection from './sections/ListingCardPriceSection'
 
 type Props = ListingListItem
 
-const ListingMapCard: FC<Props> = ({ uuid, meta, business, images, location, prices }) => {
+const ListingMapCard: FC<Props> = ({ uuid, meta, business, images, location, prices, currency }) => {
   const { i18n } = useTranslation()
   const { query } = useListingFilter()
   const translations = getI18nTranslations<ListingMeta>(meta, i18n.language, EmptyListingMeta)
@@ -41,6 +41,7 @@ const ListingMapCard: FC<Props> = ({ uuid, meta, business, images, location, pri
                 <ListingCardLocationSection city={location.city} street={location.street} className='justify-end' />
                 <ListingCardPriceSection
                   prices={prices}
+                  currency={currency}
                   startDate={query.filter.date?.start}
                   endDate={query.filter.date?.end}
                 />

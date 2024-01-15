@@ -8,7 +8,7 @@ import { useBookingPriceCalc } from '~/hooks/booking-price.calculator'
 import { useBookingCreator } from '~/hooks/booking.creator'
 import { useListingDetailPusher } from '~/hooks/listing-pusher'
 import { useLocalizedFormatter } from '~/hooks/pricing'
-import { ListingPrice, ListingValidation } from '~/types/listing'
+import { Currency, ListingPrice, ListingValidation } from '~/types/listing'
 import ListingDetailDateInput from './ListingDetailDateInput'
 import ListingDetailPeopleInput from './ListingDetailPeopleInput'
 
@@ -21,6 +21,7 @@ export type Props = {
   babyQuery?: string
   prices: ListingPrice[]
   validation: ListingValidation
+  currency: Currency
 }
 
 const ListingDetailReservationSection: FC<Props> = ({
@@ -32,6 +33,7 @@ const ListingDetailReservationSection: FC<Props> = ({
   adultQuery,
   babyQuery,
   kidQuery,
+  currency,
 }) => {
   const { t } = useTranslation('listing')
   const [start, setStart] = useState<string | undefined>(
@@ -55,7 +57,7 @@ const ListingDetailReservationSection: FC<Props> = ({
   const creator = useBookingCreator({ uuid, start, end, kid, baby, adult })
   const pusher = useListingDetailPusher()
 
-  const localizedFormatter = useLocalizedFormatter()
+  const localizedFormatter = useLocalizedFormatter(currency)
 
   useEffect(() => {
     pusher({
@@ -83,7 +85,13 @@ const ListingDetailReservationSection: FC<Props> = ({
         onKidChange={setKid}
         onBabyChange={setBaby}
       />
-      <ListingCardPriceSection prices={prices} startDate={start} endDate={end} withComission={false}>
+      <ListingCardPriceSection
+        prices={prices}
+        startDate={start}
+        endDate={end}
+        withComission={false}
+        currency={currency}
+      >
         <ListingCardPriceSection.Row
           label={t('sections.reservation.ourServices', {
             rate: pricing.cimissionRate * 100,

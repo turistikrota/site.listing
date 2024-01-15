@@ -127,6 +127,7 @@ const ListingDetailView: FC<Props> = ({
                     adultQuery={adultQuery || undefined}
                     kidQuery={kidQuery || undefined}
                     babyQuery={babyQuery || undefined}
+                    currency={response.currency}
                   />
                 )}
                 <ListingDetailBasicInfoSection title={translations.title} description={translations.description} />
@@ -134,7 +135,7 @@ const ListingDetailView: FC<Props> = ({
                 <hr />
                 <ListingDetailCategorySection categoryUUIDs={response.categoryUUIDs} features={response.features} />
                 <ListingDetailValidationSection validation={response.validation} />
-                <ListingDetailCalendarSection prices={response.prices} />
+                <ListingDetailCalendarSection prices={response.prices} currency={response.currency} />
                 <ListingDetailMapSection
                   coordinates={response.location.coordinates}
                   isStrict={response.location.isStrict}
@@ -151,6 +152,7 @@ const ListingDetailView: FC<Props> = ({
                     adultQuery={adultQuery || undefined}
                     kidQuery={kidQuery || undefined}
                     babyQuery={babyQuery || undefined}
+                    currency={response.currency}
                   />
                 </StickySection>
               )}
