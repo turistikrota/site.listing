@@ -45,7 +45,7 @@ const SortSection: React.FC<SortSectionProps> = ({ selected, onSelect }) => {
           id={sort}
           name='sort-by'
           reverse
-          checked={currentSort === sort}
+          value={currentSort === sort}
           onChange={() => onSelect(sort)}
         >
           {t(`mobile.sort-by.${sort}`)}
@@ -76,7 +76,7 @@ const OrderSection: React.FC<OrderSectionProps> = ({ selected, onSelect }) => {
           id={`${order}-${idx}`}
           name='order'
           reverse
-          checked={currentOrder === order}
+          value={currentOrder === order}
           onChange={() => onSelect(order)}
         >
           {t(`mobile.order-by.${order}`)}

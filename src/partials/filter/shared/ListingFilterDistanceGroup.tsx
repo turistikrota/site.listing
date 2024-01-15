@@ -91,7 +91,7 @@ const ListingFilterDistanceGroup: FC<Props> = ({ className }) => {
             key={dist}
             name='distance'
             id={`distance-${dist}`}
-            checked={distance === +dist}
+            value={distance === +dist}
             reverse={!isDesktop}
             effect={isDesktop ? 'hover' : undefined}
             onChange={(e) => handleChange(+dist, e)}

@@ -44,7 +44,7 @@ const ListingFilterCityGroup: FC<Props> = ({ className }) => {
             key={city.name}
             name='city'
             id={city.name}
-            checked={
+            value={
               query.filter.coordinates &&
               query.filter.coordinates[0] === city.coordinates[0] &&
               query.filter.coordinates[1] === city.coordinates[1]
