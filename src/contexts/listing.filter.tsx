@@ -60,6 +60,7 @@ export const ListingFilterProvider: FC<PropsWithChildren<Props>> = ({ children, 
       newQuery.page = 1
     }
     if (query && toQueryString(query) === toQueryString(newQuery)) return
+    console.log('its', newQuery)
     setQuery(newQuery)
   }, [])
 

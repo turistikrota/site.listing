@@ -60,6 +60,11 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext): Promis
     lastCategory ? fetchCategory(lastCategory) : Promise.resolve(undefined),
     fetchPaymentConfig(),
   ])
+  console.log('------------------------')
+  console.log('res', res)
+  console.log('categoryDetail', categoryDetail)
+  console.log('payConfig', payConfig)
+  console.log('------------------------')
   return {
     props: {
       ...(await serverSideTranslations(ctx.locale || 'en', ['common', 'filter', 'sort', 'listing'])),
