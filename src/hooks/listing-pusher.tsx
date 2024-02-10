@@ -18,7 +18,6 @@ export const useListingPusher = (): PusherResult => {
 
   const debouncedPush = debounce((path: string) => {
     const url = `${pathname}?${path}`
-    console.log('url::', url)
     router.push(url, undefined, { shallow: true })
   }, 500)
 
@@ -32,7 +31,6 @@ export const useListingPusher = (): PusherResult => {
   const push = (query: PaginationRequest<ListingFilter>) => {
     const path = toQueryString(query)
     debouncedPush(path)
-    console.log('query::', query)
     setQuery(query)
   }
 

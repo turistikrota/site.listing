@@ -68,7 +68,6 @@ const ContentSwitcher: FC<Props> = ({ response, categoryDetail, payConfig, error
   const debouncedFilter = debounce((filter) => {
     if (isLoading || !!apiError) return
     if (isOnlyPageChanged) return nextPage(filter, listings.page + 1)
-    console.log('sa::', filter)
     refetch(filter)
   }, 500)
 

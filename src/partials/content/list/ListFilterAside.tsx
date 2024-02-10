@@ -22,7 +22,6 @@ const ListFilterAside: FC<ContentProps> = (props) => {
   }, [query.filter.categories])
 
   const clearCategories = () => {
-    console.log('iam working')
     push(deepMerge(query, { filter: { categories: undefined } }))
   }
 

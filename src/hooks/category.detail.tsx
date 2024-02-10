@@ -33,7 +33,6 @@ export const CategoryDetailProvider: FC<PropsWithChildren<ProviderProps>> = ({ i
       })
       .catch((err) => {
         setDetails(undefined)
-        console.log('err::', err)
       })
       .finally(() => {
         setLoading(false)
