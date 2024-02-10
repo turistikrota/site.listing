@@ -13,21 +13,24 @@ import ContentSwitcher from '~/partials/content/ContentSwitcher'
 import ListingListSeo from '~/partials/seo/ListingListSeo'
 import { isApiError } from '~/types/error'
 import { ListingListItem } from '~/types/listing'
+import { ListingFilter } from '~/types/listing.filter'
+import { PaginationRequest } from '~/types/pagination'
 import { getQueryFromSearchParams } from '~/utils/listing.utils'
 
 type Props = LayoutProps & {
   response?: ListResponse<ListingListItem>
+  initialQuery?: PaginationRequest<ListingFilter>
   payConfig: PaymentConfig | null
   categoryDetail: CategoryDetail | null
   error?: any
 }
 
-export default function Home({ response, categoryDetail, error, payConfig, ...layoutProps }: Props) {
+export default function Home({ response, categoryDetail, initialQuery, error, payConfig, ...layoutProps }: Props) {
   return (
     <AnalyticLayout>
       <ListingListSeo />
       <MapLayout {...layoutProps}>
-        <ListingFilterProvider>
+        <ListingFilterProvider initialQuery={initialQuery}>
           <ContentSwitcher
             response={response}
             categoryDetail={categoryDetail || undefined}
@@ -61,6 +64,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext): Promis
     props: {
       ...(await serverSideTranslations(ctx.locale || 'en', ['common', 'filter', 'sort', 'listing'])),
       response: res,
+      initialQuery: query,
       payConfig: payConfig ? payConfig : null,
       categoryDetail: categoryDetail ? categoryDetail : null,
       error: !!err && isApiError(err) ? err.response.data : null,
