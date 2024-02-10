@@ -58,7 +58,7 @@ const FixedButton: React.FC<ButtonProps> = ({ text, variant, icon, onClick }) =>
 
 const ContentSwitcher: FC<Props> = ({ response, categoryDetail, payConfig, error }) => {
   const { t } = useTranslation('common')
-  const { query, isQueryChanged, clean, isOnlyPageChanged, isFiltered, setQuery } = useListingFilter()
+  const { query, isQueryChanged, clean, isOnlyPageChanged } = useListingFilter()
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const { listings, isLoading, refetch, nextPage, error: apiError } = useListings(query, response)
   const { push, immediatePush } = useListingPusher()

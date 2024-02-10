@@ -161,7 +161,7 @@ export const CategorySelectionProvider: React.FC<React.PropsWithChildren<Provide
       }
     })
 
-    if (!anyMainFound && clear) clear()
+    // if (initialSelectedCategories.length > 0 && !anyMainFound && clear) clear()
 
     setAllCategories(allCategories)
     setSelecteds(initialSelectedCategories)
