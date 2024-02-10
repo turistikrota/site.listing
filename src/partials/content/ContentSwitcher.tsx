@@ -65,15 +65,15 @@ const ContentSwitcher: FC<Props> = ({ response, categoryDetail, payConfig, error
   const active = useMemo(() => {
     return query.filter.v ? query.filter.v : 'list'
   }, [query.filter])
-  const debouncedFilter = debounce(() => {
+  const debouncedFilter = debounce((filter) => {
     if (isLoading || !!apiError) return
-    if (isOnlyPageChanged) return nextPage(query.filter, listings.page + 1)
-    refetch(query.filter)
+    if (isOnlyPageChanged) return nextPage(filter, listings.page + 1)
+    refetch(filter)
   }, 500)
 
   useEffect(() => {
     if (!isQueryChanged && !isOnlyPageChanged) return
-    debouncedFilter()
+    debouncedFilter(query.filter)
   }, [query])
 
   useEffect(() => {

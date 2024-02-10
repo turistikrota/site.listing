@@ -34,7 +34,7 @@ const ListingFilterCategoryGroup: FC = () => {
         },
       })
     }
-    toggleCategory(category)
+    debouncedToggleCategory(category)
   }
 
   return (
