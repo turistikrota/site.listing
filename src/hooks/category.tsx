@@ -93,6 +93,7 @@ export const CategorySelectionProvider: React.FC<React.PropsWithChildren<Provide
   }, [allCategories, selectedCategories])
 
   const lastCategory = useMemo<SelectionItem | undefined>(() => {
+    console.log(selecteds)
     if (selecteds.length === 0) return
     return selecteds[selecteds.length - 1]
   }, [selecteds])
@@ -161,7 +162,7 @@ export const CategorySelectionProvider: React.FC<React.PropsWithChildren<Provide
       }
     })
 
-    if (!anyMainFound && clear) clear()
+    // if (initialSelectedCategories.length > 0 && !anyMainFound && clear) clear()
 
     setAllCategories(allCategories)
     setSelecteds(initialSelectedCategories)
