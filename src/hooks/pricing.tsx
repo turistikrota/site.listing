@@ -3,7 +3,6 @@ import { Currency } from '~/types/listing'
 
 export const useLocalizedFormatter = (currency?: Currency): Intl.NumberFormat => {
   const { i18n } = useTranslation()
-  console.log(currency)
   return new Intl.NumberFormat(i18n.language, {
     style: 'currency',
     currency: currency ? currency : Currency.TRY,
