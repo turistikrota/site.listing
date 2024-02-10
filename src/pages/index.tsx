@@ -61,7 +61,9 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext): Promis
     fetchPaymentConfig(),
   ])
   console.log('------------------------')
+  console.log('url', ctx.req.url)
   console.log('res', res)
+  console.log('query', query)
   console.log('categoryDetail', categoryDetail)
   console.log('payConfig', payConfig)
   console.log('------------------------')
