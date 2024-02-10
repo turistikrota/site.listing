@@ -14,6 +14,10 @@ type ListingFilterContextType = {
   isFiltered: boolean
 }
 
+type Props = {
+  initialQuery?: PaginationRequest<ListingFilter>
+}
+
 const ListingFilterContext = createContext<ListingFilterContextType | undefined>(undefined)
 
 export const useListingFilter = (): ListingFilterContextType => {
@@ -24,10 +28,8 @@ export const useListingFilter = (): ListingFilterContextType => {
   return context
 }
 
-export const ListingFilterProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [query, setQuery] = useState<PaginationRequest<ListingFilter>>({
-    filter: {},
-  })
+export const ListingFilterProvider: FC<PropsWithChildren<Props>> = ({ children, initialQuery }) => {
+  const [query, setQuery] = useState<PaginationRequest<ListingFilter>>(initialQuery || { filter: {} })
   const [isQueryChanged, setIsQueryChanged] = useState(false)
   const [isOnlyPageChanged, setIsOnlyPageChanged] = useState(false)
   const searchParams = useSearchParams()
