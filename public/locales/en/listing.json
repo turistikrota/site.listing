@@ -64,7 +64,9 @@
     "heating": {
       "air-conditioning": "With Air Conditioning",
       "stove": "With Stove",
-      "gas": "With Gas"
+      "gas": "With Gas",
+      "floor": "With Floor Heating",
+      "fireplace": "With Fireplace"
     }
   },
   "rules": {

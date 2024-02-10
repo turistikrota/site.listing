@@ -64,7 +64,9 @@
     "heating": {
       "air-conditioning": "Klima ile",
       "stove": "Soba ile",
-      "gas": "Doğalgaz ile"
+      "gas": "Doğalgaz ile",
+      "floor": "Yerden ısıtma ile",
+      "fireplace": "Şömine ile"
     }
   },
   "rules": {
