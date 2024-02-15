@@ -64,6 +64,19 @@
       "select": "Select Profile",
       "profile": "Profile",
       "loading": "Loading..."
+    },
+    "sites": {
+      "main": {
+        "link": "https://turistikrota.com/en"
+      },
+      "places": {
+        "link": "https://places.turistikrota.com",
+        "title": "places"
+      },
+      "listing": {
+        "link": "/",
+        "title": "listing"
+      }
     }
   },
   "notFoundPage": {

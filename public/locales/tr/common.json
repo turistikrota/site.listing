@@ -64,6 +64,19 @@
       "select": "Profili Seç",
       "profile": "Profil",
       "loading": "Yükleniyor..."
+    },
+    "sites": {
+      "main": {
+        "link": "https://turistikrota.com/tr"
+      },
+      "places": {
+        "link": "https://yerler.turistikrota.com",
+        "title": "yerler"
+      },
+      "listing": {
+        "link": "/",
+        "title": "ilan"
+      }
     }
   },
   "notFoundPage": {
