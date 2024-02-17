@@ -25,6 +25,7 @@ export const CategoryDetailProvider: FC<PropsWithChildren<ProviderProps>> = ({ i
 
   const sync = (uuid: string | undefined = undefined) => {
     if (!uuid) return setDetails(undefined)
+    if (loading) return
     if (uuid && details && details.uuid === uuid) return
     setLoading(true)
     fetchCategory(uuid)

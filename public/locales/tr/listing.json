@@ -1,4 +1,10 @@
 {
+  "category": {
+    "withFilters": {
+      "title": "{{category}} Kategorisindeki İlanlar",
+      "description": "Turistikrota ile {{category}} kategorisindeki ilanları inceleyebilir ve rezervasyon yapabilirsiniz."
+    }
+  },
   "seo": {
     "keywords": "turistikrota, turistikrota ilan"
   },

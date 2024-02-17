@@ -9,6 +9,8 @@ const CategoryDetailFooter: FC = () => {
   const { i18n } = useTranslation()
   const { details, loading } = useCategoryDetail()
 
+  console.log('details', details)
+
   if (loading)
     return (
       <section className='h-104'>
