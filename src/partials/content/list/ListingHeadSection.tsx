@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next'
-import { useMemo } from 'react'
-import { CategoryMetaWithSeo, EmptyCategoryMetaWithSeo } from '~/api/category.api'
+import { FC, useMemo } from 'react'
+import { CategoryDetail, CategoryMetaWithSeo, EmptyCategoryMetaWithSeo } from '~/api/category.api'
 import { useListingFilter } from '~/contexts/listing.filter'
 import { useCategoryDetail } from '~/hooks/category.detail'
 import { useListSeo } from '~/hooks/seo'
@@ -25,7 +25,7 @@ const minimizeDescription = (description: string): string => {
   return description.slice(0, 100) + '...'
 }
 
-const ListingHeadSection: React.FC<Props> = ({ sortVisible }) => {
+const ListingHeadSection: FC<Props> = ({ sortVisible }) => {
   const { details } = useCategoryDetail()
   const { query } = useListingFilter()
   const { title, description } = useListSeo({
@@ -48,6 +48,25 @@ const ListingHeadSection: React.FC<Props> = ({ sortVisible }) => {
       </div>
       {sortVisible && <ListingDesktopSortGroup />}
     </section>
+  )
+}
+
+export const CategoryDetailHeadWithFilters: FC<CategoryDetail> = (details) => {
+  const { t, i18n } = useTranslation('listing')
+
+  const seo = useMemo<CategoryMetaWithSeo>(
+    () => getI18nTranslations<CategoryMetaWithSeo>(details.meta, i18n.language, EmptyCategoryMetaWithSeo),
+    [details, i18n.language],
+  )
+  return (
+    <div className='flex flex-col pb-4'>
+      <h2 className='text-2xl font-semibold text-gray-800 dark:text-gray-300'>
+        {t('category.withFilters.title', { category: seo.name })}
+      </h2>
+      <p className='text-sm text-gray-600 dark:text-gray-400'>
+        {t('category.withFilters.description', { category: seo.name })}
+      </p>
+    </div>
   )
 }
 

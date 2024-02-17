@@ -1,4 +1,10 @@
 {
+  "category": {
+    "withFilters": {
+      "title": "Listing in {{category}} Category",
+      "description": "With Turistikrota, you can review the listing in the {{category}} category and make a reservation."
+    }
+  },
   "seo": {
     "keywords": "turistikrota, turistikrota listing"
   },

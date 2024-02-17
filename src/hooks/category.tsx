@@ -70,7 +70,7 @@ export const CategorySelectionProvider: React.FC<React.PropsWithChildren<Provide
   categories,
   clear,
 }) => {
-  const { details, sync } = useCategoryDetail()
+  const { sync } = useCategoryDetail()
   const [loading, setLoading] = useState(false)
   const { i18n } = useTranslation()
   const mapper = useMemo(() => createCategoryMapper(i18n.language), [i18n.language])
@@ -81,11 +81,6 @@ export const CategorySelectionProvider: React.FC<React.PropsWithChildren<Provide
 
   const setSelecteds = (arr: string[]) => {
     setSelectedCategories(arr)
-    if (arr.length > 0) {
-      sync(arr[arr.length - 1])
-    } else {
-      sync(undefined)
-    }
   }
 
   const selecteds = useMemo<SelectionItem[]>(() => {
@@ -181,9 +176,13 @@ export const CategorySelectionProvider: React.FC<React.PropsWithChildren<Provide
   const toggleCategory = (category: SelectionItem) => {
     if (selectedCategories.includes(category.id)) {
       setSelecteds(selectedCategories.filter((c) => c !== category.id))
+      if (selectedCategories.length > 0) {
+        sync(selectedCategories[selectedCategories.length - 1])
+      }
     } else {
       setSelecteds([...selectedCategories, category.id])
       getChildCategories(category.id, category)
+      sync(category.id)
     }
   }
 
