@@ -7,6 +7,7 @@ import { FC } from 'react'
 import { CategoryMetaWithSeo, EmptyCategoryMetaWithSeo } from '~/api/category.api'
 import { useCategoryDetail } from '~/hooks/category.detail'
 import { getI18nTranslations } from '~/utils/i18n'
+import CategoryDetailSeo from '../seo/CategoryDetailSeo'
 
 type CarouselProps = {
   images: string[]
@@ -45,6 +46,10 @@ const CategoryDetailHeader: FC = () => {
 
   return (
     <section className='mb-2'>
+      <CategoryDetailSeo
+        images={mapAndSortImages(details.images)}
+        meta={getI18nTranslations<CategoryMetaWithSeo>(details.meta, i18n.language, EmptyCategoryMetaWithSeo)}
+      />
       <ImagePreviewProvider
         altPrefix={getI18nTranslations<CategoryMetaWithSeo>(details.meta, i18n.language, EmptyCategoryMetaWithSeo).name}
         list={mapAndSortImages(details.images)}
