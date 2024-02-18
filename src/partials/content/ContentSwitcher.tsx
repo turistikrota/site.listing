@@ -64,7 +64,7 @@ const ContentSwitcher: FC<Props> = ({ response, categoryDetail, payConfig, error
   const { push, immediatePush } = useListingPusher()
   const active = useMemo(() => {
     return query.filter.v ? query.filter.v : 'list'
-  }, [query.filter])
+  }, [query.filter.v])
   const debouncedFilter = debounce((filter) => {
     if (isLoading || !!apiError) return
     if (isOnlyPageChanged) return nextPage(filter, listings.page + 1)
@@ -86,11 +86,16 @@ const ContentSwitcher: FC<Props> = ({ response, categoryDetail, payConfig, error
   }, [error])
 
   const toggleActive = (newActive: ContentType) => {
-    if (newActive === 'list' && query.limit) {
-      return immediatePush(deepMerge(query, { limit: undefined, page: 1, filter: { v: 'list' } }))
-    } else if (newActive === 'map' && query.limit !== 1000) {
-      immediatePush(deepMerge(query, { limit: 1000, page: 1, filter: { v: 'map' } }))
-    }
+    if (active === newActive) return
+    push({
+      ...query,
+      limit: newActive === 'list' ? undefined : 1000,
+      page: 1,
+      filter: {
+        ...query.filter,
+        v: newActive,
+      },
+    })
   }
 
   const onCoordinateChange = (coordinates: Coordinates, zoom: number) => {

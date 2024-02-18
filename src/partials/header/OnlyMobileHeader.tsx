@@ -15,7 +15,7 @@ export default function OnlyMobileHeader({ accessTokenIsExists }: Props) {
   const { t, i18n } = useTranslation('common')
   return (
     <>
-      <MobileHeader defaultFixed>
+      <MobileHeader defaultFixed fillSize>
         <MobileHeader.Left>
           <ModernLogoProvider />
         </MobileHeader.Left>
