@@ -9,7 +9,7 @@ type Props = {
 const CategoryDetailMarkdownSection: FC<Props> = ({ url }) => {
   const content = useMdContent(url)
 
-  return <MarkdownContent content={content} />
+  return <MarkdownContent content={content} decreaseHeight />
 }
 
 export default CategoryDetailMarkdownSection
