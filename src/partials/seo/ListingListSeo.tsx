@@ -1,5 +1,6 @@
 import { Coordinates } from '@turistikrota/ui'
 import Head from 'next/head'
+import { useCategoryDetail } from '~/hooks/category.detail'
 import { useListSeo } from '~/hooks/seo'
 import { makeHtmlTitle } from '~/utils/seo'
 import BaseSeo from './BaseSeo'
@@ -9,7 +10,10 @@ type SeoProps = {
 }
 
 const ListingListSeo: React.FC<SeoProps> = ({ coordinates }) => {
+  const { details } = useCategoryDetail()
   const { title, description, keywords } = useListSeo({ coordinates })
+
+  if (details) return <></>
 
   makeHtmlTitle(title)
 

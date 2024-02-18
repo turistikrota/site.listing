@@ -10,7 +10,6 @@ import AnalyticLayout from '~/layouts/AnalyticLayout'
 import MapLayout from '~/layouts/MapLayout'
 import { LayoutProps } from '~/layouts/layout.types'
 import ContentSwitcher from '~/partials/content/ContentSwitcher'
-import ListingListSeo from '~/partials/seo/ListingListSeo'
 import { isApiError } from '~/types/error'
 import { ListingListItem } from '~/types/listing'
 import { ListingFilter } from '~/types/listing.filter'
@@ -28,7 +27,6 @@ type Props = LayoutProps & {
 export default function Home({ response, categoryDetail, initialQuery, error, payConfig, ...layoutProps }: Props) {
   return (
     <AnalyticLayout>
-      <ListingListSeo />
       <MapLayout {...layoutProps}>
         <ListingFilterProvider initialQuery={initialQuery}>
           <ContentSwitcher
